@@ -54,8 +54,9 @@ namespace Mechanics2D
             {
                 m_TransitioningGameObjectPresent = true;
 
+                /*
                 if (ScreenFader.IsFading || SceneController.Transitioning)
-                    return;
+                    return;*/
 
                 if (transitionWhen == TransitionWhen.OnTriggerEnter)
                     TransitionInternal ();
@@ -72,8 +73,9 @@ namespace Mechanics2D
 
         void Update ()
         {
+            /*
             if (ScreenFader.IsFading || SceneController.Transitioning)
-                return;
+                return;*/
 
             if(!m_TransitioningGameObjectPresent)
                 return;
