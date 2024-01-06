@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace Mechanics2D
@@ -39,17 +40,26 @@ namespace Mechanics2D
 
     public class Data
     {
-
+        public virtual void Print()
+        {
+            Debug.Log("*** Data ***");
+        }
     }
 
 
-    public class Data<T> : Data
+    public class Data<T0> : Data
     {
-        public T value;
+        public T0 value;
 
-        public Data(T value)
+        public Data(T0 value0)
         {
-            this.value = value;
+            this.value = value0;
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Debug.Log($"{typeof(T0).FullName} {this.value}");
         }
     }
 
@@ -63,6 +73,13 @@ namespace Mechanics2D
         {
             this.value0 = value0;
             this.value1 = value1;
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Debug.Log($"{typeof(T0).FullName} {this.value0}");
+            Debug.Log($"{typeof(T1).FullName} {this.value1}");
         }
     }
 
@@ -78,6 +95,14 @@ namespace Mechanics2D
             this.value0 = value0;
             this.value1 = value1;
             this.value2 = value2;
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Debug.Log($"{typeof(T0).FullName} {this.value0}");
+            Debug.Log($"{typeof(T1).FullName} {this.value1}");
+            Debug.Log($"{typeof(T2).FullName} {this.value2}");
         }
     }
 
@@ -95,6 +120,15 @@ namespace Mechanics2D
             this.value1 = value1;
             this.value2 = value2;
             this.value3 = value3;
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Debug.Log($"{typeof(T0).FullName} {this.value0}");
+            Debug.Log($"{typeof(T1).FullName} {this.value1}");
+            Debug.Log($"{typeof(T2).FullName} {this.value2}");
+            Debug.Log($"{typeof(T3).FullName} {this.value3}");
         }
     }
 
@@ -114,6 +148,16 @@ namespace Mechanics2D
             this.value2 = value2;
             this.value3 = value3;
             this.value4 = value4;
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Debug.Log($"{typeof(T0).FullName} {this.value0}");
+            Debug.Log($"{typeof(T1).FullName} {this.value1}");
+            Debug.Log($"{typeof(T2).FullName} {this.value2}");
+            Debug.Log($"{typeof(T3).FullName} {this.value3}");
+            Debug.Log($"{typeof(T4).FullName} {this.value4}");
         }
     }
 }

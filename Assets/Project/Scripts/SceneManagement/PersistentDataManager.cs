@@ -142,7 +142,26 @@ namespace Mechanics2D
                         }
                     }
                 }
+
+                ShowAllSavedData();
             };
+        }
+
+        void ShowAllSavedData()
+        {
+            foreach (var dp in m_DataPersisters)
+            {
+                var dataSettings = dp.GetDataSettings();
+                //Debug.Log($"PersistenceType {dataSettings.persistenceType}");
+                if (!string.IsNullOrEmpty(dataSettings.dataTag))
+                {
+                    //Debug.Log($"DataTag {dataSettings.dataTag}");
+                    if (m_Store.ContainsKey(dataSettings.dataTag))
+                    {
+                        m_Store[dataSettings.dataTag].Print();
+                    }
+                }
+            }
         }
 
     }

@@ -15,14 +15,18 @@ namespace Mechanics2D
 
         [Tooltip("This is the gameobject which will trigger the director to play.  For example, the player.")]
         public GameObject triggeringGameObject;
-        public PlayableDirector director;
         public TriggerType triggerType;
-        public UnityEvent OnDirectorPlay;
-        public UnityEvent OnDirectorFinish;
-        [HideInInspector]
+
+        //[HideInInspector]
         public DataSettings dataSettings;
 
         protected bool m_AlreadyTriggered;
+
+        void ChangeColor()
+        {
+            SpriteRenderer m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            m_SpriteRenderer.color = Color.blue;
+        }
 
         void OnEnable()
         {
@@ -42,15 +46,8 @@ namespace Mechanics2D
             if (triggerType == TriggerType.Once && m_AlreadyTriggered)
                 return;
 
-            director.Play();
+            ChangeColor();
             m_AlreadyTriggered = true;
-            OnDirectorPlay.Invoke();
-            Invoke("FinishInvoke", (float)director.duration);
-        }
-
-        void FinishInvoke()
-        {
-            OnDirectorFinish.Invoke();
         }
 
         public void OverrideAlreadyTriggered(bool alreadyTriggered)
@@ -71,13 +68,20 @@ namespace Mechanics2D
 
         public Data SaveData()
         {
+            //Debug.Log($"SaveData {m_AlreadyTriggered}");
             return new Data<bool>(m_AlreadyTriggered);
         }
 
         public void LoadData(Data data)
         {
+          
             Data<bool> directorTriggerData = (Data<bool>)data;
             m_AlreadyTriggered = directorTriggerData.value;
+
+            //Debug.Log($"LoadData {directorTriggerData.value}");
+
+            if(m_AlreadyTriggered)
+                ChangeColor();
         }
     }
 }

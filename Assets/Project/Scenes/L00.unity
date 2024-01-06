@@ -360,7 +360,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3245490842578302338, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 830541712}
   m_SourcePrefab: {fileID: 100100000, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
 --- !u!4 &830541710 stripped
@@ -385,15 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431efa03c44775241ab68a0a5f3f05f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggeringGameObject: {fileID: 0}
-  director: {fileID: 0}
+  triggeringGameObject: {fileID: 1317520943}
   triggerType: 0
-  OnDirectorPlay:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDirectorFinish:
-    m_PersistentCalls:
-      m_Calls: []
   dataSettings:
     dataTag: 626eae89-00e7-42e8-8456-43680300cf14
     persistenceType: 3
