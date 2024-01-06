@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    private bool haveControl = true;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(!haveControl)
+            return;
         // Входные данные игрока
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -27,5 +31,20 @@ public class PlayerMovement : MonoBehaviour
     {
         // Перемещение игрока
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public void GainControl()
+    {
+        haveControl = true;
+    }
+
+    public void ReleaseControl(bool resetValues = true)
+    {
+        haveControl = false;
+        if (resetValues)
+        {
+            movement.x = 0f;
+            movement.y = 0f;
+        }
     }
 }

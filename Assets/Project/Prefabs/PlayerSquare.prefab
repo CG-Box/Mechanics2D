@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3349297218631894228}
   - component: {fileID: 1101793909598204833}
   - component: {fileID: 2190402322187330796}
+  - component: {fileID: 6766039923436915545}
   m_Layer: 0
   m_Name: PlayerSquare
   m_TagString: Player
@@ -172,3 +173,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6766039923436915545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270511271201836942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f347e2cd54de2b54da2fc845fdf9de6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 0
+  Pause:
+    key: 27
+    controllerButton: 8
+    m_Enabled: 1
+  Interact:
+    key: 101
+    controllerButton: 4
+    m_Enabled: 1
+  MeleeAttack:
+    key: 107
+    controllerButton: 3
+    m_Enabled: 1
+  RangedAttack:
+    key: 111
+    controllerButton: 2
+    m_Enabled: 1
+  Jump:
+    key: 32
+    controllerButton: 1
+    m_Enabled: 1
+  Horizontal:
+    positive: 100
+    negative: 97
+    controllerAxis: 1
+  Vertical:
+    positive: 119
+    negative: 115
+    controllerAxis: 2
+  dataSettings:
+    dataTag: dcce36b4-886a-4f2f-9f15-8f5e674332bd
+    persistenceType: 3
