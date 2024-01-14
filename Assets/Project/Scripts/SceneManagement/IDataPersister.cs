@@ -32,6 +32,8 @@ namespace Mechanics2D
         public string dataTag = System.Guid.NewGuid().ToString();
         public PersistenceType persistenceType = PersistenceType.ReadWrite;
 
+        public string dataName = "default";
+
         public override string ToString()
         {
             return dataTag + " " + persistenceType.ToString();

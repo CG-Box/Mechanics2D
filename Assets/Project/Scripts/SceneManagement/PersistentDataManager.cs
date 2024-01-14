@@ -147,15 +147,19 @@ namespace Mechanics2D
             };
         }
 
-        void ShowAllSavedData()
+        void ShowAllSavedData(bool shortVersion = true)
         {
             foreach (var dp in m_DataPersisters)
             {
                 var dataSettings = dp.GetDataSettings();
-                //Debug.Log($"PersistenceType {dataSettings.persistenceType}");
+                Debug.Log($"Data name: {dataSettings.dataName}");
+
+                if(!shortVersion) Debug.Log($"Type {dataSettings.persistenceType}");
+                
                 if (!string.IsNullOrEmpty(dataSettings.dataTag))
                 {
-                    //Debug.Log($"DataTag {dataSettings.dataTag}");
+                    if(!shortVersion) Debug.Log($"Tag {dataSettings.dataTag}");
+
                     if (m_Store.ContainsKey(dataSettings.dataTag))
                     {
                         m_Store[dataSettings.dataTag].Print();

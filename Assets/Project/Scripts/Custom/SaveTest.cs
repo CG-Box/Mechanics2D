@@ -40,8 +40,13 @@ namespace Mechanics2D
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject != triggeringGameObject)
+            
+            if (other.tag != "Player")
                 return;
+
+            /*
+            if (other.gameObject != triggeringGameObject)
+                return;*/
 
             if (triggerType == TriggerType.Once && m_AlreadyTriggered)
                 return;

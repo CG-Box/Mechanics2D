@@ -189,6 +189,11 @@ Transform:
   - {fileID: 1231095215}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &639465036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3245490842578302338, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
+  m_PrefabInstance: {fileID: 6018793288746682011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &651294793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,7 +277,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3245490842578302338, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1630096538}
   m_SourcePrefab: {fileID: 100100000, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
 --- !u!4 &651294794 stripped
 Transform:
@@ -385,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431efa03c44775241ab68a0a5f3f05f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggeringGameObject: {fileID: 1317520943}
+  triggeringGameObject: {fileID: 3270511271201836942, guid: 46f079eda0b4d374598f67c1457288e6, type: 3}
   triggerType: 0
   dataSettings:
     dataTag: 626eae89-00e7-42e8-8456-43680300cf14
@@ -619,6 +627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4591303824498897233, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
+      propertyPath: m_Color.a
+      value: 0.039215688
+      objectReference: {fileID: 0}
     - target: {fileID: 7856457982760036000, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
       propertyPath: transitionType
       value: 2
@@ -675,6 +687,28 @@ Transform:
   - {fileID: 5853278066331467075}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1630096534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3245490842578302338, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
+  m_PrefabInstance: {fileID: 651294793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1630096538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630096534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431efa03c44775241ab68a0a5f3f05f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggeringGameObject: {fileID: 3270511271201836942, guid: 46f079eda0b4d374598f67c1457288e6, type: 3}
+  triggerType: 0
+  dataSettings:
+    dataTag: 6a9930da-70d0-4364-93f0-2efa9d35ef4d
+    persistenceType: 3
 --- !u!1001 &2672614262005673293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,30 +774,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2559498373263883115, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 2559498373263883115, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2559498373263883115, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555699455205654585, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555699455205654585, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.g
-      value: 0.99437773
-      objectReference: {fileID: 0}
-    - target: {fileID: 4555699455205654585, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8529284399899989561, guid: b4573da302d6fa3449336feb6b9ea598, type: 3}
       propertyPath: m_Name
       value: ScreenFader
@@ -1011,13 +1021,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3245490842578302338, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 6018793288746682016}
   m_SourcePrefab: {fileID: 100100000, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
 --- !u!4 &6018793288746682012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3612337669782595001, guid: 49d39ec73acbca846a3af2ca216cdb7b, type: 3}
   m_PrefabInstance: {fileID: 6018793288746682011}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6018793288746682016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639465036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431efa03c44775241ab68a0a5f3f05f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggeringGameObject: {fileID: 3270511271201836942, guid: 46f079eda0b4d374598f67c1457288e6, type: 3}
+  triggerType: 0
+  dataSettings:
+    dataTag: 3fa438d2-59af-489f-912e-6e38d640af13
+    persistenceType: 3
 --- !u!1001 &6363084512745776612
 PrefabInstance:
   m_ObjectHideFlags: 0
