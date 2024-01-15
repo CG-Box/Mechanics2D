@@ -11,6 +11,11 @@ public class GameData_SO: ScriptableObject
 
     [SerializeField]
     private string slotId = "default";
+    public string SlotId
+    {
+        get { return slotId; }
+    }
+
 
     [Space (10)]
     [Header ("======Data variables======")]
@@ -31,8 +36,8 @@ public class GameData_SO: ScriptableObject
     {
         //StaticEvents.Tickets.Added += AddHealth;
         //StaticEvents.LevelUI.LevelCompleted += TrySetHighestCompletedLevel;
-        Init();
 
+        //Init();
     }
     void OnDisable()
     {
@@ -40,7 +45,7 @@ public class GameData_SO: ScriptableObject
         //StaticEvents.LevelUI.LevelCompleted -= TrySetHighestCompletedLevel;
     }
 
-    void Init()
+    public void Init()
     {
         if(loadData)
             SetCorrectData();
@@ -162,6 +167,14 @@ public class GameData_SO: ScriptableObject
         PlayerPrefs.DeleteAll();
     }
 
+    public void GetData()
+    {
+
+    }
+    public void SetData()
+    {
+
+    }
 
     //void OnValidate(){} //Every change in SO
 }

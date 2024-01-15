@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158fa84c864297a4f8ca3b03f7d1cebf, type: 3}
-  m_Name: DataSlot_1
+  m_Name: DataDefault
   m_EditorClassIdentifier: 
-  health: 0
+  loadData: 0
+  slotId: default
+  health: 100
   ownedItemsId: []
