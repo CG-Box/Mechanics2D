@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2663528349973921491}
   - component: {fileID: 5571533462151458573}
+  - component: {fileID: 5749260121894219417}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialSceneTransitionDestination: {fileID: 0}
+--- !u!114 &5749260121894219417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295723661932635624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b3cc044c86a654a91f7b014863e167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

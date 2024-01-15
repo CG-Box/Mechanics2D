@@ -115,6 +115,8 @@ namespace Mechanics2D
             m_PlayerInput.ReleaseControl(resetInputValues);*/
             if (playerInput == null)
                 playerInput = FindObjectOfType<PlayerMovement>();
+
+            if(playerInput != null) // need fix error
             playerInput.ReleaseControl(resetInputValues);
 
             yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.Loading));
