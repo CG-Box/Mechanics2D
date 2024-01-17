@@ -12,6 +12,9 @@ public class SlotManagerEditor : Editor
 
         SlotManager targetObject = target as SlotManager;
 
+        if (GUILayout.Button("Load Recent Slot"))
+            targetObject.LoadRecentSlot();
+
         GUILayout.EndVertical();
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Load Data"))

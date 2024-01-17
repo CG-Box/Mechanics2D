@@ -42,9 +42,14 @@ public class SlotManager: ScriptableObject
         if(dataSlots.Count == 0) Debug.LogError($"At least one slot must be in collection");
     }
 
-    void ChangeActiveSlotWithDefault()
+    void RestoreActiveSlotToDefault()
     {
-        activeSlot = defaultSlot;
+        activeSlot.SetData(defaultSlot.GetData());
+    }
+    public void NewGame()
+    {
+        SetActiveSlot(dataSlots[0].SlotId);
+        RestoreActiveSlotToDefault();
     }
 
     public void SetActiveSlot(string slodId)
@@ -94,9 +99,19 @@ public class SlotManager: ScriptableObject
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
     }
-    void InitializeSelectedSlotId()
+
+    public bool HasFilesData() 
     {
-        this.activeSlotId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        return GetRecentSlotId() != null;
+    }
+
+    public void DeleteProfileData(string profileId) 
+    {
+        SetActiveSlot(profileId);
+        // delete the data for this profile id
+        dataHandler.Delete(profileId);
+        // initialize the selected profile id
+        RestoreActiveSlotToDefault();
     }
 
     void SaveSlot(GameData_SO slot)
@@ -165,12 +180,42 @@ public class SlotManager: ScriptableObject
 
     public void SaveActiveSlot()
     {
-        string name = activeSlot?.SlotId;
+        //string name = activeSlot?.SlotId;
         SaveSlot(activeSlot);
     }
     public void LoadActiveSlot()
     {
-        string name = activeSlot?.SlotId;
+        //string name = activeSlot?.SlotId;
         LoadSlot(activeSlot);
+    }
+    public bool LoadRecentSlot()
+    {
+        string recentSlotId = GetRecentSlotId();
+        if(recentSlotId == null)
+        {
+            Debug.LogError("Slots weren't saved before, the default slot needs to be loaded");
+            return false;
+        }
+        Debug.Log($"recentSlotId: {recentSlotId}");
+        SetActiveSlot(recentSlotId);
+        LoadSlot(activeSlot);
+        return true;
+    }
+    string GetRecentSlotId()
+    {
+        return dataHandler.GetMostRecentlyUpdatedProfileId();        
+    }
+
+    public Dictionary<string, GameData> GetAllProfilesGameData() 
+    {
+        return dataHandler.LoadAllProfiles();
+    }
+
+
+
+    //Not used
+    public string GetMostRecentSceneName()
+    {
+        return activeSlot.data.globals.lastSceneName;
     }
 }

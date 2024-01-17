@@ -12,8 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158fa84c864297a4f8ca3b03f7d1cebf, type: 3}
   m_Name: DataSlot_3
   m_EditorClassIdentifier: 
-  loadData: 0
   slotId: slot_3
+  data:
+    globals:
+      lastUpdated: -8584961184814444812
+      playerHealth: 3
+      lastSceneName: SCENE_NAME
+    scene:
+      name: SCENE_NAME
+    sceneList:
+      keys:
+      - SCENE_NAME
+      values:
+      - name: SCENE_NAME
   health: 333
   ownedItemsId:
   - Alice

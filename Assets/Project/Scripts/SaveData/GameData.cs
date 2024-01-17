@@ -59,5 +59,11 @@ public class GameData
             name = "SCENE_NAME";
         }
     }
+
+
+    public int GetPercentageComplete() 
+    {
+        return globals.playerHealth/1000;
+    }
 }
 

@@ -12,7 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158fa84c864297a4f8ca3b03f7d1cebf, type: 3}
   m_Name: DataSlot_2
   m_EditorClassIdentifier: 
-  loadData: 0
   slotId: slot_2
+  data:
+    globals:
+      lastUpdated: -8584961176619181579
+      playerHealth: 838
+      lastSceneName: SCENE_NAME
+    scene:
+      name: SCENE_NAME
+    sceneList:
+      keys:
+      - SCENE_NAME
+      values:
+      - name: SCENE_NAME
   health: 22
   ownedItemsId: []
