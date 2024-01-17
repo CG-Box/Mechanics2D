@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
 public class GameData
 {
@@ -32,14 +29,13 @@ public class GameData
     public void CreateNewSceneData()
     {
         scene = new SceneData();
-        //sceneList[scene.name] = scene;
     }
 
     [System.Serializable]
     public class Globals
     {
         public long lastUpdated;
-        public float playerHealth;
+        public int playerHealth;
 
         public string lastSceneName;
 
@@ -58,13 +54,9 @@ public class GameData
     public class SceneData
     {
         public string name;
-        public Vector3 playerPosition;
-        //public SerializableDictionary<string, bool> itemsCollected;
         public SceneData()
         {
-            this.name = "SampleScene";
-            playerPosition = Vector3.zero;
-            //itemsCollected = new SerializableDictionary<string, bool>();
+            name = "SCENE_NAME";
         }
     }
 }
