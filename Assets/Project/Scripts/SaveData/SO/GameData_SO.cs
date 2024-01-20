@@ -18,14 +18,6 @@ public class GameData_SO: ScriptableObject
 
     public GameData data;
 
-
-    [SerializeField]
-    private int health;
-    public int Health
-    {
-        get { return health; }
-    }
-
     int ownedItemsAmount;
     public List<string> ownedItemsId;
 
@@ -57,9 +49,7 @@ public class GameData_SO: ScriptableObject
     }
 
     public void Init()
-    {
-        UpdateHealthUI();
-    }
+    {}
 
     public void InitDefaultGameData() 
     {
@@ -68,27 +58,12 @@ public class GameData_SO: ScriptableObject
     }
     public void InitDefaultHealth()
     {
-        health = 100;
+        //health = 100;
     }
     public void InitDefaultInventory()
     {
         ownedItemsAmount = 0;
         ownedItemsId = new List<string>(ownedItemsAmount);
-    }
-
-    public void AddHealth(int amount)
-    {
-        health += amount;
-        UpdateHealthUI();
-    }
-    public void RemoveHealth(int amount)
-    {
-        health -= amount;
-        UpdateHealthUI();
-    }
-    public void UpdateHealthUI()
-    {
-        //StaticEvents.Tickets.UpdateUI?.Invoke(health);
     }
 
     public void OwnInventoryItem(string id)

@@ -1261,6 +1261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyHealth: 0
+  healthChangeRequest: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
+  healthUpdateEvent: {fileID: 11400000, guid: ffc8558f08f0a7a42aff54e843b6adc7, type: 2}
 --- !u!1 &1566544057
 GameObject:
   m_ObjectHideFlags: 0

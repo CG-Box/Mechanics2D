@@ -275,6 +275,12 @@ public class SlotManager: ScriptableObject
         Debug.Log($"active slot {activeSlot.SlotId} new name {sceneName}");
     }
 
+    public void ChangePlayerHealth(int newHealt)
+    {
+        activeSlot.data.globals.playerHealth = newHealt;
+        Debug.Log($"newHealt : {newHealt}");
+    }
+
 
     //Not used
     public string GetMostRecentSceneName()

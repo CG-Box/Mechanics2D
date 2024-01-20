@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+using System.Linq;
+
 [CreateAssetMenu(fileName = "GameManagerSO", menuName = "SriptableObjects/GameManager", order = 99)]
 public class GameManagerSO : DescriptionBaseSO
 {
@@ -17,6 +19,9 @@ public class GameManagerSO : DescriptionBaseSO
 	public VoidEventChannelSO continueGameEventChannel = default;
 	public VoidEventChannelSO saveGameEventChannel = default;
 	public StringEventChannelSO sceneChangedEventChannel = default;
+
+	//Valuables
+	public IntEventChannelSO healthUpdateEvent = default;
 
 	[Header("Events Raise")]
 	public TransitionPointEventChannelSO sceneRequestEventChannel = default;
@@ -42,6 +47,10 @@ public class GameManagerSO : DescriptionBaseSO
 
 		if (sceneChangedEventChannel != null)
 			sceneChangedEventChannel.OnEventRaised += SceneChanged;
+
+		//Valuables
+		if (healthUpdateEvent != null)
+			healthUpdateEvent.OnEventRaised += HealthChanged;
 	}
 	public void RemoveBindings()
 	{
@@ -56,6 +65,10 @@ public class GameManagerSO : DescriptionBaseSO
 
 		if (sceneChangedEventChannel != null)
 			sceneChangedEventChannel.OnEventRaised -= SceneChanged;
+		
+		//Valuables
+		if (healthUpdateEvent != null)
+			healthUpdateEvent.OnEventRaised -= HealthChanged;
 	}
 	#endregion
 
@@ -78,7 +91,31 @@ public class GameManagerSO : DescriptionBaseSO
 	void SceneChanged(string sceneName)
 	{
 		slotManager.ChangeActiveSlotSceneName(sceneName);
+		LoadDataToScripts();
 	}
+
+	void HealthChanged(int newHealt)
+	{
+		slotManager.ChangePlayerHealth(newHealt);
+	}
+
+	void LoadDataToScripts()
+	{
+		List<ITakeFromFile> dataPersistenceObjects = FindAllDataPersistenceObjects();
+		foreach (ITakeFromFile dataPersistenceObj in dataPersistenceObjects) 
+        {
+            dataPersistenceObj.LoadData(slotManager.GetActiveSlot().data);
+        }
+	}
+
+    List<ITakeFromFile> FindAllDataPersistenceObjects() 
+    {
+        // FindObjectsofType takes in an optional boolean to include inactive gameobjects
+        IEnumerable<ITakeFromFile> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<ITakeFromFile>();
+
+        return new List<ITakeFromFile>(dataPersistenceObjects);
+    }
+
 
     public void ExitGame()
 	{

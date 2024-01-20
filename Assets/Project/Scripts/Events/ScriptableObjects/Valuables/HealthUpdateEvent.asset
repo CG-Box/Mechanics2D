@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f12df305945aed48bdf23f7dcb7b9af, type: 3}
   m_Name: HealthUpdateEvent
   m_EditorClassIdentifier: 
-  description: 
+  description: 'Using by health system to update all conneted scripts data
+
+    (update
+    health in save slot)'

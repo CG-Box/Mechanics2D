@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f12df305945aed48bdf23f7dcb7b9af, type: 3}
   m_Name: HealthChangeRequest
   m_EditorClassIdentifier: 
-  description: 
+  description: Using by health system which determine change health or not (if change
+    need - health update event will be invoked)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Circle : MonoBehaviour
+public interface ITakeFromFile
 {
-    public int health = 10;
+    void LoadData(GameData data);
 }

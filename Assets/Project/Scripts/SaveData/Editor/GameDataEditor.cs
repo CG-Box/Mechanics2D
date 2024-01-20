@@ -16,15 +16,6 @@ public class GameDataEditor : Editor
         if (GUILayout.Button("Reset (Game restart needed)"))
             targetObject.ResetToDefault();
 
-        GUILayout.EndVertical();
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add 100 Health"))
-            targetObject.AddHealth(100);
-        if (GUILayout.Button("Remove 50 Health"))
-            targetObject.RemoveHealth(50);
-        GUILayout.EndHorizontal();
-        GUILayout.BeginVertical();
-
         foreach (string name in System.Enum.GetNames(typeof(items)))
         {
             GUILayout.EndVertical();
