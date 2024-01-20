@@ -116,7 +116,7 @@ public class FileDataHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             //rewrite current scene data to scene data list
-            data.SetSceneData(data.scene);
+            //data.SetSceneData(data.scene);
 
             // serialize the C# game data object into Json
             string dataToStore = JsonUtility.ToJson(data, true);
@@ -222,7 +222,7 @@ public class FileDataHandler
         return profileDictionary;
     }
 
-    public string GetMostRecentlyUpdatedProfileId() 
+    public string GetMostRecentlyUpdatedProfileId(/*out GameData lastGameData*/) 
     {
         string mostRecentProfileId = null;
 
@@ -252,6 +252,7 @@ public class FileDataHandler
                 if (newDateTime > mostRecentDateTime) 
                 {
                     mostRecentProfileId = profileId;
+                    //lastGameData = gameData;
                 }
             }
         }

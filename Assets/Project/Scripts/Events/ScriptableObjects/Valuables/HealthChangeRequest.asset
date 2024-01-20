@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158fa84c864297a4f8ca3b03f7d1cebf, type: 3}
-  m_Name: DataDefault
+  m_Script: {fileID: 11500000, guid: 0f12df305945aed48bdf23f7dcb7b9af, type: 3}
+  m_Name: HealthChangeRequest
   m_EditorClassIdentifier: 
-  loadData: 0
-  slotId: default
-  health: 100
-  ownedItemsId: []
+  description: 

@@ -117,4 +117,28 @@ namespace Mechanics2D
                 TransitionInternal ();
         }
     }
+
+    public class TransitionPointData
+    {
+        //[SceneName]
+        public string newSceneName;
+
+        //[Tooltip("Whether the transition will be within this scene, to a different zone or a non-gameplay scene.")]
+        public TransitionPoint.TransitionType transitionType;
+
+        //[Tooltip("The tag of the SceneTransitionDestination script in the scene being transitioned to.")]
+        public SceneTransitionDestination.DestinationTag transitionDestinationTag;
+
+        //[Tooltip("The player will lose control when the transition happens but should the axis and button values reset to the default when control is lost.")]
+        public bool resetInputValuesOnTransition = true;
+
+        public TransitionPointData(string sceneName)
+        {
+            newSceneName = sceneName;
+            transitionType = TransitionPoint.TransitionType.DifferentZone;
+            resetInputValuesOnTransition = true;
+            transitionDestinationTag = SceneTransitionDestination.DestinationTag.A;
+        }
+    }
 }
+

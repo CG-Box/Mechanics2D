@@ -143,7 +143,7 @@ namespace Mechanics2D
                     }
                 }
 
-                ShowAllSavedData();
+                //ShowAllSavedData();
             };
         }
 

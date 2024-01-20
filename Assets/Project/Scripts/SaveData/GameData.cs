@@ -31,22 +31,39 @@ public class GameData
         scene = new SceneData();
     }
 
+    public GameData Copy()
+    {
+        GameData dataOriginal = this;
+        GameData dataCopy = new GameData();
+        dataCopy.globals.lastUpdated = dataOriginal.globals.lastUpdated;
+        dataCopy.globals.playerHealth = dataOriginal.globals.playerHealth;
+        dataCopy.globals.lastSceneName = dataOriginal.globals.lastSceneName;
+        //NEED TESTING
+        //dataCopy.scene = dataOriginal.scene;
+        //dataCopy.sceneList = dataOriginal.sceneList;
+        return dataCopy;
+    }
+
     [System.Serializable]
     public class Globals
     {
         public long lastUpdated;
         public int playerHealth;
 
+        [Mechanics2D.SceneName]
         public string lastSceneName;
 
         //public List<ItemBase> itemList;
         public Globals()
         {
+            //First scene to load after the new game starts
+            lastSceneName = "L00";
+
             playerHealth = 100;
             //itemList = new List<ItemBase>();
             //Add items for new game
             //itemList.Add(new ItemBase(ItemType.Ammo,null,true,50));
-            lastSceneName = "SampleScene";
+
         }
     }
 
@@ -63,7 +80,7 @@ public class GameData
 
     public int GetPercentageComplete() 
     {
-        return globals.playerHealth/1000;
+        return globals.playerHealth;
     }
 }
 

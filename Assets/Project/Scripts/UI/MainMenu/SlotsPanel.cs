@@ -10,9 +10,15 @@ public class SlotsPanel : MonoBehaviour
     [SerializeField] private SlotManager slotManager;
     [SerializeField] private ConfirmationPopup confirmationPopup;
 
+    [Header("Events Raise")]
+	[SerializeField] private VoidEventChannelSO fileDeletedEventChannel = default;
+
     [SerializeField] private SlotGroup[] saveSlots;
 
     private bool isLoadingGame = false;
+
+    void Awake()
+    {}
 
     void OnEnable()
     {
@@ -51,11 +57,13 @@ public class SlotsPanel : MonoBehaviour
     {
         slotGroup.OnClearSlot += OnClearClicked;
         slotGroup.OnSelectSlot += OnSaveSlotClicked;
+        slotGroup.OnNewGameSlot += OnSaveSlotClicked;
     }
     private void ClearSlotEvents(SlotGroup slotGroup)
     {
         slotGroup.OnClearSlot -= OnClearClicked;
         slotGroup.OnSelectSlot -= OnSaveSlotClicked;
+        slotGroup.OnNewGameSlot -= OnSaveSlotClicked;
     }
     #endregion
 
@@ -69,49 +77,41 @@ public class SlotsPanel : MonoBehaviour
         // case - loading game
         if (isLoadingGame) 
         {
-            slotManager.SetActiveSlot(saveSlotId);
-            SaveGameAndLoadScene();
+            LoadFromSlot(saveSlotId);
         }
         // case - new game, but the save slot has data
         else if (saveSlot.hasData) 
         {
-            confirmationPopup.ActivateMenu(
-                "Starting a New Game with this slot will override the currently saved data. Are you sure?",
-                // function to execute if we select 'yes'
-                () => {
-                    slotManager.SetActiveSlot(saveSlotId);
-                    slotManager.NewGame();
-                    SaveGameAndLoadScene();
-                },
-                // function to execute if we select 'cancel'
-                () => {
-                    this.ActivateMenu(isLoadingGame);
-                }
-            );
+            TryOverwriteSlot(saveSlotId);
         }
         // case - new game, and the save slot has no data
         else 
         {
-            slotManager.SetActiveSlot(saveSlotId);
-            slotManager.NewGame();
-            SaveGameAndLoadScene();
+            WriteToSlot(saveSlotId);
         }
     }
 
-    private void SaveGameAndLoadScene() 
+    void LoadFromSlot(string slotId)
     {
-        // save the game anytime before loading a new scene
-        //slotManager.SaveActiveSlot();
-        // load the scene
-
-        /*
-        string sceneName = DataPersistenceManager.instance.FirstSceneName;
-        if(isLoadingGame)
-        {
-            //loading scene from file
-            sceneName = slotManager.GetMostRecentSceneName();
-        }
-        SceneManager.LoadSceneAsync(sceneName);*/
+        slotManager.LoadGame(slotId);
+    }
+    void TryOverwriteSlot(string slotId)
+    {
+        confirmationPopup.ActivateMenu(
+            "Starting a New Game with this slot will override the currently saved data. Are you sure?",
+            // function to execute if we select 'yes'
+            () => {
+                WriteToSlot(slotId);
+            },
+            // function to execute if we select 'cancel'
+            () => {
+                this.ActivateMenu(isLoadingGame);
+            }
+        );
+    }
+    void WriteToSlot(string slotId)
+    {
+        slotManager.NewGame(slotId);
     }
 
     public void OnClearClicked(object sender, string saveSlotId) 
@@ -126,6 +126,7 @@ public class SlotsPanel : MonoBehaviour
             () => {
                 slotManager.DeleteProfileData(saveSlotId);
                 ActivateMenu(isLoadingGame);
+                fileDeletedEventChannel.RaiseEvent();
             },
             // function to execute if we select 'cancel'
             () => {
@@ -136,9 +137,6 @@ public class SlotsPanel : MonoBehaviour
 
     public void ActivateMenu(bool isLoadingGame) 
     {
-        // set this menu to be active
-        this.gameObject.SetActive(true);
-
         // set mode
         this.isLoadingGame = isLoadingGame;
 
@@ -159,11 +157,6 @@ public class SlotsPanel : MonoBehaviour
                 saveSlot.SetInteractable(true);
             }
         }
-    }
-
-    public void DeactivateMenu() 
-    {
-        this.gameObject.SetActive(false);
     }
 
     void DisableMenuButtons() 

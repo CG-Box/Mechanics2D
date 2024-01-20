@@ -48,7 +48,12 @@ public class GameData_SO: ScriptableObject
     }
     public void SetData(GameData gameData)
     {
+        //Debug.LogWarning("Don't use set data if you are not loading from file - use copy data to avoid errors");
         this.data = gameData;
+    }
+    public void CopyData(GameData gameData)
+    {
+        this.data = gameData.Copy();
     }
 
     public void Init()

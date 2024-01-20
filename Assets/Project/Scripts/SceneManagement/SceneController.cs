@@ -52,6 +52,26 @@ namespace Mechanics2D
         private PlayerMovement playerInput;
         protected bool m_Transitioning;
 
+	    [Header("Events Listen")]
+        [SerializeField] private TransitionPointEventChannelSO sceneRequestEventChannel = default;
+
+	    [Header("Events Raise")]
+        [SerializeField] private StringEventChannelSO sceneChangedEventChannel = default;
+
+        #region EventsBinding
+        void OnEnable()
+        {
+            if (sceneRequestEventChannel != null)
+                sceneRequestEventChannel.OnEventRaised += TransitionToScene;
+        }
+
+        void OnDisable()
+        {
+            if (sceneRequestEventChannel != null)
+                sceneRequestEventChannel.OnEventRaised -= TransitionToScene;
+        }
+        #endregion
+
         void Awake()
         {
             if (Instance != this)
@@ -99,6 +119,10 @@ namespace Mechanics2D
         {
             Instance.StartCoroutine(Instance.Transition(transitionPoint.newSceneName, transitionPoint.resetInputValuesOnTransition, transitionPoint.transitionDestinationTag, transitionPoint.transitionType));
         }
+        public static void TransitionToScene(TransitionPointData transitionPoint)
+        {
+            Instance.StartCoroutine(Instance.Transition(transitionPoint.newSceneName, transitionPoint.resetInputValuesOnTransition, transitionPoint.transitionDestinationTag, transitionPoint.transitionType));
+        }
 
         public static SceneTransitionDestination GetDestinationFromTag(SceneTransitionDestination.DestinationTag destinationTag)
         {
@@ -140,6 +164,10 @@ namespace Mechanics2D
             playerInput.GainControl();
 
             m_Transitioning = false;
+
+            ///////RaiseEvent
+
+            sceneChangedEventChannel.RaiseEvent(newSceneName);
         }
 
         protected SceneTransitionDestination GetDestination(SceneTransitionDestination.DestinationTag destinationTag)

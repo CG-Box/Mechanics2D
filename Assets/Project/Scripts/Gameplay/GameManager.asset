@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64e806d70bb70442b8c4da89624ed96, type: 3}
+  m_Name: GameManager
+  m_EditorClassIdentifier: 
+  description: Control game states
+  slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
+  exitEventChannel: {fileID: 11400000, guid: 7e9d1e9b345396a41b22e688c7db5ca1, type: 2}
+  continueGameEventChannel: {fileID: 11400000, guid: 1c92cefd262041b40860ca2061ebfdeb, type: 2}
+  saveGameEventChannel: {fileID: 11400000, guid: b04acdc0d6e70f948a0ab0ecf85586f7, type: 2}
+  sceneChangedEventChannel: {fileID: 11400000, guid: 1f9d0b9c4f282444c94ee851b3537435, type: 2}
+  sceneRequestEventChannel: {fileID: 11400000, guid: e7370324aaee97f40b69d4d8d23247c1, type: 2}

@@ -15,9 +15,9 @@ MonoBehaviour:
   slotId: slot_2
   data:
     globals:
-      lastUpdated: -8584961176619181579
-      playerHealth: 838
-      lastSceneName: SCENE_NAME
+      lastUpdated: 0
+      playerHealth: 100
+      lastSceneName: L00
     scene:
       name: SCENE_NAME
     sceneList:

@@ -15,6 +15,7 @@ public class SlotGroup : MonoBehaviour
 
     [Header("Buttons")]
     
+    [SerializeField] private Button emptySlotButton;
     [SerializeField] private Button saveSlotButton;
     [SerializeField] private Button clearButton;
 
@@ -26,6 +27,11 @@ public class SlotGroup : MonoBehaviour
 
     public event EventHandler<string> OnSelectSlot;
     public event EventHandler<string> OnClearSlot;
+    public event EventHandler<string> OnNewGameSlot;
+
+    //Double click fix
+    float clickRateTime = 0.5f;
+    float nextClickTime = 0;
 
     #region EventsBinding
     void OnEnable()
@@ -81,6 +87,7 @@ public class SlotGroup : MonoBehaviour
     {
         saveSlotButton.interactable = interactable;
         clearButton.interactable = interactable;
+        emptySlotButton.interactable = interactable;
     }
 
     public void SelectSlot(bool invokeEvent = true)
@@ -90,7 +97,7 @@ public class SlotGroup : MonoBehaviour
     }
     public void SlotButtonClick()
     {
-        SelectSlot();
+        TryButtonClick(() => { SelectSlot(); });
     }
     public void ClearSlot(bool invokeEvent = true)
     {
@@ -99,6 +106,28 @@ public class SlotGroup : MonoBehaviour
     }
     public void ClearButtonClick()
     {
-        ClearSlot();
+        TryButtonClick(() => { ClearSlot(); });
+    }
+
+    public void NewGameSlot(bool invokeEvent = true)
+    {
+        if(invokeEvent)
+            OnNewGameSlot?.Invoke(this, connectedSlot.SlotId);
+    }
+    public void EmptyButtonClick()
+    {
+        TryButtonClick(() => { NewGameSlot(); });
+    }
+
+
+    public bool TryButtonClick(Action voidFunction)
+    {
+        if(Time.time > nextClickTime)
+        {
+            nextClickTime = Time.time + clickRateTime;
+            voidFunction();
+            return true;
+        }
+        return false;
     }
 }

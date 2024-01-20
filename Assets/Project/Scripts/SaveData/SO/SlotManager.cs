@@ -7,7 +7,8 @@ public class SlotManager: ScriptableObject
 {
     [Header("Debugging")]
     [Tooltip("Load data from store or use values from SO")]
-    [SerializeField] private bool disableUseFiles = false;
+    [SerializeField] private bool disableSavingFiles = false;
+    [SerializeField] private bool disableLoadingFiles = false;
 
     [Header("Slots")]
     [SerializeField]
@@ -26,15 +27,22 @@ public class SlotManager: ScriptableObject
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
     
+    [Header("Events Raise")]
+	public TransitionPointEventChannelSO sceneRequestEventChannel = default;
 
     void OnEnable()
+    {}
+    void OnDisable()
+    {}
+
+    //Called one by EventsBinder every time the game starts
+    public void PrepareSlots()
     {
         InitFileHandler();
         UnbindActiveSlot();
         CheckForSlots();
+        LoadAllSlots();
     }
-    void OnDisable()
-    {}
 
     void CheckForSlots()
     {
@@ -44,28 +52,52 @@ public class SlotManager: ScriptableObject
 
     void RestoreActiveSlotToDefault()
     {
-        activeSlot.SetData(defaultSlot.GetData());
+        activeSlot.CopyData(defaultSlot.GetData());
     }
-    public void NewGame()
+    public void NewGame(string slotId)
     {
-        SetActiveSlot(dataSlots[0].SlotId);
+        GameData_SO newGameSlot = GetSlotById(slotId);
+        SetActiveSlot(newGameSlot.SlotId);
         RestoreActiveSlotToDefault();
+
+        sceneRequestEventChannel.RaiseEvent(
+			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName)
+		);
+    }
+    public void ContinueGame()
+    {
+        string recentSlotId = dataHandler.GetMostRecentlyUpdatedProfileId();
+
+        //GameData_SO lastUpdatedSlot = GetLastUpdatedSlot();
+        if(recentSlotId == null)
+        {
+            Debug.LogError("Now saved slots found, may be new game need to be started");
+            return;
+        }
+        LoadGame(recentSlotId);
+    }
+    public void LoadGame(string slotId)
+    {
+        SetActiveSlot(slotId);
+        sceneRequestEventChannel.RaiseEvent(
+			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName)
+		);
     }
 
-    public void SetActiveSlot(string slodId)
+    public void SetActiveSlot(string slotId)
     {
         bool slotFound = false;
         for (int i = 0; i < dataSlots.Count; i++)
         {
-            if (dataSlots[i].SlotId.Equals(slodId))
+            if (dataSlots[i].SlotId.Equals(slotId))
             {
                 activeSlot = dataSlots[i];
-                activeSlotId = slodId;
+                activeSlotId = slotId;
                 slotFound = true;
                 activeSlot.Init();
             }
         }
-        if(!slotFound) Debug.LogError($"Slot with id : {slodId} doesn't exist ");
+        if(!slotFound) Debug.LogError($"Slot with id : {slotId} doesn't exist ");
     }
 
     public void UnbindActiveSlot()
@@ -74,20 +106,39 @@ public class SlotManager: ScriptableObject
         activeSlotId = null;
     }
 
+    public GameData_SO GetSlotById(string slotId)
+    {
+        GameData_SO targetSlot = null;
+        for (int i = 0; i < dataSlots.Count; i++)
+        {
+            if(slotId == dataSlots[i].SlotId)
+            {
+                targetSlot = dataSlots[i];
+                break;
+            } 
+        }
+        if(targetSlot == null)
+            Debug.LogError($"slot with id: {slotId} wasn't find");
+        return targetSlot;
+    }
+
     public GameData_SO GetLastUpdatedSlot()
     {
+        Debug.LogError("not working change it");
+        // CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         long lastUpdate = 0;
         GameData_SO lastUpdatedSlot = null;
         for (int i = 0; i < dataSlots.Count; i++)
         {
-            if(lastUpdate < dataSlots[i].Health)
+            if(dataSlots[i].data == null) continue;
+            if(lastUpdate > dataSlots[i].data.globals.lastUpdated)
             {
                 lastUpdatedSlot = dataSlots[i];
-                lastUpdate = dataSlots[i].Health;
+                lastUpdate = dataSlots[i].data.globals.lastUpdated;
             } 
         }
 
-        return lastUpdatedSlot ?? defaultSlot;
+        return lastUpdatedSlot;// ?? defaultSlot;
     }
     public GameData_SO GetActiveSlot()
     {
@@ -116,7 +167,7 @@ public class SlotManager: ScriptableObject
 
     void SaveSlot(GameData_SO slot)
     {
-        if(disableUseFiles == true)
+        if(disableSavingFiles == true)
         {
             Debug.LogWarning("Slots not saving/loading to file, because disableUseFiles is active");
             return;
@@ -143,7 +194,7 @@ public class SlotManager: ScriptableObject
     }
     void LoadSlot(GameData_SO slot)
     {
-        if(disableUseFiles == true)
+        if(disableLoadingFiles == true)
         {
             Debug.LogWarning("Slots not saving/loading to file, because disableUseFiles is active");
             return;
@@ -177,6 +228,13 @@ public class SlotManager: ScriptableObject
         //slot.data.scene.name = dataHandler.currentSceneName;
     }
 
+    void LoadAllSlots()
+    {
+        foreach(GameData_SO currentSlot in dataSlots)
+        {
+            LoadSlot(currentSlot);
+        }
+    }
 
     public void SaveActiveSlot()
     {
@@ -211,6 +269,11 @@ public class SlotManager: ScriptableObject
         return dataHandler.LoadAllProfiles();
     }
 
+    public void ChangeActiveSlotSceneName(string sceneName)
+    {
+        activeSlot.data.globals.lastSceneName = sceneName;
+        Debug.Log($"active slot {activeSlot.SlotId} new name {sceneName}");
+    }
 
 
     //Not used

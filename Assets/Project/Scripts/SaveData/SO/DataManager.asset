@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86a841f10566135498afe469560f6624, type: 3}
-  m_Name: SlotManager
+  m_Name: DataManager
   m_EditorClassIdentifier: 
   disableUseFiles: 0
-  activeSlotId: 
+  activeSlotId: slot_1
   dataSlots:
   - {fileID: 11400000, guid: f35e84ad26228834cad848fb825b0910, type: 2}
   - {fileID: 11400000, guid: f3191296b297bbe4299037578f319dcd, type: 2}
   - {fileID: 11400000, guid: bbf02634e1bee104b863f5720a80e259, type: 2}
   defaultSlot: {fileID: 11400000, guid: 288b94b67c6b5d345b9afbcb9447eed5, type: 2}
-  activeSlot: {fileID: 0}
+  activeSlot: {fileID: 11400000, guid: f35e84ad26228834cad848fb825b0910, type: 2}
   fileName: GameData.txt
   useEncryption: 0
+  sceneRequestEventChannel: {fileID: 11400000, guid: e7370324aaee97f40b69d4d8d23247c1, type: 2}
