@@ -31,6 +31,5 @@ public class HealthBehaviour : MonoBehaviour, ITakeFromFile
     public void LoadData(GameData data)
     {
         MyHealth = data.globals.playerHealth;
-        Debug.Log($"Health loaded {MyHealth}");
     }
 }

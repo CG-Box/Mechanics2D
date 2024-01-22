@@ -18,6 +18,7 @@ MonoBehaviour:
       lastUpdated: 0
       playerHealth: 100
       lastSceneName: L00
+      itemList: []
     scene:
       name: SCENE_NAME
     sceneList:
@@ -25,5 +26,3 @@ MonoBehaviour:
       - SCENE_NAME
       values:
       - name: SCENE_NAME
-  health: 100
-  ownedItemsId: []

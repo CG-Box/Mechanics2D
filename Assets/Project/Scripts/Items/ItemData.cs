@@ -8,6 +8,7 @@ public enum ItemType
     Cupkake,
     Pizza,
     Taco,
+    Kat,
 }
 
 [Serializable]
@@ -18,6 +19,20 @@ public struct ItemData
     public bool canStack;
     public int amount;
 
+    public ItemData(ItemType type)
+    {
+        this.type = type;
+        this.sprite = null;
+        this.canStack = false;
+        this.amount = 1; 
+    }
+    public ItemData(ItemType type, int amount)
+    {
+        this.type = type;
+        this.sprite = null;
+        this.canStack = true;
+        this.amount = amount; 
+    }
     public ItemData(ItemType type, Sprite sprite)
     {
         this.type = type;

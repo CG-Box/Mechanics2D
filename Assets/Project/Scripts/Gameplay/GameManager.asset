@@ -19,4 +19,5 @@ MonoBehaviour:
   saveGameEventChannel: {fileID: 11400000, guid: b04acdc0d6e70f948a0ab0ecf85586f7, type: 2}
   sceneChangedEventChannel: {fileID: 11400000, guid: 1f9d0b9c4f282444c94ee851b3537435, type: 2}
   healthUpdateEvent: {fileID: 11400000, guid: ffc8558f08f0a7a42aff54e843b6adc7, type: 2}
+  inventoryUpdateEvent: {fileID: 11400000, guid: 041ddf83e72db6a48bc8628f4693caba, type: 2}
   sceneRequestEventChannel: {fileID: 11400000, guid: e7370324aaee97f40b69d4d8d23247c1, type: 2}

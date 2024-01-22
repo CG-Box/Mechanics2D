@@ -18,9 +18,6 @@ public class GameData_SO: ScriptableObject
 
     public GameData data;
 
-    int ownedItemsAmount;
-    public List<string> ownedItemsId;
-
     void OnEnable()
     {
         //StaticEvents.Tickets.Added += AddHealth;
@@ -54,43 +51,36 @@ public class GameData_SO: ScriptableObject
     public void InitDefaultGameData() 
     {
         InitDefaultHealth();
-        InitDefaultInventory();
+        AddDefaultItems();
     }
     public void InitDefaultHealth()
     {
         //health = 100;
     }
-    public void InitDefaultInventory()
-    {
-        ownedItemsAmount = 0;
-        ownedItemsId = new List<string>(ownedItemsAmount);
-    }
-
-    public void OwnInventoryItem(string id)
-    {
-        ownedItemsId.Add(id);
-        ownedItemsAmount = ownedItemsId.Count;
-    }
-    public void LoseInventoryItem(string id)
-    {
-        for (int i = 0; i < ownedItemsId.Count; i++)
-        {
-            if (ownedItemsId[i].Equals(id)) ownedItemsId.RemoveAt(i);   
-        }
-        ownedItemsAmount = ownedItemsId.Count;
-    }
-    public void ResetToDefault()
-    {
-        InitDefaultGameData();
-    }
-
     public void AddDefaultItems()
     {
+        Debug.Log("AddDefaultItems");
         data.globals.itemList.Add(ItemsLibrary.GetItem(ItemType.Jam));
         ItemData cucakes = ItemsLibrary.GetItem(ItemType.Cupkake);
         cucakes.amount = 5;
         data.globals.itemList.Add(cucakes);
-        Debug.Log("AddDefaultItems");
+    }
+
+    public void OwnInventoryItem(ItemType type)
+    {
+        data.globals.itemList.Add(ItemsLibrary.GetItem(type));
+    }
+    public void LoseInventoryItem(ItemType type)
+    {
+        for (int i = 0; i <  data.globals.itemList.Count; i++)
+        {
+            ItemData currentItem = data.globals.itemList[i];
+            if (currentItem.type.Equals(type)) data.globals.itemList.RemoveAt(i);   
+        }
+    }
+    public void ResetToDefault()
+    {
+        InitDefaultGameData();
     }
 
     //void OnValidate(){} //Every change in SO

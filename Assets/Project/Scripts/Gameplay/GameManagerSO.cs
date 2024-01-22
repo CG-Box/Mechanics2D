@@ -22,6 +22,7 @@ public class GameManagerSO : DescriptionBaseSO
 
 	//Valuables
 	public IntEventChannelSO healthUpdateEvent = default;
+	public GameObjectEventChannelSO inventoryUpdateEvent = default;
 
 	[Header("Events Raise")]
 	public TransitionPointEventChannelSO sceneRequestEventChannel = default;
@@ -51,6 +52,9 @@ public class GameManagerSO : DescriptionBaseSO
 		//Valuables
 		if (healthUpdateEvent != null)
 			healthUpdateEvent.OnEventRaised += HealthChanged;
+
+		if (inventoryUpdateEvent != null)
+			inventoryUpdateEvent.OnEventRaised += InventoryChanged;
 	}
 	public void RemoveBindings()
 	{
@@ -69,6 +73,9 @@ public class GameManagerSO : DescriptionBaseSO
 		//Valuables
 		if (healthUpdateEvent != null)
 			healthUpdateEvent.OnEventRaised -= HealthChanged;
+
+		if (inventoryUpdateEvent != null)
+			inventoryUpdateEvent.OnEventRaised -= InventoryChanged;
 	}
 	#endregion
 
@@ -85,6 +92,7 @@ public class GameManagerSO : DescriptionBaseSO
 
 	public void SaveGame()
 	{
+		Debug.Log("SaveGame");
 		slotManager.SaveActiveSlot();
 	}
 
@@ -98,6 +106,19 @@ public class GameManagerSO : DescriptionBaseSO
 	{
 		slotManager.ChangePlayerHealth(newHealt);
 	}
+	void InventoryChanged(GameObject gameObject)
+	{
+		if(gameObject.tag == "Player")
+		{
+			//slotManager.ChangeInventory(gameObject);
+			//may be some variables need to change or event raise
+		}
+		else
+		{
+			Debug.Log("its not a player");
+		}
+	}
+
 
 	void LoadDataToScripts()
 	{

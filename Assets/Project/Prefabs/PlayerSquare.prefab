@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1101793909598204833}
   - component: {fileID: 2190402322187330796}
   - component: {fileID: 6766039923436915545}
+  - component: {fileID: 9073174782246460781}
+  - component: {fileID: 6644600456208830479}
+  - component: {fileID: 309876590854158979}
   m_Layer: 0
   m_Name: PlayerSquare
   m_TagString: Player
@@ -217,3 +220,63 @@ MonoBehaviour:
   dataSettings:
     dataTag: dcce36b4-886a-4f2f-9f15-8f5e674332bd
     persistenceType: 3
+    dataName: default
+--- !u!114 &9073174782246460781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270511271201836942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0e1b0cc1708d14f80622c85df9d99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyHealth: 0
+  healthChangeRequest: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
+  healthUpdateEvent: {fileID: 11400000, guid: ffc8558f08f0a7a42aff54e843b6adc7, type: 2}
+--- !u!114 &6644600456208830479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270511271201836942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740b5403e91ea334d9e71f405b9a3061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 7101348220111423696, guid: 2a5c73b946c48ed4f8c024c53fd56edf, type: 3}
+  itemsDatabase: {fileID: 11400000, guid: cd1ca49e22c06b64b8c6c8a029c8d871, type: 2}
+  inventoryPanel: {fileID: 0}
+  inventoryUpdateEvent: {fileID: 11400000, guid: 041ddf83e72db6a48bc8628f4693caba, type: 2}
+  OnKitKatSaveRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 309876590854158979}
+        m_TargetAssemblyTypeName: VoidEventTrigger, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &309876590854158979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270511271201836942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c2339d232e0aa42b5f94e296291631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: b04acdc0d6e70f948a0ab0ecf85586f7, type: 2}

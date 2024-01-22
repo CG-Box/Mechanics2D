@@ -15,7 +15,7 @@ public class BindEvents : MonoBehaviour
 
         slotManager.PrepareSlots();
         gameManager.AddBindings();
-        itemsLibrary.CollectItemsFromFolder();
+        itemsLibrary.UpdateStaticLibrary();
     }
     void OnDisable()
     {

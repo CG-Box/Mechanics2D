@@ -4,8 +4,6 @@ using UnityEngine;
 [CustomEditor(typeof(GameData_SO), editorForChildClasses: true)]
 public class GameDataEditor : Editor
 {
-    private enum items { Sam, Kate, Alice };
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -16,15 +14,19 @@ public class GameDataEditor : Editor
         if (GUILayout.Button("Reset (Game restart needed)"))
             targetObject.ResetToDefault();
 
-        foreach (string name in System.Enum.GetNames(typeof(items)))
+
+        int i = 0;
+        foreach (string name in System.Enum.GetNames(typeof(ItemType)))
         {
             GUILayout.EndVertical();
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Get Item : "+name))
-                targetObject.OwnInventoryItem(name);
+                targetObject.OwnInventoryItem((ItemType)i);
             if (GUILayout.Button("Remove Item : "+name))
-                targetObject.LoseInventoryItem(name);
+                targetObject.LoseInventoryItem((ItemType)i);
+
+            i++;
 
             GUILayout.EndHorizontal();
             GUILayout.BeginVertical();
