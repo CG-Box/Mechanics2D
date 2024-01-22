@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class GameData
 {
@@ -53,17 +55,14 @@ public class GameData
         [Mechanics2D.SceneName]
         public string lastSceneName;
 
-        //public List<ItemBase> itemList;
+        public List<ItemData> itemList;
         public Globals()
         {
             //First scene to load after the new game starts
             lastSceneName = "L00";
 
             playerHealth = 100;
-            //itemList = new List<ItemBase>();
-            //Add items for new game
-            //itemList.Add(new ItemBase(ItemType.Ammo,null,true,50));
-
+            itemList = new List<ItemData>();
         }
     }
 

@@ -60,6 +60,8 @@ public class SlotManager: ScriptableObject
         SetActiveSlot(newGameSlot.SlotId);
         RestoreActiveSlotToDefault();
 
+        activeSlot.AddDefaultItems();
+
         sceneRequestEventChannel.RaiseEvent(
 			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName)
 		);

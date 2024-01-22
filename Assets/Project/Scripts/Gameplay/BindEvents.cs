@@ -7,6 +7,7 @@ public class BindEvents : MonoBehaviour
     [SerializeField]private bool workAsReferences = true;
     [SerializeField]private GameManagerSO gameManager;
     [SerializeField]private SlotManager slotManager;
+    [SerializeField]private ItemsLibrary itemsLibrary;
 
     void OnEnable()
     {
@@ -14,6 +15,7 @@ public class BindEvents : MonoBehaviour
 
         slotManager.PrepareSlots();
         gameManager.AddBindings();
+        itemsLibrary.CollectItemsFromFolder();
     }
     void OnDisable()
     {

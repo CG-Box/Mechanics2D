@@ -84,5 +84,14 @@ public class GameData_SO: ScriptableObject
         InitDefaultGameData();
     }
 
+    public void AddDefaultItems()
+    {
+        data.globals.itemList.Add(ItemsLibrary.GetItem(ItemType.Jam));
+        ItemData cucakes = ItemsLibrary.GetItem(ItemType.Cupkake);
+        cucakes.amount = 5;
+        data.globals.itemList.Add(cucakes);
+        Debug.Log("AddDefaultItems");
+    }
+
     //void OnValidate(){} //Every change in SO
 }
