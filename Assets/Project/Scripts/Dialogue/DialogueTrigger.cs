@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
 public class DialogueTrigger : MonoBehaviour
 {
     [Header("Visual Cue")]
@@ -10,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    private bool playerInRange;
+    bool playerInRange;
 
     private void Awake() 
     {
@@ -24,7 +23,8 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
 
-            if (InputManager.GetInstance().GetDialoguePressed()) 
+            //if (InputManager.GetInstance().GetDialoguePressed()) 
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             }
@@ -37,7 +37,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) 
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == Constants.PlayerTag)
         {
             playerInRange = true;
         }
@@ -45,10 +45,9 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider) 
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == Constants.PlayerTag)
         {
             playerInRange = false;
         }
     }
 }
-*/

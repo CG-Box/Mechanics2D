@@ -108,7 +108,7 @@ public class GameManagerSO : DescriptionBaseSO
 	}
 	void InventoryChanged(GameObject gameObject)
 	{
-		if(gameObject.tag == "Player")
+		if(gameObject.tag == Constants.PlayerTag)
 		{
 			//slotManager.ChangeInventory(gameObject);
 			//may be some variables need to change or event raise

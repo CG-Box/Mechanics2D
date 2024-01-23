@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-//using Ink.Runtime;
+using Ink.Runtime;
 using UnityEngine.EventSystems;
-/*
+
+
 public class DialogueManager : MonoBehaviour
 {
     [Header("Params")]
@@ -22,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     private Animator layoutAnimator;
 
     [Header("Choices UI")]
+
+    [SerializeField] private GameObject choicesPanel;
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
@@ -67,6 +71,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        choicesPanel.SetActive(false);
 
         // get the layout animator
         layoutAnimator = dialoguePanel.GetComponent<Animator>();
@@ -79,6 +84,12 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+        AddChoiceListeners();
+    }
+
+    void OnDisable()
+    {
+        RemoveChoiceListeners();
     }
 
     private void Update() 
@@ -90,23 +101,34 @@ public class DialogueManager : MonoBehaviour
         }
 
         //catch quit button and exit
-        if(canQuit && InputManager.GetInstance().GetSpecialPressed())
+        if(canQuit && Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(ExitDialogueMode());
         }
+        
 
         // handle continuing to the next line in the dialogue when submit is pressed
         // NOTE: The 'currentStory.currentChoiecs.Count == 0' part was to fix a bug after the Youtube video was made
         if (canContinueToNextLine 
             && currentStory.currentChoices.Count == 0 
-            && InputManager.GetInstance().GetSubmitPressed())
+            && Input.GetKeyDown(KeyCode.Space))
         {
             ContinueStory();
         }
+
+        //Show full line
+        //Need to add and check for some flag to work properly
+        /*if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("End writing");
+            dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+        }*/
     }
 
     public void EnterDialogueMode(TextAsset inkJSON) 
     {
+        FreezePlayer();
+
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
@@ -115,10 +137,24 @@ public class DialogueManager : MonoBehaviour
 
         // reset portrait, layout, and speaker
         displayNameText.text = "???";
-        portraitAnimator.Play("default");
-        layoutAnimator.Play("right");
+
+
+  
+        //portraitAnimator.Play("default");
+        //layoutAnimator.Play("right");
 
         ContinueStory();
+    }
+
+    void FreezePlayer()
+    {
+        PlayerMovement playerInput = FindObjectOfType<PlayerMovement>();
+        playerInput.ReleaseControl(true);
+    }
+    void UnfreezePlayer()
+    {
+        PlayerMovement playerInput = FindObjectOfType<PlayerMovement>();
+        playerInput.GainControl();
     }
 
     private IEnumerator ExitDialogueMode() 
@@ -130,6 +166,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        UnfreezePlayer();
     }
 
     private void ContinueStory() 
@@ -185,7 +223,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
             // if the submit button is pressed, finish up displaying the line right away
-            if (InputManager.GetInstance().GetSubmitPressed()) 
+            if (Input.GetKeyDown(KeyCode.Return)) 
             {
                 dialogueText.maxVisibleCharacters = line.Length;
                 break;
@@ -221,6 +259,7 @@ public class DialogueManager : MonoBehaviour
         {
             choiceButton.SetActive(false);
         }
+        choicesPanel.SetActive(false);
     }
 
     private void HandleTags(List<string> currentTags)
@@ -244,14 +283,16 @@ public class DialogueManager : MonoBehaviour
                     displayNameText.text = tagValue;
                     break;
                 case PORTRAIT_TAG:
-                    portraitAnimator.Play(tagValue);
+                    //portraitAnimator.Play(tagValue);
+                    //Debug.Log($"portraitAnimator {tagValue}");
                     break;
                 case LAYOUT_TAG:
-                    layoutAnimator.Play(tagValue);
+                    //layoutAnimator.Play(tagValue);
+                    //Debug.Log($"layoutAnimator {tagValue}");
                     break;
                 case QUEST_TAG:
-                    Debug.Log("getting quest name: "+tagValue);
-                    QuestManager.StartQuest(tagValue);
+                    //Debug.Log("getting quest name: "+tagValue);
+                    //QuestManager.StartQuest(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
@@ -279,6 +320,13 @@ public class DialogueManager : MonoBehaviour
             choicesText[index].text = choice.text;
             index++;
         }
+
+        //At least one choice available
+        if(index != 0)
+        {
+            choicesPanel.SetActive(true);
+        }
+
         // go through the remaining choices the UI supports and make sure they're hidden
         for (int i = index; i < choices.Length; i++) 
         {
@@ -286,6 +334,25 @@ public class DialogueManager : MonoBehaviour
         }
 
         StartCoroutine(SelectFirstChoice());
+    }
+
+    void AddChoiceListeners()
+    {
+        for(int i=0; i<choices.Length; i++)
+        {
+            int choiceNumber = i; //fix unexpected behav with closure
+            choices[i].gameObject.GetComponent<Button>().onClick.AddListener(()=>{
+                MakeChoice(choiceNumber);
+            });
+        }
+    }
+    void RemoveChoiceListeners()
+    {
+        for(int i=0; i<choices.Length; i++)
+        {
+            Button choiceButton = choices[i].gameObject.GetComponent<Button>();
+            choiceButton.onClick.RemoveAllListeners();
+        }
     }
 
     private IEnumerator SelectFirstChoice() 
@@ -302,8 +369,10 @@ public class DialogueManager : MonoBehaviour
         if (canContinueToNextLine) 
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
+
             // NOTE: The below two lines were added to fix a bug after the Youtube video was made
-            InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
+            //InputManager.GetInstance().RegisterSubmitPressed(); // this is specific to my InputManager script
+
             ContinueStory();
         }
     }
@@ -327,11 +396,4 @@ public class DialogueManager : MonoBehaviour
             return;
         dialogueVariables.SaveVariables();
     }
-
-    [ContextMenu("Clear All Player Prefs")]
-    public void ClearPlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 }
-*/
