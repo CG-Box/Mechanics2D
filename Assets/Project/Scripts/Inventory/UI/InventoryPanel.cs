@@ -45,8 +45,8 @@ public class InventoryPanel : MonoBehaviour
     {
         foreach(Transform child in itemsContainer)
         {
-            InventorySlot inventorySlot = child.gameObject.GetComponent<InventorySlot>();
-            RemoveSlotListeners(inventorySlot);
+            InventorySlot inventorySlotOld = child.gameObject.GetComponent<InventorySlot>();
+            RemoveSlotListeners(inventorySlotOld);
             Destroy(child.gameObject);
         }
         

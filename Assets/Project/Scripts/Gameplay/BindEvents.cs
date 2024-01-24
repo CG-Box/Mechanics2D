@@ -14,8 +14,24 @@ public class BindEvents : MonoBehaviour
         if(workAsReferences) return;
 
         slotManager.PrepareSlots();
+
+        gameManager.RemoveBindings();
         gameManager.AddBindings();
         itemsLibrary.UpdateStaticLibrary();
+
+        /*
+        if(!Constants.GameManagerReady)
+        {
+            Constants.GameManagerReady = true;
+            gameManager.AddBindings();
+            itemsLibrary.UpdateStaticLibrary();
+            Debug.Log("AddBindings, UpdateStaticLibrary");
+        }
+        else
+        {
+            Debug.Log("Menu second time");
+        }*/
+
     }
     void OnDisable()
     {

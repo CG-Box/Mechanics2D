@@ -2,7 +2,7 @@ public class Constants
 {
     public static readonly string PlayerTag = "Player";
 
-    
+    //public static bool GameManagerReady = false;
 
 
     #if UNITY_EDITOR

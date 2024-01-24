@@ -69,7 +69,7 @@ public class InventorySlot : MonoBehaviour
     }
     public void UpdateSlotVisual()
     {
-        slotImage.sprite = itemData.sprite;
+        slotImage.sprite = ItemsLibrary.GetItem(itemData.type).sprite;
         if(itemData.amount > 1)
         {
             slotStackText.SetText(itemData.amount.ToString());

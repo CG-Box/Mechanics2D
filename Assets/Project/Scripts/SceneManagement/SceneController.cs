@@ -61,14 +61,20 @@ namespace Mechanics2D
         #region EventsBinding
         void OnEnable()
         {
-            if (sceneRequestEventChannel != null)
+            //Don't bind events on copies
+            if (Instance == this && sceneRequestEventChannel != null)
+            {
                 sceneRequestEventChannel.OnEventRaised += TransitionToScene;
+            }
         }
 
         void OnDisable()
         {
-            if (sceneRequestEventChannel != null)
+            //Don't remove events cause destroying copies
+            if (Instance == this && sceneRequestEventChannel != null)
+            {
                 sceneRequestEventChannel.OnEventRaised -= TransitionToScene;
+            }
         }
         #endregion
 
@@ -149,8 +155,18 @@ namespace Mechanics2D
 
             //m_PlayerInput = FindObjectOfType<PlayerInput>();
             //m_PlayerInput.ReleaseControl(resetInputValues);
-            playerInput = FindObjectOfType<PlayerMovement>();
-            playerInput.ReleaseControl(resetInputValues);
+
+            //Disable control for gameplay zone
+            if(transitionType != TransitionPoint.TransitionType.DifferentNonGameplayScene)
+            {
+                playerInput = FindObjectOfType<PlayerMovement>();
+                playerInput.ReleaseControl(resetInputValues);
+            }
+            else
+            {
+                //Debug.Log("DifferentNonGameplayScene");
+            }
+
 
             PersistentDataManager.LoadAllData();
             SceneTransitionDestination entrance = GetDestination(destinationTag);
@@ -167,7 +183,14 @@ namespace Mechanics2D
 
             ///////RaiseEvent
 
-            sceneChangedEventChannel.RaiseEvent(newSceneName);
+            if(transitionType != TransitionPoint.TransitionType.DifferentNonGameplayScene)
+            {
+                sceneChangedEventChannel.RaiseEvent(newSceneName);
+            }
+            else
+            {
+                //Debug.Log("Not change scene name in active slot");
+            }
         }
 
         protected SceneTransitionDestination GetDestination(SceneTransitionDestination.DestinationTag destinationTag)
