@@ -8,23 +8,32 @@ public class BindEvents : MonoBehaviour
     [SerializeField]private GameManagerSO gameManager;
     [SerializeField]private SlotManager slotManager;
     [SerializeField]private ItemsLibrary itemsLibrary;
+    [SerializeField]private SpeakersLibrary speakersLibrary;
+
+    void UpdateLibraries()
+    {
+        itemsLibrary.UpdateStaticLibrary();
+        speakersLibrary.UpdateStaticLibrary();
+    }
 
     void OnEnable()
     {
+        //Del later or rewrite as singleton
+        UpdateLibraries();
+
         if(workAsReferences) return;
 
         slotManager.PrepareSlots();
-
         gameManager.RemoveBindings();
         gameManager.AddBindings();
-        itemsLibrary.UpdateStaticLibrary();
+        UpdateLibraries();
 
         /*
         if(!Constants.GameManagerReady)
         {
             Constants.GameManagerReady = true;
             gameManager.AddBindings();
-            itemsLibrary.UpdateStaticLibrary();
+            UpdateLibraries();
             Debug.Log("AddBindings, UpdateStaticLibrary");
         }
         else

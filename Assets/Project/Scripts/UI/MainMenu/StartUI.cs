@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 namespace Mechanics2D
 {
-    public class StartUI : MonoBehaviour {
+    public class StartUI : MonoBehaviour 
+    {
 
         [Header("Slot manager")]
         [SerializeField] private SlotManager slotManager;
@@ -16,6 +17,7 @@ namespace Mechanics2D
         void Start() 
         {
             DisableButtonsDependingOnData();
+            SelectDefaultButton();
         }
 
         public void DisableButtonsDependingOnData() 
@@ -30,6 +32,10 @@ namespace Mechanics2D
                 continueGameButton.interactable = true;
                 loadGameButton.interactable = true;
             }
+        }
+        public void SelectDefaultButton()
+        {
+            newGameButton.Select();
         }
     }
 }

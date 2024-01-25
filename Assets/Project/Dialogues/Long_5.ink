@@ -1,6 +1,6 @@
 -> start
 === start ===
-Choose variant?
+Choose variant? #speaker:Random
     + [1]
         -> var_1
     + [2]
@@ -55,8 +55,10 @@ You chose var_5, now see it
         -> Final
 === Final ===
 Nice choice, any questions
+    + [No]
+     -> bye
     + [Yes]
      -> start
-    + [No]
-     -> END
+=== bye ===
+Ok, bye dude
 -> END

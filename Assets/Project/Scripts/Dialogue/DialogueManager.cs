@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using System;
 
 
 public class DialogueManager : MonoBehaviour
@@ -14,14 +15,20 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Load Globals JSON")]
     [SerializeField] private TextAsset loadGlobalsJSON;
+    
+    [Header("Speakers Library")]
+    [SerializeField] private SpeakersLibrary speakersLibrary;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject continueIcon;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
-    [SerializeField] private Animator portraitAnimator;
-    private Animator layoutAnimator;
+    [SerializeField] private Animator layoutAnimator;
+
+    [SerializeField] private Image portraitImage;
+    [SerializeField] private Sprite defaultPortraitSprite;
+    const string defaultDisplayNameText = "???";
 
     [Header("Choices UI")]
 
@@ -44,10 +51,19 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
 
     private const string SPEAKER_TAG = "speaker";
-    private const string PORTRAIT_TAG = "portrait";
+    private const string EMOTION_TAG = "emotion";
+    private const string DISPLAY_NAME_TAG = "name";
     private const string LAYOUT_TAG = "layout";
     
     private const string QUEST_TAG = "quest";
+
+    public enum Layout
+    {
+        Left,
+        Right
+    }
+
+    Speaker currentSpeaker = null;
 
     private DialogueVariables dialogueVariables;
 
@@ -72,9 +88,6 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         choicesPanel.SetActive(false);
-
-        // get the layout animator
-        layoutAnimator = dialoguePanel.GetComponent<Animator>();
 
         // get all of the choices text 
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -136,12 +149,9 @@ public class DialogueManager : MonoBehaviour
         dialogueVariables.StartListening(currentStory);
 
         // reset portrait, layout, and speaker
-        displayNameText.text = "???";
+        ResetSpeaker();
 
-
-  
-        //portraitAnimator.Play("default");
-        //layoutAnimator.Play("right");
+        layoutAnimator.Play(nameof(Layout.Left));
 
         ContinueStory();
     }
@@ -280,15 +290,17 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey) 
             {
                 case SPEAKER_TAG:
+                    UpdateSpeaker(tagValue);
+                    break;
+                case EMOTION_TAG:
+                    UpdateEmotion(tagValue);
+                    //portraitAnimator.Play(tagValue);
+                    break;
+                case DISPLAY_NAME_TAG:
                     displayNameText.text = tagValue;
                     break;
-                case PORTRAIT_TAG:
-                    //portraitAnimator.Play(tagValue);
-                    //Debug.Log($"portraitAnimator {tagValue}");
-                    break;
                 case LAYOUT_TAG:
-                    //layoutAnimator.Play(tagValue);
-                    //Debug.Log($"layoutAnimator {tagValue}");
+                    layoutAnimator.Play(tagValue);
                     break;
                 case QUEST_TAG:
                     //Debug.Log("getting quest name: "+tagValue);
@@ -300,6 +312,46 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    void ResetSpeaker()
+    {
+        currentSpeaker = null;
+        displayNameText.text = defaultDisplayNameText;
+        portraitImage.sprite = defaultPortraitSprite;
+    }
+    void UpdateSpeaker(string tagValue)
+    {
+        Speaker speaker = GetSpeaker(tagValue);
+
+        if(!speaker.person.CompareWithString(tagValue))
+        {
+            Debug.LogWarning($"wrong speaker variable in dialogue tag: {tagValue}, was converted to {speaker.person}");
+        }
+
+        portraitImage.sprite = speaker.GetEmotion(Speaker.Emotion.Normal);
+        displayNameText.text = speaker.displayName;
+
+        currentSpeaker = speaker;
+    }
+    void UpdateEmotion(string tagValue)
+    {
+        Speaker.Emotion emotionType;
+        System.Enum.TryParse(tagValue, out emotionType);
+
+        if(!emotionType.CompareWithString(tagValue))
+        {
+            Debug.LogWarning($"wrong speaker variable in dialogue tag: {tagValue}, was converted to {emotionType}");
+        }
+
+        portraitImage.sprite =  currentSpeaker.GetEmotion(emotionType);
+    }
+    Speaker GetSpeaker(string tagValue)
+    {
+        Speaker.Person personType;
+        System.Enum.TryParse(tagValue, out personType);
+        return speakersLibrary.GetItem(personType);
+    }
+
 
     private void DisplayChoices() 
     {

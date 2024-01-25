@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187fad7118e7fd84ca592ce470d163a6, type: 3}
+  m_Name: Glass
+  m_EditorClassIdentifier: 
+  description: Dude with glasses in white shirt
+  person: 1
+  displayName: Glass boy
+  color: {r: 0, g: 0.6698113, b: 0.17010696, a: 0}
+  emotionsList:
+  - type: 0
+    image: {fileID: 21300000, guid: ca30a68093b6ded41878c6ad569dd18e, type: 3}
+  - type: 1
+    image: {fileID: 21300000, guid: 330f8c103455de94384ed7b8319dd2b5, type: 3}
+  - type: 2
+    image: {fileID: 21300000, guid: c0d9e0f16bce8c84e88d677e935043f0, type: 3}

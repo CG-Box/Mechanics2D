@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3022de8b1290a4bb80e83d5bb38eb5, type: 3}
+  m_Name: SpeakersLibrary
+  m_EditorClassIdentifier: 
+  itemsViewList:
+  - {fileID: 11400000, guid: e20443249d320774db28fded66a30a11, type: 2}
+  - {fileID: 11400000, guid: 2f18f1c4af876f04fbe90c598ef31894, type: 2}
+  - {fileID: 11400000, guid: 85b9b7eeaa013cb48b0efcbce2c90f03, type: 2}
+  - {fileID: 11400000, guid: c56203e2cbfb08f498224c82bed567b8, type: 2}

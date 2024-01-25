@@ -48,6 +48,7 @@ MonoBehaviour:
   gameManager: {fileID: 11400000, guid: c1b34e0411ab5db43a995248b6051a1d, type: 2}
   slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
   itemsLibrary: {fileID: 11400000, guid: cd1ca49e22c06b64b8c6c8a029c8d871, type: 2}
+  speakersLibrary: {fileID: 11400000, guid: 51b2db16f9a36524182c34bfee703820, type: 2}
 --- !u!1 &2588007910618738674
 GameObject:
   m_ObjectHideFlags: 0

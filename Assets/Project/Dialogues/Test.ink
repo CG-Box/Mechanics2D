@@ -1,4 +1,4 @@
-Hello there! #speaker:Student #layout:right
+Hello there! #speaker:Student #layout:Right
 -> main
 
 === main ===
