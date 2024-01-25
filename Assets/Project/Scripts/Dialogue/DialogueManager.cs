@@ -67,6 +67,8 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueVariables dialogueVariables;
 
+    private InkExternalFunctions inkExternalFunctions;
+
     private void Awake() 
     {
         if (instance != null)
@@ -76,6 +78,7 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+        inkExternalFunctions = new InkExternalFunctions();
     }
 
     public static DialogueManager GetInstance() 
@@ -147,6 +150,7 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
 
         dialogueVariables.StartListening(currentStory);
+        inkExternalFunctions.Bind(currentStory);
 
         // reset portrait, layout, and speaker
         ResetSpeaker();
@@ -155,6 +159,7 @@ public class DialogueManager : MonoBehaviour
 
         ContinueStory();
     }
+
 
     void FreezePlayer()
     {
@@ -172,6 +177,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         dialogueVariables.StopListening(currentStory);
+        inkExternalFunctions.Unbind(currentStory);
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
