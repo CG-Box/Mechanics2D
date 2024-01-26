@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab8855dee9769545956bdcf03b3a09d, type: 3}
+  m_Script: {fileID: 11500000, guid: 53c81721276ec7942a1326fd80263620, type: 3}
   m_Name: SceneChanged
   m_EditorClassIdentifier: 
-  description: Invoked by scene controller when new scene is loaded
+  description: invoked by sceneController to send scene data to game manager and
+    then to slot manager which will save scene data

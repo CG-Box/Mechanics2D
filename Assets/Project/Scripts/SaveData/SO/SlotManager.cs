@@ -63,7 +63,7 @@ public class SlotManager: ScriptableObject
         activeSlot.AddDefaultItems();
 
         sceneRequestEventChannel.RaiseEvent(
-			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName)
+			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName, activeSlot.data.globals.destinationTag)
 		);
     }
     public void ContinueGame()
@@ -82,7 +82,7 @@ public class SlotManager: ScriptableObject
     {
         SetActiveSlot(slotId);
         sceneRequestEventChannel.RaiseEvent(
-			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName)
+			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName, activeSlot.data.globals.destinationTag)
 		);
     }
 
@@ -274,7 +274,10 @@ public class SlotManager: ScriptableObject
     public void ChangeActiveSlotSceneName(string sceneName)
     {
         activeSlot.data.globals.lastSceneName = sceneName;
-        //Debug.Log($"active slot {activeSlot.SlotId} new name {sceneName}");
+    }
+    public void ChangeActiveSlotSceneDestination(Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag)
+    {
+        activeSlot.data.globals.destinationTag = destinationTag;
     }
 
     public void ChangePlayerHealth(int newHealt)

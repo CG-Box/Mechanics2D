@@ -1473,9 +1473,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5571533462151458573, guid: 309e31c88716a854c90dad8421383a34, type: 3}
-      propertyPath: sceneRequestEventChannel
+      propertyPath: sceneChangedEventChannel
       value: 
-      objectReference: {fileID: 11400000, guid: e7370324aaee97f40b69d4d8d23247c1, type: 2}
+      objectReference: {fileID: 11400000, guid: 1f9d0b9c4f282444c94ee851b3537435, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

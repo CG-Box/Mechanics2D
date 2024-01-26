@@ -54,12 +54,14 @@ public class GameData
 
         [Mechanics2D.SceneName]
         public string lastSceneName;
+        public Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag;
 
         public List<ItemData> itemList;
         public Globals()
         {
             //First scene to load after the new game starts
-            lastSceneName = "L00";
+            lastSceneName = Constants.NewGameScene;
+            destinationTag = default;
 
             playerHealth = 100;
             itemList = new List<ItemData>();

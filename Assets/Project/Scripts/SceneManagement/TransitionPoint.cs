@@ -139,6 +139,13 @@ namespace Mechanics2D
             resetInputValuesOnTransition = true;
             transitionDestinationTag = SceneTransitionDestination.DestinationTag.A;
         }
+        public TransitionPointData(string sceneName, SceneTransitionDestination.DestinationTag destinationTag)
+        {
+            newSceneName = sceneName;
+            transitionType = TransitionPoint.TransitionType.DifferentZone;
+            resetInputValuesOnTransition = true;
+            transitionDestinationTag = destinationTag;
+        }
     }
 }
 

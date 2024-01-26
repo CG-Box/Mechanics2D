@@ -5381,7 +5381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2502310601712282675, guid: 2a5c73b946c48ed4f8c024c53fd56edf, type: 3}
       propertyPath: amount
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2502310601712282675, guid: 2a5c73b946c48ed4f8c024c53fd56edf, type: 3}
       propertyPath: itemToGenerate
@@ -6127,6 +6127,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5571533462151458573, guid: 309e31c88716a854c90dad8421383a34, type: 3}
+      propertyPath: sceneChangedEventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f9d0b9c4f282444c94ee851b3537435, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

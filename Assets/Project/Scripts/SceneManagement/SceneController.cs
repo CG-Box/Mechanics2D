@@ -56,7 +56,7 @@ namespace Mechanics2D
         [SerializeField] private TransitionPointEventChannelSO sceneRequestEventChannel = default;
 
 	    [Header("Events Raise")]
-        [SerializeField] private StringEventChannelSO sceneChangedEventChannel = default;
+        [SerializeField] private TransitionPointEventChannelSO sceneChangedEventChannel = default;
 
         #region EventsBinding
         void OnEnable()
@@ -185,7 +185,10 @@ namespace Mechanics2D
 
             if(transitionType != TransitionPoint.TransitionType.DifferentNonGameplayScene)
             {
-                sceneChangedEventChannel.RaiseEvent(newSceneName);
+                sceneChangedEventChannel.RaiseEvent(
+                    new Mechanics2D.TransitionPointData(newSceneName, destinationTag)
+                );
+                Debug.Log($"scene point {newSceneName} : {destinationTag}");
             }
             else
             {

@@ -18,7 +18,7 @@ public class GameManagerSO : DescriptionBaseSO
     public VoidEventChannelSO exitEventChannel = default;
 	public VoidEventChannelSO continueGameEventChannel = default;
 	public VoidEventChannelSO saveGameEventChannel = default;
-	public StringEventChannelSO sceneChangedEventChannel = default;
+	public TransitionPointEventChannelSO sceneChangedEventChannel = default;
 
 	//Valuables
 	public IntEventChannelSO healthUpdateEvent = default;
@@ -96,9 +96,10 @@ public class GameManagerSO : DescriptionBaseSO
 		slotManager.SaveActiveSlot();
 	}
 
-	void SceneChanged(string sceneName)
+	void SceneChanged(Mechanics2D.TransitionPointData transitionPointData)
 	{
-		slotManager.ChangeActiveSlotSceneName(sceneName);
+		slotManager.ChangeActiveSlotSceneName(transitionPointData.newSceneName);
+		slotManager.ChangeActiveSlotSceneDestination(transitionPointData.transitionDestinationTag);
 		LoadDataToScripts();
 	}
 

@@ -90,7 +90,7 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
         if(inventory.DoesNotContain(item))
         {
             //StaticEvents.Collecting.OnOutOfAmmo?.Invoke();
-            Debug.Log("OnOutOfAmmo ???");
+            Debug.Log($"OnOutOf {item.type} ???");
         }
         DropItem(item, transform.position);
         //inventory.PrintInventoryToDebug();
