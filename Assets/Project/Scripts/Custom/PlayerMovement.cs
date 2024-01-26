@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -12,20 +15,29 @@ public class PlayerMovement : MonoBehaviour
 
     private bool haveControl = true;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //Vector3 cer = Vector3.down;
     }
 
-    private void Update()
+    // old input system
+    
+    /*
+    void Update()
     {
         if(!haveControl)
             return;
-        // Входные данные игрока
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-    }
+    }*/
+
+    // new input system
+    void OnMove(InputValue inputValue)
+	{
+        if(!haveControl)
+            return;
+        movement = inputValue.Get<Vector2>();
+	}
 
     private void FixedUpdate()
     {

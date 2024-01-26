@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(PlayerInput))]
 public class DialogueTrigger : MonoBehaviour
 {
     [Header("Visual Cue")]
@@ -11,31 +14,27 @@ public class DialogueTrigger : MonoBehaviour
 
     bool playerInRange;
 
-    private void Awake() 
+    void Awake() 
     {
         playerInRange = false;
         visualCue.SetActive(false);
     }
 
-    private void Update() 
-    {
+    void OnUse(InputValue inputValue)
+	{
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying) 
         {
             visualCue.SetActive(true);
 
-            //if (InputManager.GetInstance().GetDialoguePressed()) 
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-            }
+            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
         }
         else 
         {
             visualCue.SetActive(false);
         }
-    }
+	}
 
-    private void OnTriggerEnter2D(Collider2D collider) 
+    void OnTriggerEnter2D(Collider2D collider) 
     {
         if (collider.gameObject.tag == Constants.PlayerTag)
         {
@@ -43,7 +42,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider) 
+    void OnTriggerExit2D(Collider2D collider) 
     {
         if (collider.gameObject.tag == Constants.PlayerTag)
         {

@@ -24,10 +24,12 @@ public class ItemBehaviour : MonoBehaviour
 
     //public Action BeforeDestroyFunction;
 
-    void Awake()
+    void Start()
     {
         //spriteRenderer = GetComponent<SpriteRenderer>();
         GenerateItemByItem_SO(itemToGenerate);
+
+        //visual update can be used only after ItemsLibrary is inited
         UpdateItemVisual();
     }
 
@@ -63,7 +65,7 @@ public class ItemBehaviour : MonoBehaviour
     }
     public void UpdateItemVisual()
     {
-        spriteRenderer.sprite = itemData.sprite;
+        spriteRenderer.sprite = ItemsLibrary.GetItem(itemData.type).sprite;
     }
 
     public void DestroySelf()

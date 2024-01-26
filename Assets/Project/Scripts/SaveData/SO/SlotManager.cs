@@ -274,7 +274,7 @@ public class SlotManager: ScriptableObject
     public void ChangeActiveSlotSceneName(string sceneName)
     {
         activeSlot.data.globals.lastSceneName = sceneName;
-        Debug.Log($"active slot {activeSlot.SlotId} new name {sceneName}");
+        //Debug.Log($"active slot {activeSlot.SlotId} new name {sceneName}");
     }
 
     public void ChangePlayerHealth(int newHealt)
