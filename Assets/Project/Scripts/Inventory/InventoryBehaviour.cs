@@ -105,16 +105,21 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        
+        /**
         ItemBehaviour collectable = collider.GetComponent<ItemBehaviour>();
         if(collectable != null)
         {
             ItemData collectedItem = collectable.Data;
-            inventory.AddItem(collectedItem);
+            AddItem(collectedItem);
             collectable.DestroySelf();
-
-            inventoryUpdateEvent.RaiseEvent(this.gameObject);
         }
+        */
+    }
+
+    public void AddItem(ItemData itemData)
+    {
+        inventory.AddItem(itemData);
+        inventoryUpdateEvent.RaiseEvent(this.gameObject);
     }
 
     public ItemBehaviour SpawnItem(ItemData item, Vector3 position)

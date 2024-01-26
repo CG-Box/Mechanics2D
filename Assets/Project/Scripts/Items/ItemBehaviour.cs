@@ -1,11 +1,16 @@
+using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ItemBehaviour : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    [SerializeField] 
+    private GameObject tooltipGO;
 
     [Header("Require Item_SO")]
 
@@ -22,16 +27,38 @@ public class ItemBehaviour : MonoBehaviour
         get { return itemData; }
     }
 
+    InventoryBehaviour nearInventoryBehaviour = null;
+
+    bool generateFromItem_SO = true;
+
     //public Action BeforeDestroyFunction;
+
+    void OnEnable()
+    {
+        HideTip();
+        ClearInventoryBehaviour();
+    }
 
     void Start()
     {
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-        GenerateItemByItem_SO(itemToGenerate);
-
-        //visual update can be used only after ItemsLibrary is inited
-        UpdateItemVisual();
+        if(generateFromItem_SO)
+        {
+            GenerateItemByItem_SO(itemToGenerate);
+        }
     }
+
+    void OnUse(InputValue inputValue)
+	{
+        if (nearInventoryBehaviour != null) 
+        {
+            nearInventoryBehaviour.AddItem(itemData);
+            DestroySelf();
+        }
+        else 
+        {
+            //Debug.Log("inventory is too far");
+        }
+	}
 
     [ContextMenu("GenerateItem")]
     public void GenerateItemByItem_SO()
@@ -54,14 +81,15 @@ public class ItemBehaviour : MonoBehaviour
             Debug.LogError("Can't generate item by empty ItemData_SO");
        }*/
     }
-
+    
     public void SetItem(ItemData itemData)
     {
         this.itemData = itemData;
+        generateFromItem_SO = false;
     }
     public void SetItem(Item_SO item_SO)
     {
-        this.itemData = item_SO.Data;
+        SetItem(item_SO.Data);
     }
     public void UpdateItemVisual()
     {
@@ -71,6 +99,58 @@ public class ItemBehaviour : MonoBehaviour
     public void DestroySelf()
     {
         //BeforeDestroyFunction?.Invoke();
+        //gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+    void SetInventoryBehaviour(InventoryBehaviour inventoryBehaviour)
+    {
+        this.nearInventoryBehaviour = inventoryBehaviour;
+    }
+    void ClearInventoryBehaviour()
+    {
+        this.nearInventoryBehaviour = null;
+    }
+
+    void ShowTip()
+    {
+        tooltipGO.SetActive(true);
+    }
+    void HideTip()
+    {
+        tooltipGO.SetActive(false);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) 
+    {
+
+        InventoryBehaviour inventoryBehaviour = collider.GetComponent<InventoryBehaviour>();
+        if(inventoryBehaviour != null)
+        {
+            SetInventoryBehaviour(inventoryBehaviour);
+            ShowTip();
+        }
+
+        /*
+        if (collider.gameObject.tag == Constants.PlayerTag)
+        {
+            playerInRange = true;
+        }*/
+    }
+
+    void OnTriggerExit2D(Collider2D collider) 
+    {
+        InventoryBehaviour inventoryBehaviour = collider.GetComponent<InventoryBehaviour>();
+        if(inventoryBehaviour == nearInventoryBehaviour)
+        {
+            ClearInventoryBehaviour();
+            HideTip();
+        }
+
+        /*
+        if (collider.gameObject.tag == Constants.PlayerTag)
+        {
+            playerInRange = false;
+        }*/
     }
 }
