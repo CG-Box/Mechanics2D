@@ -1,29 +1,35 @@
+INCLUDE globals.ink
+
+
 -> start
 === start ===
 Choose variant? #speaker:Random
-    + [1]
+    + [Add Money]
         -> var_1
-    + [2]
+    + [Add Item]
         -> var_2
-    + [3]
+    + [Remove Item]
         -> var_3
-    + [4]
+    + [Take Quest]
         -> var_4
     + [5]
         -> var_5
         
 
 === var_1 ===
+~AddMoney(100)
 You chose var_1, now see it
    + [1]
     -> Final
 === var_2 ===
+~AddItem(1)
 You chose var_2, now see it
    + [1]
      -> Final
    + [2]
     -> Final
 === var_3 ===
+~RemoveItem(2)
 You chose var_3, now see it
    + [1]
         -> Final
@@ -32,6 +38,7 @@ You chose var_3, now see it
      + [3]
         -> Final
 === var_4 ===
+~TakeQuest("button mash")
 You chose var_4, now see it
    + [1]
         -> Final

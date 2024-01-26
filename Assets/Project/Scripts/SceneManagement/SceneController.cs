@@ -188,7 +188,6 @@ namespace Mechanics2D
                 sceneChangedEventChannel.RaiseEvent(
                     new Mechanics2D.TransitionPointData(newSceneName, destinationTag)
                 );
-                Debug.Log($"scene point {newSceneName} : {destinationTag}");
             }
             else
             {

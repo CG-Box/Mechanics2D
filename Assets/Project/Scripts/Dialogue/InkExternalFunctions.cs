@@ -7,7 +7,10 @@ public class InkExternalFunctions
     enum Function
     {
         Log,
-        Loggy
+        AddItem,
+        RemoveItem,
+        AddMoney,
+        TakeQuest,
     }
 
     Action<string> SomeFunc;
@@ -23,15 +26,28 @@ public class InkExternalFunctions
 
         story.BindExternalFunction(nameof(Function.Log), SomeFunc);
 
-        /*
-        story.BindExternalFunction(nameof(Function.Loggy), (int number) => {
-            Debug.Log($"Number is {number}");
-        });*/
+        story.BindExternalFunction(nameof(Function.AddItem), (int itemId) => {
+            ItemType itemType = (ItemType)itemId;
+            Debug.Log($"Add item {itemType}");
+        });
+        story.BindExternalFunction(nameof(Function.RemoveItem), (int itemId) => {
+            ItemType itemType = (ItemType)itemId;
+            Debug.Log($"Remove item {itemType}");
+        });
+        story.BindExternalFunction(nameof(Function.AddMoney), (int amount) => {
+            Debug.Log($"Add money {amount}");
+        });
+        story.BindExternalFunction(nameof(Function.TakeQuest), (string questName) => {
+            Debug.Log($"Take quest {questName}");
+        });
     }
     public void Unbind(Story story)
     {
         story.UnbindExternalFunction(nameof(Function.Log));
-        //story.UnbindExternalFunction(nameof(Function.Loggy));
+        story.UnbindExternalFunction(nameof(Function.AddItem));
+        story.UnbindExternalFunction(nameof(Function.RemoveItem));
+        story.UnbindExternalFunction(nameof(Function.AddMoney));
+        story.UnbindExternalFunction(nameof(Function.TakeQuest));
     }
 
     void Log(string str)
