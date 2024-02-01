@@ -101,7 +101,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6392157, g: 1, b: 0.53333336, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -688,6 +688,7 @@ GameObject:
   - component: {fileID: 248352596000656114}
   - component: {fileID: 1613733195027260025}
   - component: {fileID: 7647788366914276499}
+  - component: {fileID: 2184426855630960705}
   - component: {fileID: 4656240161832854337}
   m_Layer: 5
   m_Name: ConfirmationPanel
@@ -695,7 +696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &248352596000656114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -754,6 +755,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2184426855630960705
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996120389275265597}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &4656240161832854337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,6 +779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8d42a18a96895458d68b0e99ea9d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 322440622912184236}
+  canvasGroup: {fileID: 2184426855630960705}
+  animationSpeed: 0.3
+  defaultButton: {fileID: 1515309934549845520}
   displayText: {fileID: 1869071401241600040}
   confirmButton: {fileID: 1131879212698647634}
   cancelButton: {fileID: 1515309934549845520}
@@ -870,7 +887,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6392157, g: 1, b: 0.53333336, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

@@ -215,7 +215,7 @@ public class SlotManager: ScriptableObject
         if (slot.data == null) 
         {
             //NewGame();
-            Debug.LogError($"loaded slot: {slot.SlotId} was never saved before");
+            Debug.LogWarning($"loaded slot: {slot.SlotId} was never saved before");
             return;
         }
 

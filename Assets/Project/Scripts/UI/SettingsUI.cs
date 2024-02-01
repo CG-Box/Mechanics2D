@@ -3,11 +3,8 @@ using UnityEngine.UI;
 
 namespace Mechanics2D
 {
-    public class SettingstUI : MonoBehaviour {
-
-        [Header("Slot manager")]
-        [SerializeField] private SlotManager slotManager;
-
+    public class SettingstUI : MenuPanel 
+    {
         [Header("Sliders")]
         [SerializeField] private Slider musisSlider;
         [SerializeField] private Slider sfxSlider;
@@ -24,6 +21,9 @@ namespace Mechanics2D
         void OnEnable()
         {
             AddBindings();
+
+            ShowAnimation();
+            SelectDefaultButton();
         }
 
         void OnDisable()
@@ -46,7 +46,6 @@ namespace Mechanics2D
             textSlider.onValueChanged.RemoveListener(TextSpeedChange);
         }
         #endregion
-
 
         void Start() 
         {

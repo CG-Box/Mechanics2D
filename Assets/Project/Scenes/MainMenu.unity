@@ -634,6 +634,7 @@ GameObject:
   - component: {fileID: 667951755}
   - component: {fileID: 667951757}
   - component: {fileID: 667951756}
+  - component: {fileID: 667951759}
   - component: {fileID: 667951758}
   m_Layer: 5
   m_Name: SavesPanel
@@ -712,6 +713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b99ef9548c8ed45a6fcc6c6369fcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innerTransform: {fileID: 1994698327}
+  canvasGroup: {fileID: 667951759}
+  animationSpeed: 0.3
+  defaultButton: {fileID: 1900274372}
   slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
   confirmationPopup: {fileID: 106216048}
   fileDeletedEventChannel: {fileID: 11400000, guid: 8d5119c9ef2de14479b49246c65f4db3, type: 2}
@@ -719,6 +724,18 @@ MonoBehaviour:
   - {fileID: 1997387008}
   - {fileID: 833334594}
   - {fileID: 1644869878}
+--- !u!225 &667951759
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667951754}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &678357585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,6 +905,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
+--- !u!114 &691415233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
+  m_PrefabInstance: {fileID: 1465105355}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &774846451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1492,6 +1520,7 @@ GameObject:
   - component: {fileID: 1125045568}
   - component: {fileID: 1125045570}
   - component: {fileID: 1125045569}
+  - component: {fileID: 1125045572}
   - component: {fileID: 1125045571}
   m_Layer: 5
   m_Name: SettingsPanel
@@ -1570,13 +1599,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b52bb9af3aa82a4dbc70091c7602cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotManager: {fileID: 0}
+  innerTransform: {fileID: 2049421121}
+  canvasGroup: {fileID: 1125045572}
+  animationSpeed: 0.3
+  defaultButton: {fileID: 691415233}
   musisSlider: {fileID: 498721377}
   sfxSlider: {fileID: 49725832}
   textSlider: {fileID: 1582424152}
   musicVolume: -1
   sfxVolume: -1
   textSpeed: -1
+--- !u!225 &1125045572
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125045567}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1156692893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9209941707523567658, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
@@ -1944,7 +1988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1957,7 +2001,7 @@ PrefabInstance:
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1125045567}
+      objectReference: {fileID: 1125045571}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1980,7 +2024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: HideAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1992,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: Mechanics2D.SettingstUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2468,12 +2512,16 @@ PrefabInstance:
       value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -2486,7 +2534,7 @@ PrefabInstance:
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 667951754}
+      objectReference: {fileID: 667951758}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2509,7 +2557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: HideAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2521,7 +2569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: SlotsPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2641,6 +2689,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2841028910395210408, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
   m_PrefabInstance: {fileID: 1900274369}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1900274372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1115811159619513722, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
+  m_PrefabInstance: {fileID: 1900274369}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1913778736 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2841028910395210408, guid: e222612700bc4ee458e40cde0c180bfb, type: 3}
@@ -2789,7 +2848,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049421120}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3327,10 +3386,6 @@ PrefabInstance:
     - target: {fileID: 7996120389275265597, guid: 9e3cb0cbf4d50244a973bfacdd24a946, type: 3}
       propertyPath: m_Name
       value: ConfirmationPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7996120389275265597, guid: 9e3cb0cbf4d50244a973bfacdd24a946, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

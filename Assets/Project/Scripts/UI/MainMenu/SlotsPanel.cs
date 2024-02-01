@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SlotsPanel : MonoBehaviour
+public class SlotsPanel : MenuPanel
 {
     [Header("References components")]
     [SerializeField] private SlotManager slotManager;
@@ -17,13 +17,14 @@ public class SlotsPanel : MonoBehaviour
 
     private bool isLoadingGame = false;
 
-    void Awake()
-    {}
 
     void OnEnable()
     {
         CheckForSlots();
         AddSlotsListeners();
+
+        ShowAnimation();
+        SelectDefaultButton();
     }
     void OnDisable()
     {
