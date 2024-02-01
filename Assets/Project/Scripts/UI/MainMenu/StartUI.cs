@@ -35,7 +35,14 @@ namespace Mechanics2D
         }
         public void SelectDefaultButton()
         {
-            newGameButton.Select();
+            if(continueGameButton.interactable == true)
+            {
+                continueGameButton.Select();
+            }
+            else
+            {
+                continueGameButton.Select();
+            }
         }
     }
 }
