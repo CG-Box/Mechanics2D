@@ -41,7 +41,7 @@ namespace Mechanics2D
             }
             else
             {
-                continueGameButton.Select();
+                newGameButton.Select();
             }
         }
     }
