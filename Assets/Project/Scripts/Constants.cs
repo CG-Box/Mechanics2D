@@ -1,6 +1,10 @@
 public class Constants
 {
-    public static readonly string PlayerTag = "Player";
+
+    static readonly string PlayerStr = "Player";
+    public static readonly string PlayerTag = PlayerStr;
+    public static readonly string PlayerLayer = PlayerStr;
+    public static readonly string DefaultLayer = "Everything";
     public static readonly string NewGameScene = "L00";
     public static readonly string MainMenuScene = "MainMenu";
     

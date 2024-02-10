@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 154273699607577304}
   - component: {fileID: 5774668178130295735}
   - component: {fileID: 8037564115642559377}
+  - component: {fileID: 2899694171727374158}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -524,6 +525,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2899694171727374158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533166390468134847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 9040480711941449983}
+  phraseKey: MENU_BTN
+  setTextOnStart: 1
 --- !u!1 &5255832273849249496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,6 +1109,7 @@ GameObject:
   - component: {fileID: 3555142959422541301}
   - component: {fileID: 7080661832787472755}
   - component: {fileID: 3465393157000889764}
+  - component: {fileID: 3466605195952592132}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -1227,6 +1244,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _channel: {fileID: 11400000, guid: b04acdc0d6e70f948a0ab0ecf85586f7, type: 2}
+--- !u!114 &3466605195952592132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718872241681332935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6728656746012461386}
+  phraseKey: SAVE_BTN
+  setTextOnStart: 1
 --- !u!1001 &3557627961890228845
 PrefabInstance:
   m_ObjectHideFlags: 0

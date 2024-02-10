@@ -26,6 +26,8 @@ public class GameManagerSO : DescriptionBaseSO
 
 	[Header("Events Raise")]
 	public TransitionPointEventChannelSO sceneRequestEventChannel = default;
+    public ItemDataEventChannelSO addItemRequest = default;
+    public ItemDataEventChannelSO removeItemRequest = default;
 
 	#region EventsBinding
     void OnEnable()
@@ -138,6 +140,22 @@ public class GameManagerSO : DescriptionBaseSO
         return new List<ITakeFromFile>(dataPersistenceObjects);
     }
 
+	public void AddItemToPlayer(ItemType itemType = ItemType.Taco)
+	{
+		//need to change get player from prefab or tag 
+		Debug.LogWarning("change player finding");
+		InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();
+		ItemEventArg itemEventArg = new ItemEventArg(new ItemData(itemType, 1), playerInventory);
+		addItemRequest.RaiseEvent(itemEventArg);    
+	}
+	public void RemoveItemFromPlayer(ItemType itemType = ItemType.Taco)
+	{
+		//need to change get player from prefab or tag 
+		Debug.LogWarning("change player finding");
+		InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();
+		ItemEventArg itemEventArg = new ItemEventArg(new ItemData(itemType, 1), playerInventory);
+		removeItemRequest.RaiseEvent(itemEventArg);    
+	}
 
     public void ExitGame()
 	{

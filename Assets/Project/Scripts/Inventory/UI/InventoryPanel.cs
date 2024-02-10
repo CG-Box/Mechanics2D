@@ -9,6 +9,7 @@ public class InventoryPanel : MonoBehaviour
 
     private Inventory inventory;
 
+    [SerializeField]private Transform panel;
     [SerializeField]private Transform itemsContainer;
     [SerializeField]private Transform itemTemplate;
 
@@ -34,11 +35,25 @@ public class InventoryPanel : MonoBehaviour
         inventory.OnItemListChanged += InventoryPanel_OnListChanged;
 
         Refresh();
+        ShowOrHide();
     }
 
     private void InventoryPanel_OnListChanged(object sender, System.EventArgs e)
     {
         Refresh();
+        ShowOrHide();
+    }
+
+    void ShowOrHide()
+    {
+        if(inventory.GetItemList().Count == 0)
+        {
+            panel.gameObject.SetActive(false);
+        }
+        else
+        {
+            panel.gameObject.SetActive(true);
+        }
     }
 
     private void Refresh()

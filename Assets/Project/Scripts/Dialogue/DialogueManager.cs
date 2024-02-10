@@ -20,6 +20,9 @@ public class DialogueManager : MonoBehaviour
     [Header("Speakers Library")]
     [SerializeField] private SpeakersLibrary speakersLibrary;
 
+    [Header("External Functions")]
+    [SerializeField] private InkExternalFunctions inkExternalFunctions;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private GameObject continueIcon;
@@ -41,6 +44,12 @@ public class DialogueManager : MonoBehaviour
     private bool canQuit = false;
     [SerializeField] 
     private bool disableSaving = false; //edit -> Clear all player prefs
+
+    [Header("Events Raise")]
+    public VoidEventChannelSO dialogueStartEvent = default;
+
+    [Header("Events Listen")]
+    public TextAssetEventChannelSO enterDialogueEvent = default;
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -68,9 +77,7 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueVariables dialogueVariables;
 
-    private InkExternalFunctions inkExternalFunctions;
-
-    private void Awake() 
+    void Awake() 
     {
         if (instance != null)
         {
@@ -79,15 +86,39 @@ public class DialogueManager : MonoBehaviour
         instance = this;
 
         dialogueVariables = new DialogueVariables(loadGlobalsJSON);
-        inkExternalFunctions = new InkExternalFunctions();
+        //inkExternalFunctions = new InkExternalFunctions(); //used only when using simple class, not scriptableObject
     }
+
+
+    #region EventsBinding
+    void OnEnable()
+    {
+        AddBindings();
+    }
+    void OnDisable()
+    {
+        RemoveBindings();
+        RemoveChoiceListeners();
+    }
+
+    public void AddBindings()
+    {
+		if (enterDialogueEvent != null)
+			enterDialogueEvent.OnEventRaised += EnterDialogueMode;
+    }
+    public void RemoveBindings()
+    {
+		if (enterDialogueEvent != null)
+			enterDialogueEvent.OnEventRaised -= EnterDialogueMode;
+    }
+    #endregion
 
     public static DialogueManager GetInstance() 
     {
         return instance;
     }
 
-    private void Start() 
+    void Start() 
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
@@ -104,12 +135,7 @@ public class DialogueManager : MonoBehaviour
         AddChoiceListeners();
     }
 
-    void OnDisable()
-    {
-        RemoveChoiceListeners();
-    }
-
-    private void Update() 
+    void Update() 
     {
         // return right away if dialogue isn't playing
         if (!dialogueIsPlaying) 
@@ -159,6 +185,8 @@ public class DialogueManager : MonoBehaviour
         layoutAnimator.Play(nameof(Layout.Left));
 
         ContinueStory();
+
+        dialogueStartEvent.RaiseEvent();
     }
 
 
@@ -173,7 +201,7 @@ public class DialogueManager : MonoBehaviour
         playerInput.GainControl();
     }
 
-    private IEnumerator ExitDialogueMode() 
+    IEnumerator ExitDialogueMode() 
     {
         yield return new WaitForSeconds(0.2f);
 
@@ -187,7 +215,7 @@ public class DialogueManager : MonoBehaviour
         UnfreezePlayer();
     }
 
-    private void ContinueStory() 
+    void ContinueStory() 
     {
         if (currentStory.canContinue) 
         {
@@ -222,7 +250,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayLine(string line) 
+    IEnumerator DisplayLine(string line) 
     {
         // set the text to the full line, but set the visible characters to 0
         dialogueText.text = line;
@@ -270,7 +298,7 @@ public class DialogueManager : MonoBehaviour
         canContinueToNextLine = true;
     }
 
-    private void HideChoices() 
+    void HideChoices() 
     {
         foreach (GameObject choiceButton in choices) 
         {
@@ -279,7 +307,7 @@ public class DialogueManager : MonoBehaviour
         choicesPanel.SetActive(false);
     }
 
-    private void HandleTags(List<string> currentTags)
+    void HandleTags(List<string> currentTags)
     {
         // loop through each tag and handle it accordingly
         foreach (string tag in currentTags) 
@@ -360,7 +388,7 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    private void DisplayChoices() 
+    void DisplayChoices() 
     {
         List<Choice> currentChoices = currentStory.currentChoices;
 
@@ -414,7 +442,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SelectFirstChoice() 
+    IEnumerator SelectFirstChoice() 
     {
         // Event System requires we clear it first, then wait
         // for at least one frame before we set the current selected object.

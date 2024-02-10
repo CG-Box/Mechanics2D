@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f505d4d66b3d6dd4eb90a6a5f7dd109f, type: 3}
+  m_Name: EnglishInformationPoints
+  m_EditorClassIdentifier: 
+  language: English
+  phrases:
+  - key: EX_ENEMY
+    value: Chomper likes to bite and Spitter will attack from range. You can easily
+      make changes to their behaviour using their Chomper and Spitter components!
+  - key: PP_SIDE
+    value: I'm not heavy enough to press this... Looks like I'll have to use the
+      box above!
+  - key: BOX_PCKUP
+    value: A key! This should come in handy!
+  - key: END
+    value: The treasure is finally mine!
+  - key: CONTINUE_BTN
+    value: Continue
+  - key: NEWGAME_BTN
+    value: New Game
+  - key: LOADGAME_BTN
+    value: Load Game
+  - key: SETTINGS_BTN
+    value: Settings
+  - key: EXIT_BTN
+    value: Exit
+  - key: SAVE_BTN
+    value: Save
+  - key: MENU_BTN
+    value: Main

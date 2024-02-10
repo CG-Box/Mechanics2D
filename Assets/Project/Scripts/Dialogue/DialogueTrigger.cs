@@ -9,6 +9,9 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
+    [Header("Events Raise")]
+    public TextAssetEventChannelSO enterDialogueEvent = default;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
@@ -26,7 +29,8 @@ public class DialogueTrigger : MonoBehaviour
         {
             visualCue.SetActive(true);
 
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+            //DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+            enterDialogueEvent.RaiseEvent(inkJSON);           
         }
         else 
         {

@@ -8,11 +8,11 @@ Choose variant? #speaker:Random
         -> var_1
     + [Add Item]
         -> var_2
-    + [Remove Item]
+    + [Remove Item taco]
         -> var_3
     + [Take Quest]
         -> var_4
-    + [5]
+    + [Remove Item jam]
         -> var_5
         
 
@@ -29,7 +29,7 @@ You chose var_2, now see it
    + [2]
     -> Final
 === var_3 ===
-~RemoveItem(2)
+~RemoveItem(4)
 You chose var_3, now see it
    + [1]
         -> Final
@@ -49,6 +49,7 @@ You chose var_4, now see it
     + [4]
         -> Final
 === var_5 ===
+~RemoveItem(0)
 You chose var_5, now see it
    + [1]
         -> Final
