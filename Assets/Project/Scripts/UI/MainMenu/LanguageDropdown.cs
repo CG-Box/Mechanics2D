@@ -12,7 +12,6 @@ public class LanguageDropdown : MonoBehaviour
     {
         UnbindListener();
         FillDropdown();
-        DropdownItemSelected(dropdown);
         BindListener();
     }
 
@@ -30,10 +29,18 @@ public class LanguageDropdown : MonoBehaviour
     {
         dropdown.options.Clear();
         languages = new List<string>();
-        foreach(OriginalPhrases originalPhrases in Translator.Instance.phrases)
+
+        int selectedIndex = 0;
+        for(int i = 0; i < Translator.Instance.phrases.Count; i++)
         {
+            OriginalPhrases originalPhrases = Translator.Instance.phrases[i];
             dropdown.options.Add(new TMP_Dropdown.OptionData() {text = originalPhrases.language});
+            if(originalPhrases.language == Translator.CurrentLanguage)
+            {
+                selectedIndex = i;
+            }
         }
+        dropdown.SetValueWithoutNotify(selectedIndex);
     }
     void BindListener()
     {
@@ -44,8 +51,11 @@ public class LanguageDropdown : MonoBehaviour
         dropdown.onValueChanged.RemoveAllListeners();
     }
 
+
     void DropdownItemSelected(TMP_Dropdown dropdown)
     {
         Translator.SetLanguage(dropdown.value);
+        Translator.UpdateText();
+        Translator.SaveLanguage();
     }
 }

@@ -78,4 +78,41 @@ public class Translator : MonoBehaviour
         Instance.phrases.Add (phrases);
         Instance.m_LanguageIndex = Instance.phrases.Count - 1;
     }
+
+    public static void UpdateText()
+    {
+        TranslatedText[] translatedTexts = FindObjectsOfType<TranslatedText>();
+        foreach (TranslatedText translatedText in translatedTexts) {
+            translatedText.SetText();
+        }
+    } 
+
+    //TO DO: not working singleton, need to rework\change it
+    void Awake()
+    {
+        if (Instance != this)
+        {
+            Destroy(gameObject);
+            Debug.Log("same tranlator must be destroyed");
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+
+        LoadLanguage();
+    }
+
+    public static void LoadLanguage()
+    {
+        string userLanguage;
+
+        if (PlayerPrefs.HasKey(nameof(CurrentLanguage)))
+        {
+            userLanguage = PlayerPrefs.GetString(nameof(CurrentLanguage));
+            Translator.SetLanguage(userLanguage);
+        }
+    }
+    public static void SaveLanguage()
+    {
+        PlayerPrefs.SetString(nameof(CurrentLanguage), CurrentLanguage);
+    }
 }
