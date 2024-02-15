@@ -1,5 +1,5 @@
 VAR pokemon_name = ""
-VAR surviveQuestTaken = false
+VAR surviveQuestTakenTimes = 0
 VAR surviveQuestDialogueShowed = false
 VAR surviveQuestRudeSpeech = false
 

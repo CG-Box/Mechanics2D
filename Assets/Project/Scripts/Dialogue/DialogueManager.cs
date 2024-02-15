@@ -9,7 +9,7 @@ using System;
 
 //KeyCode.
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour, ITakeFromFile
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.03f;
@@ -42,8 +42,6 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] 
     private bool canQuit = false;
-    [SerializeField] 
-    private bool disableSaving = false; //edit -> Clear all player prefs
 
     [Header("Events Raise")]
     public VoidEventChannelSO dialogueStartEvent = default;
@@ -65,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     private const string DISPLAY_NAME_TAG = "name";
     private const string LAYOUT_TAG = "layout";
     
-    private const string QUEST_TAG = "quest";
+    private const string SOUND_TAG = "sound";
 
     public enum Layout
     {
@@ -77,6 +75,8 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueVariables dialogueVariables;
 
+    private GameData.DialogueData dialogueData;
+
     void Awake() 
     {
         if (instance != null)
@@ -85,7 +85,13 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
 
-        dialogueVariables = new DialogueVariables(loadGlobalsJSON);
+        dialogueData = new GameData.DialogueData();
+        InitVariables(dialogueData.jsonState);
+    }
+
+    void InitVariables(string jsonState)
+    {
+        dialogueVariables = new DialogueVariables(loadGlobalsJSON, jsonState);
         //inkExternalFunctions = new InkExternalFunctions(); //used only when using simple class, not scriptableObject
     }
 
@@ -205,6 +211,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
+        dialogueData.jsonState = dialogueVariables.GetVariables();
         dialogueVariables.StopListening(currentStory);
         inkExternalFunctions.Unbind(currentStory);
 
@@ -337,9 +344,9 @@ public class DialogueManager : MonoBehaviour
                 case LAYOUT_TAG:
                     layoutAnimator.Play(tagValue);
                     break;
-                case QUEST_TAG:
-                    //Debug.Log("getting quest name: "+tagValue);
-                    //QuestManager.StartQuest(tagValue);
+                case SOUND_TAG:
+                    //Debug.Log("play sound name: "+tagValue);
+                    //AudioManager.Play(tagValue);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
@@ -475,12 +482,10 @@ public class DialogueManager : MonoBehaviour
         return variableValue;
     }
 
-    // This method will get called anytime the application exits.
-    // Depending on your game, you may want to save variable state in other places.
-    public void OnApplicationQuit() 
+    //ITakeFromFile
+    public void LoadData(GameData data)
     {
-        if(disableSaving)
-            return;
-        dialogueVariables.SaveVariables();
+        dialogueData = data.dialogueData;
+        InitVariables(dialogueData.jsonState);
     }
 }

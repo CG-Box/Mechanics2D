@@ -5,11 +5,13 @@ public class GameData
 {
     public Globals globals;
     public SceneData scene;
+    public DialogueData dialogueData;
     public SerializableDictionary<string, SceneData> sceneList;
     public GameData() 
     {
         globals = new Globals();
         scene = new SceneData();
+        dialogueData = new DialogueData();
         sceneList = new SerializableDictionary<string, SceneData>
         {
             { scene.name, scene }
@@ -43,6 +45,7 @@ public class GameData
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
+        dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;
     }
 
@@ -75,6 +78,16 @@ public class GameData
         public SceneData()
         {
             name = "SCENE_NAME";
+        }
+    }
+
+    [System.Serializable]
+    public class DialogueData
+    {
+        public string jsonState;
+        public DialogueData()
+        {
+            jsonState = null;
         }
     }
 

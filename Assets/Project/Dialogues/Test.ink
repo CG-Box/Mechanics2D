@@ -1,15 +1,22 @@
+INCLUDE globals.ink
+
 Hello there! #speaker:Student #layout:Right
 -> main
 
 === main ===
 Can you help me?
-+ [Take Quest] #quest: SurviveQuest
-    Thanks dude
-    -> END
++ [Take Quest] #sound: questTakeSound
+    -> QuestTaken
 + [Don't Help]->Mid
 + [Ignore]
     You are so egoistic!
     ->END
+
+=== QuestTaken ===
+~TakeQuest("SurviveQuest")
+~ surviveQuestTakenTimes += 1
+Thanks dude you helped me {surviveQuestTakenTimes} times
+   -> END
 
 === Mid ===
 Did you hear that?
@@ -21,7 +28,7 @@ Did you hear that?
 - I hope it's over.
 
 Well, do you think we can survive?
-+ [Yes] #quest: SurviveQuest
++ [Yes] #sound: questTakeSound
     Your are so cute.
     Now i'm happy!!
     -> END
