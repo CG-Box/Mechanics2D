@@ -13,8 +13,25 @@ public class DialogueVariables
         // create the story
         globalVariablesStory = new Story(loadGlobalsJSON.text);
         // if we have saved data, load it
-        LoadVariables(dialogueData);
+        UpdateVariables(dialogueData);
+    }
 
+    public Story GetGlobalStory()
+    {
+        return globalVariablesStory;
+    }
+
+    // _inkStory.variablesState["player_health"] = 100  // set var
+
+    // int health = (int) _inkStory.variablesState["player_health"]  // get var
+
+    /*
+    _inkStory.ObserveVariable ("health", (string varName, object newValue) => {
+        SetHealthInUI((int)newValue);
+    }); */
+
+    void FillDictionary()
+    {
         // initialize the dictionary
         variables = new Dictionary<string, Ink.Runtime.Object>();
         foreach (string name in globalVariablesStory.variablesState)
@@ -26,8 +43,13 @@ public class DialogueVariables
         }
     }
 
+    public void UpdateVariables(string jsonState)
+    {
+        LoadVariables(jsonState);
+        FillDictionary();
+    }
 
-    public void LoadVariables(string jsonState)
+    void LoadVariables(string jsonState)
     {
         if(!string.IsNullOrEmpty(jsonState))
         {

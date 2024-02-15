@@ -50,6 +50,12 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     public TextAssetEventChannelSO enterDialogueEvent = default;
 
     private Story currentStory;
+
+    public Story CurrentStory
+    {
+        get {return currentStory;}
+    }
+
     public bool dialogueIsPlaying { get; private set; }
 
     private bool canContinueToNextLine = false;
@@ -482,10 +488,25 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         return variableValue;
     }
 
+    //TO DO: work only when dialogue is playing fix this before using
+    public void SetVariableState<T>(string variableName, T variableValue)
+    {
+        if(dialogueVariables.variables.ContainsKey(variableName))
+        {
+            Debug.Log($"value {variableName} exist = success");
+            currentStory.variablesState[variableName] = variableValue;
+            //dialogueVariables.GetGlobalStory().variablesState[variableName] = variableValue; //fail
+        }
+        else
+        {
+            Debug.Log($"value {variableName} wasnt found in the dialogueVariables");
+        }
+    }
+
     //ITakeFromFile
     public void LoadData(GameData data)
     {
         dialogueData = data.dialogueData;
-        InitVariables(dialogueData.jsonState);
+        dialogueVariables.UpdateVariables(dialogueData.jsonState);
     }
 }
