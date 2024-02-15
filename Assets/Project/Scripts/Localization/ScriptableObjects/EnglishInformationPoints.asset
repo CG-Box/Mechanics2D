@@ -38,3 +38,26 @@ MonoBehaviour:
     value: Save
   - key: MENU_BTN
     value: Main
+  - key: BACK_BTN
+    value: Back
+  - key: SLOT_EMPTY
+    value: Empty
+  - key: SLOT_CLEAR_BTN
+    value: Clear
+  - key: YES_BTN
+    value: Yes
+  - key: NO_BTN
+    value: No
+  - key: SLOT_OVERRIDE
+    value: Starting a New Game with this slot will override the currently saved data.
+      Are you sure?
+  - key: SLOT_DELETE
+    value: Are you sure you want to delete this saved data?
+  - key: LANGUAGE
+    value: Language
+  - key: VOLUME_MUSIC
+    value: Music Volume
+  - key: VOLUME_SFX
+    value: SFX Volume
+  - key: TEXT_SPEED
+    value: Text Speed

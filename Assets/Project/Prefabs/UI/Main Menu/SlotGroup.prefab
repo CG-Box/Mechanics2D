@@ -625,6 +625,7 @@ GameObject:
   - component: {fileID: 4298554572851374547}
   - component: {fileID: 5623305119411409950}
   - component: {fileID: 7873324115080767387}
+  - component: {fileID: 1222039053972838471}
   m_Layer: 5
   m_Name: ClearButton
   m_TagString: Untagged
@@ -746,6 +747,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1222039053972838471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807968165700036547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 5655021455388731770}
+  phraseKey: SLOT_CLEAR_BTN
+  setTextOnStart: 1
 --- !u!1 &7336623385992203753
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +774,7 @@ GameObject:
   - component: {fileID: 7027438659311910694}
   - component: {fileID: 1041254627660560180}
   - component: {fileID: 8680002092564632781}
+  - component: {fileID: 4833181187195315571}
   m_Layer: 5
   m_Name: EmptySlotButton
   m_TagString: Untagged
@@ -879,6 +896,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4833181187195315571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336623385992203753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2551908482172743740}
+  phraseKey: SLOT_EMPTY
+  setTextOnStart: 1
 --- !u!1 &7574593874573341222
 GameObject:
   m_ObjectHideFlags: 0

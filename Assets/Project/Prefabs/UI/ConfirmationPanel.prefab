@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4570188727300269444}
   - component: {fileID: 2892408111586421051}
   - component: {fileID: 1131879212698647634}
+  - component: {fileID: 689682804036793515}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -121,6 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &689682804036793515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078812012926156465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 4604431112804867048}
+  phraseKey: YES_BTN
+  setTextOnStart: 1
 --- !u!1 &1636795184323898256
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +308,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1851322960341538653
 CanvasRenderer:
@@ -798,6 +814,7 @@ GameObject:
   - component: {fileID: 5465880848301515720}
   - component: {fileID: 7589135834170709343}
   - component: {fileID: 1515309934549845520}
+  - component: {fileID: 4434994134390395385}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -907,3 +924,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4434994134390395385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900619425998435013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7264f312620704e84ec8cd109aef56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 3325475404208617832}
+  phraseKey: NO_BTN
+  setTextOnStart: 1

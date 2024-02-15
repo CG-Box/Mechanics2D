@@ -13,14 +13,14 @@ public class TranslatedText : MonoBehaviour
             text = GetComponent<TextMeshProUGUI> ();
     }
 
-    void Start ()
-    {
-        if(setTextOnStart)
-            text.text = Translator.Instance[phraseKey];
-    }
-
     public void SetText ()
     {
         text.text = Translator.Instance[phraseKey];
+    }
+
+    void OnEnable()
+    {
+        if(setTextOnStart)
+            SetText();
     }
 }

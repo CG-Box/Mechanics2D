@@ -99,7 +99,8 @@ public class SlotsPanel : MenuPanel
     void TryOverwriteSlot(string slotId)
     {
         confirmationPopup.ActivateMenu(
-            "Starting a New Game with this slot will override the currently saved data. Are you sure?",
+            //"Starting a New Game with this slot will override the currently saved data. Are you sure?",
+            Translator.Instance["SLOT_OVERRIDE"],
             // function to execute if we select 'yes'
             () => {
                 WriteToSlot(slotId);
@@ -122,7 +123,8 @@ public class SlotsPanel : MenuPanel
         DisableMenuButtons();
 
         confirmationPopup.ActivateMenu(
-            "Are you sure you want to delete this saved data?",
+            //"Are you sure you want to delete this saved data?",
+            Translator.Instance["SLOT_DELETE"],
             // function to execute if we select 'yes'
             () => {
                 slotManager.DeleteProfileData(saveSlotId);
