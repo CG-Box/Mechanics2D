@@ -42,6 +42,16 @@ public class GameData
         dataCopy.globals.lastUpdated = dataOriginal.globals.lastUpdated;
         dataCopy.globals.playerHealth = dataOriginal.globals.playerHealth;
         dataCopy.globals.lastSceneName = dataOriginal.globals.lastSceneName;
+        dataCopy.globals.destinationTag = dataOriginal.globals.destinationTag;
+
+
+        dataCopy.globals.playerCharisma = dataOriginal.globals.playerCharisma;
+        dataCopy.globals.playerManipulation = dataOriginal.globals.playerManipulation;
+        dataCopy.globals.playerAppearance = dataOriginal.globals.playerAppearance;
+        dataCopy.globals.playerPerception = dataOriginal.globals.playerPerception;
+        dataCopy.globals.playerIntelligence = dataOriginal.globals.playerIntelligence;
+
+
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
@@ -54,6 +64,12 @@ public class GameData
     {
         public long lastUpdated;
         public int playerHealth;
+
+        public int playerCharisma;
+        public int playerManipulation;
+        public int playerAppearance;
+        public int playerPerception;
+        public int playerIntelligence;
 
         [Mechanics2D.SceneName]
         public string lastSceneName;

@@ -352,7 +352,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
                     layoutAnimator.Play(tagValue);
                     break;
                 case SOUND_TAG:
-                    //Debug.Log("play sound name: "+tagValue);
+                    Debug.Log("play sound name: "+tagValue);
                     //AudioManager.Play(tagValue);
                     break;
                 default:
@@ -405,6 +405,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     void DisplayChoices() 
     {
         List<Choice> currentChoices = currentStory.currentChoices;
+        //Debug.Log(currentChoices.Count);
 
         // defensive check to make sure our UI can support the number of choices coming in
         if (currentChoices.Count > choices.Length)

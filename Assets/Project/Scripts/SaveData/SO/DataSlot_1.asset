@@ -15,29 +15,28 @@ MonoBehaviour:
   slotId: slot_1
   data:
     globals:
-      lastUpdated: -8584953077426521241
+      lastUpdated: -8584933375817175679
       playerHealth: 100
-      lastSceneName: L11
-      destinationTag: 1
+      playerCharisma: 10
+      playerManipulation: 20
+      playerAppearance: 30
+      playerPerception: 40
+      playerIntelligence: 50
+      lastSceneName: L00
+      destinationTag: 0
       itemList:
+      - type: 0
+        sprite: {fileID: 21300000, guid: 3f72be9287bece34e9b55e9a44de7838, type: 3}
+        canStack: 0
+        amount: 1
       - type: 2
         sprite: {fileID: 21300000, guid: 3b06eec89cd279a43a2894954737683c, type: 3}
         canStack: 1
         amount: 5
-      - type: 3
-        sprite: {fileID: 21300000, guid: c0a5cac07f89a0a46b8e7c2c615f0cfe, type: 3}
-        canStack: 1
-        amount: 1
-      - type: 4
-        sprite: {fileID: 21300000, guid: 515c706b9ed28b14781d65cca290c43b, type: 3}
-        canStack: 1
-        amount: 40
-      - type: 5
-        sprite: {fileID: 21300000, guid: 9a7a2b8931a254146b48995bf7dfda07, type: 3}
-        canStack: 1
-        amount: 1
     scene:
       name: SCENE_NAME
+    dialogueData:
+      jsonState: 
     sceneList:
       keys:
       - SCENE_NAME

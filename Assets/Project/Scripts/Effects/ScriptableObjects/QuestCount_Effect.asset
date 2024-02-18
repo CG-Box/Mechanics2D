@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Delete this and the script, used only for testing
   amount: 10
+  playerCharisma: 15
+  playerManipulation: 0
+  playerAppearance: 0
+  playerPerception: 0
+  playerIntelligence: 0
