@@ -6,6 +6,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using System;
+using Unity.Mathematics;
 
 //KeyCode.
 
@@ -488,19 +489,42 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         return variableValue;
     }
 
-    //TO DO: work only when dialogue is playing fix this before using
+    //TO DO: work only when dialogue isn't playing fix this before using while playing
     public void SetVariableState<T>(string variableName, T variableValue)
     {
-        if(dialogueVariables.variables.ContainsKey(variableName))
+        Dictionary<string, object> dictionary = new Dictionary<string, object>(1);
+        dictionary[variableName] = variableValue;
+        SetVariableState(dictionary);
+    }
+    public void SetVariableState(Dictionary<string, object> valuesList) //List<KeyValuePair<string, object>>
+    {
+        if(dialogueIsPlaying)
         {
-            Debug.Log($"value {variableName} exist = success");
-            currentStory.variablesState[variableName] = variableValue;
-            //dialogueVariables.GetGlobalStory().variablesState[variableName] = variableValue; //fail
+            Debug.LogWarning("you can't changes values from dialougue during active dialogue");
+            return;
         }
-        else
+        currentStory = new Story(loadGlobalsJSON.text);
+
+        dialogueVariables.StartListening(currentStory);
+        foreach(KeyValuePair<string, object> variable in valuesList) 
         {
-            Debug.Log($"value {variableName} wasnt found in the dialogueVariables");
+            if(dialogueVariables.variables.ContainsKey(variable.Key))
+            {
+                currentStory.variablesState[variable.Key] = variable.Value;
+            }
+            else
+            {
+                Debug.Log($"value {variable.Key} wasnt found in the dialogueVariables");
+            }
         }
+        dialogueData.jsonState = dialogueVariables.GetVariables();
+        dialogueVariables.StopListening(currentStory);
+    }
+    
+
+    public void PrintGlobalVariables()
+    {
+        dialogueVariables.PrintVariables();
     }
 
     //ITakeFromFile

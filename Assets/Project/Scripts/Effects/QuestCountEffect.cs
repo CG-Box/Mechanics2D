@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Effects/Quest Count Test")]
 public class QuestCountEffect : Effect
@@ -14,9 +15,18 @@ public class QuestCountEffect : Effect
     {
         base.Apply();
 
-        //var InkRuntimeObject = DialogueManager.GetInstance().GetVariableState(valueKey);
+        if(amount != 0)
+        {   
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            dictionary[valueKey] = amount;
+            dictionary["pokemon_name"] = "Pikachu";
+            DialogueManager.GetInstance().SetVariableState(dictionary);
 
-        DialogueManager.GetInstance().SetVariableState(valueKey, amount);
+            //DialogueManager.GetInstance().SetVariableState(valueKey, amount);
+            //DialogueManager.GetInstance().SetVariableState("pokemon_name", "Pikachu");
+             
+        }
+        DialogueManager.GetInstance().PrintGlobalVariables();
 
         //HealEvent.RaiseEvent(amount);
     }

@@ -16,11 +16,6 @@ public class DialogueVariables
         UpdateVariables(dialogueData);
     }
 
-    public Story GetGlobalStory()
-    {
-        return globalVariablesStory;
-    }
-
     // _inkStory.variablesState["player_health"] = 100  // set var
 
     // int health = (int) _inkStory.variablesState["player_health"]  // get var
@@ -91,9 +86,10 @@ public class DialogueVariables
             variables.Remove(name);
             variables.Add(name, value);
         }
+        //Debug.Log($"key {name} : {value}");
     }
 
-    private void VariablesToStory(Story story) 
+    void VariablesToStory(Story story) 
     {
         foreach(KeyValuePair<string, Ink.Runtime.Object> variable in variables) 
         {
@@ -101,4 +97,12 @@ public class DialogueVariables
         }
     }
 
+    public void PrintVariables()
+    {
+        Debug.Log("*** PrintVariables ***");
+        foreach(KeyValuePair<string, Ink.Runtime.Object> variable in variables) 
+        {
+            Debug.Log($"{variable.Key}, {variable.Value}");
+        }
+    }
 }

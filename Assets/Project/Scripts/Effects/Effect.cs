@@ -4,6 +4,6 @@ public class Effect : DescriptionBaseSO
 {
     public virtual void Apply()
     {
-        Debug.Log("def apply effect");
+        //Debug.Log("default apply effect");
     }
 }
