@@ -7,15 +7,15 @@ Hi player
 === main ===
 Can you give me a little bit of money? {playerCharisma}
 { playerCharisma == 0 :
-    + [Here your 25$]
+    + [Here your 25$ @color: red @style: cursive]
          -> var_0
 - else:
-    + [Ok take 3$]
+    + [Ok take 3$  @color: blue]
          -> var_1
 }
 
 { playerCharisma > 0 :
-    + [I think you have enough money]
+    + [I think you have enough money @color: green]
        -> var_2
 }
 
@@ -25,7 +25,7 @@ Can you give me a little bit of money? {playerCharisma}
 }
 
 {playerCharisma > 10 :
-    + [Get away from me]#sound: angryScream
+    + [Get away from me @color: yellow]#sound: angryScream
        -> var_4
 }
 

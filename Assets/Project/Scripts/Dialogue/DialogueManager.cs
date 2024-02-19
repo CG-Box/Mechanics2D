@@ -72,6 +72,12 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     
     private const string SOUND_TAG = "sound";
 
+    //choices tags hadled separetly
+    const string choice_separator = "@";
+    private const string CHOICE_COLOR_TAG = "color";
+    private const string CHOICE_STYLE_TAG = "style";
+    
+
     public enum Layout
     {
         Left,
@@ -402,10 +408,53 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     }
 
 
+    void ColorizeButton(string color, int index)
+    {
+        Color unityColor = default;
+        if (ColorUtility.TryParseHtmlString(color, out unityColor))
+        {
+            choicesText[index].color = unityColor;
+        }
+    }
+    string HandleChoiceTags(string choiceContent, int choiceIndex)
+    {
+        string[] currentTags = choiceContent.Split(choice_separator);
+        string choiceOnlyText =  currentTags[0];
+        for(int i=0; i < currentTags.Length; i++)
+        {
+            if(i==0)
+            {
+                //skip element 0 because it has just text, it saved in choiceOnlyText
+                continue; 
+            }
+            string tag = currentTags[i];
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2) 
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            // handle choice tag
+            switch (tagKey) 
+            {
+                case CHOICE_COLOR_TAG:
+                    ColorizeButton(tagValue, choiceIndex);
+                    break;
+                case CHOICE_STYLE_TAG:
+                    Debug.Log("style: "+tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
+        }
+        return choiceOnlyText;
+    }
     void DisplayChoices() 
     {
         List<Choice> currentChoices = currentStory.currentChoices;
-        //Debug.Log(currentChoices.Count);
 
         // defensive check to make sure our UI can support the number of choices coming in
         if (currentChoices.Count > choices.Length)
@@ -419,7 +468,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         foreach(Choice choice in currentChoices) 
         {
             choices[index].gameObject.SetActive(true);
-            choicesText[index].text = choice.text;
+            choicesText[index].text = HandleChoiceTags(choice.text, index);
             index++;
         }
 
