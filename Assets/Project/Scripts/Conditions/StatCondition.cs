@@ -8,33 +8,38 @@ public class StatCondition : Condition
     [SerializeField]private int statNeeded;
 
     StatData currentStat = default;
+
+    // TO DO: change to work with statsChannelRequest or other faster method
+    // potential errors - multi StatsBehaviour in scene or it's not exist or not loaded
+    void SlowTakeStat()
+    {
+        StatsBehaviour statsBehaviour = FindObjectOfType<StatsBehaviour>();
+        int statValue = statsBehaviour.GetStat(statType);
+        currentStat = new StatData(statType, statValue);
+    }
+
     public override bool Check()
     {
         if(IsDone) return true;
 
-        // TO DO: change to work with statsChannelRequest
-        //StatsBehaviour statsBehaviour = FindObjectOfType<StatsBehaviour>();
-        //int currentStat = statsBehaviour.GetStat(statType);
-
+        //If stat wasn't updated yet, it will be getting by slow method
         if(currentStat.type == StatType.Empty)
         {
-            Debug.LogWarning($"currentStat type: {currentStat.type}, update is before use");
-            return false;
+            SlowTakeStat();
         }
 
-        Debug.Log("currentStat " +currentStat.value);
-
+        //Debug.Log("currentStat " +currentStat.value);
 
         if(currentStat.value >= statNeeded)
         {
             IsDone = true;
-            Debug.Log("StatCondition is done");
+            //Debug.Log("StatCondition is done");
             InvokeDone();
             return true;
         }
         else
         {
-            Debug.Log("StatCondition not done yet");
+            //Debug.Log("StatCondition not done yet");
             return false;
         }
     }

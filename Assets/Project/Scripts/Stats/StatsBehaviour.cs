@@ -22,26 +22,56 @@ public struct StatData
     }
 }
 
-public class StatsBehaviour : MonoBehaviour, ITakeFromFile
+public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
 {
-    [SerializeField] private int points = 0; // free points
+    [SerializeField]private int points = 0; // free points
 
+    [SerializeField]private SlotManager slotManager;
+
+    [SerializeField]private StatsPanel statsPanel;
+
+
+	[Header("Events Raise")]
     [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
 
+    [Header("Events Listen")]
     [SerializeField]private StatDataEventChannelSO statsChangeRequest = default;
 
     SerializableDictionary<StatType, int> statsData;
 
     void OnEnable()
     {
+        LoadData(slotManager.GetActiveSlot().data);
+
+        AddPanelListeners();
+
         if (statsChangeRequest != null)
 			statsChangeRequest.OnEventRaised += StatsChangeRequest_Handler;
     }
     void OnDisable()
     {
+        RemovePanelListeners();
+
         if (statsChangeRequest != null)
 			statsChangeRequest.OnEventRaised -= StatsChangeRequest_Handler;
     }
+
+    void Awake()
+    {
+        statsPanel.SetStatsBehaviour(this);
+    }
+
+    void AddPanelListeners()
+    {
+        statsPanel.OnIncreaseStat += StatsBehaviour_OnIncreaseStat;
+        statsPanel.OnReduceStat += StatsBehaviour_OnReduceStat;
+    }
+    void RemovePanelListeners()
+    {
+        statsPanel.OnIncreaseStat -= StatsBehaviour_OnIncreaseStat;
+        statsPanel.OnReduceStat -= StatsBehaviour_OnReduceStat;
+    }
+
 
     void StatsChangeRequest_Handler(StatData statData)
     {
@@ -62,32 +92,20 @@ public class StatsBehaviour : MonoBehaviour, ITakeFromFile
     }
 
 
-    //Delete this region
-    #region DemoInit
-    void Start()
-    {
-        DemoInit();
-    }
-
-    void DemoInit()
-    {
-        statsData = new SerializableDictionary<StatType, int>();
-        statsData[StatType.Agility] = 1;
-        statsData[StatType.Strength] = 2;
-        statsData[StatType.Intelligence] = 3;
-        Debug.Log("Demo stats init, not use it in actual game");
-    }
-    #endregion
-
     public int GetStat(StatType type)
     {
         int stat;
         if(!statsData.TryGetValue(type, out stat))
         {   
-            Debug.LogWarning($"stat name : {type} doesn't exist in the statsData");
+            Debug.LogWarning($"stat name : {type} doesn't exist in the stats dictionary");
             stat = 0;
         }
         return stat;
+    }
+
+    public SerializableDictionary<StatType, int> GetAllStats()
+    {
+        return statsData;
     }
 
     public void Increase(StatType type, int amount = 1)
@@ -137,11 +155,19 @@ public class StatsBehaviour : MonoBehaviour, ITakeFromFile
             points--;
     }
 
+    private void StatsBehaviour_OnIncreaseStat(object sender, StatSlotEventArgs eventArgs)
+    {
+        Increase(eventArgs.statData.type);
+    }
+    private void StatsBehaviour_OnReduceStat(object sender, StatSlotEventArgs eventArgs)
+    {
+        Reduce(eventArgs.statData.type);
+    }
+
 
     //ITakeFromFile
     public void LoadData(GameData data)
     {
         this.statsData = data.globals.statsData;
-        Debug.Log("Stats LoadData");
     }
 }

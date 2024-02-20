@@ -78,6 +78,7 @@ public class GameData
         [Mechanics2D.SceneName]
         public string lastSceneName;
         public Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag;
+
         public SerializableDictionary<StatType, int> statsData;
 
         public List<ItemData> itemList;
@@ -88,6 +89,7 @@ public class GameData
             destinationTag = default;
 
             playerHealth = 100;
+            
             statsData = new SerializableDictionary<StatType, int>();
             statsData[StatType.Agility] = 1;
             statsData[StatType.Strength] = 2;

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Increase specific stat in StatsBehaviour
   statsChangeRequest: {fileID: 11400000, guid: b6cdb632c9682f543823d01842354f73, type: 2}
-  statType: 3
-  addAmount: 5
+  statType: 1
+  addAmount: 2

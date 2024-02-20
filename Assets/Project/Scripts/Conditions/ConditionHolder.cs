@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ConditionHolder : MonoBehaviour
 {
     [SerializeField] private int doneCounter = 0;
+    [SerializeField] private bool checkOnStart = false;
     public UnityEvent OnDoneRaised;
     public UnityEvent OnFailedRaised;
     [SerializeField] private Condition[] conditions;
@@ -18,6 +19,11 @@ public class ConditionHolder : MonoBehaviour
     void OnDisable()
     {
         RemoveHandlers();
+    }
+
+    void Start()
+    {
+        if(checkOnStart)  CheckConditions();
     }
 
     void AddHandlers()
@@ -51,6 +57,7 @@ public class ConditionHolder : MonoBehaviour
 
     void DoneHandler()
     {
+        //Debug.Log("DoneHandler");
         doneCounter++;
         if(doneCounter == conditions.Length)
         {
