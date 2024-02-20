@@ -55,6 +55,7 @@ public class GameData
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
+        //dataCopy.globals.statsData = dataOriginal.globals.statsData;
         dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;
     }
@@ -65,15 +66,19 @@ public class GameData
         public long lastUpdated;
         public int playerHealth;
 
+
+        //Need to remove this replaced with statsData
         public int playerCharisma;
         public int playerManipulation;
         public int playerAppearance;
         public int playerPerception;
         public int playerIntelligence;
+        //Need to remove this replaced with statsData
 
         [Mechanics2D.SceneName]
         public string lastSceneName;
         public Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag;
+        public SerializableDictionary<StatType, int> statsData;
 
         public List<ItemData> itemList;
         public Globals()
@@ -83,6 +88,11 @@ public class GameData
             destinationTag = default;
 
             playerHealth = 100;
+            statsData = new SerializableDictionary<StatType, int>();
+            statsData[StatType.Agility] = 1;
+            statsData[StatType.Strength] = 2;
+            statsData[StatType.Intelligence] = 3;
+
             itemList = new List<ItemData>();
         }
     }

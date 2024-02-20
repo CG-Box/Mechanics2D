@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ad91fa36c3cc84abfb55a123b8af28, type: 3}
-  m_Name: PlayerHas10gold
+  m_Script: {fileID: 11500000, guid: 5213ad3d563d04e41a48a3f4e9a524f3, type: 3}
+  m_Name: PlayerHasStatAmount
   m_EditorClassIdentifier: 
   description: 
   isDone: 1
   isFailed: 0
-  moneyNeeded: 2
+  statsChangeEvent: {fileID: 11400000, guid: 8b31857e3ebecc84298727e0e093857c, type: 2}
+  statType: 3
+  statNeeded: 5

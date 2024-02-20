@@ -39,4 +39,9 @@ public abstract class Condition : DescriptionBaseSO
     {
         OnFailed?.Invoke();
     }
+
+    public virtual void SubscribeEvents()
+    {}
+    public virtual void UnsubscribeEvents()
+    {}
 }

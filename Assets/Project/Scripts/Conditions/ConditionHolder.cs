@@ -26,6 +26,7 @@ public class ConditionHolder : MonoBehaviour
         {
             condition.OnDone += DoneHandler;
             condition.OnFailed += FailedHandler;
+            condition.SubscribeEvents();
         }
     }
     void RemoveHandlers()
@@ -34,9 +35,11 @@ public class ConditionHolder : MonoBehaviour
         {
             condition.OnDone -= DoneHandler;
             condition.OnFailed -= FailedHandler;
+            condition.UnsubscribeEvents();
         }
     }
 
+    [ContextMenu("Reset")]
     public void ResetConditions()
     {
         foreach(Condition condition in conditions)
@@ -60,5 +63,14 @@ public class ConditionHolder : MonoBehaviour
         OnFailedRaised?.Invoke();
         Debug.Log("something failed");
         //RemoveHandlers();
+    }
+
+    [ContextMenu("Check")]
+    public void CheckConditions()
+    {
+        foreach(Condition condition in conditions)
+        {
+            condition.Check();
+        }
     }
 }
