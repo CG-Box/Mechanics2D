@@ -55,7 +55,7 @@ public class GameData
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
-        //dataCopy.globals.statsData = dataOriginal.globals.statsData;
+        //dataCopy.globals.stats = dataOriginal.globals.stats;
         dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;
     }
@@ -79,7 +79,7 @@ public class GameData
         public string lastSceneName;
         public Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag;
 
-        public SerializableDictionary<StatType, int> statsData;
+        public Stats stats;
 
         public List<ItemData> itemList;
         public Globals()
@@ -90,10 +90,11 @@ public class GameData
 
             playerHealth = 100;
             
-            statsData = new SerializableDictionary<StatType, int>();
-            statsData[StatType.Agility] = 1;
-            statsData[StatType.Strength] = 2;
-            statsData[StatType.Intelligence] = 3;
+            SerializableDictionary<StatType, int> statsDictionary = new SerializableDictionary<StatType, int>();
+            statsDictionary[StatType.Agility] = 1;
+            statsDictionary[StatType.Strength] = 2;
+            statsDictionary[StatType.Intelligence] = 3;
+            stats = new Stats(10, statsDictionary);
 
             itemList = new List<ItemData>();
         }
@@ -119,6 +120,17 @@ public class GameData
         }
     }
 
+    [System.Serializable]
+    public class Stats
+    {
+        public int points;
+        public SerializableDictionary<StatType, int> dict;
+        public Stats(int points, SerializableDictionary<StatType, int> dictionary)
+        {
+            this.points = points;
+            this.dict = dictionary;
+        }
+    }
 
     public int GetPercentageComplete() 
     {

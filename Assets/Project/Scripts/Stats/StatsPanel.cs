@@ -3,27 +3,30 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 using TMPro;
+using UnityEngine.InputSystem;
 
+
+[RequireComponent(typeof(PlayerInput))]
 public class StatsPanel : MonoBehaviour
 {
+    [SerializeField]private GameObject panelGameObject;
     [SerializeField]private Transform itemsContainer;
     [SerializeField]private Transform itemTemplate;
 
-    [Header("Events Listen")]
-    [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
+    [Header("Free Points")]
+    [SerializeField]private TextMeshProUGUI pointsText;
+    [SerializeField]private Button addPointButton;
+    [SerializeField]private Button removePointButton;
 
-    private StatsBehaviour statsBehaviour;
-
-    const int slotsMaxAmount = 10;
-
-    List<InventorySlot> slotsList = new List<InventorySlot>( new InventorySlot[slotsMaxAmount]);
-
+    StatsBehaviour statsBehaviour;
     
     public event EventHandler OnAddPoint;
     public event EventHandler OnRemovePoint;
 
     public event EventHandler<StatSlotEventArgs> OnIncreaseStat;
     public event EventHandler<StatSlotEventArgs> OnReduceStat;
+
+    bool canOpen = true;
 
     public void SetStatsBehaviour(StatsBehaviour statsBehaviour)
     {
@@ -32,27 +35,82 @@ public class StatsPanel : MonoBehaviour
 
     void OnEnable()
     {
-        if (statsChangeEvent != null)
-		    statsChangeEvent.OnEventRaised += StatsUpdateEvent_Handler;
+        addPointButton.onClick.AddListener(OnAddPointClick);
+        removePointButton.onClick.AddListener(OnRemovePointClick);
     }
     void OnDisable()
     {
-        if (statsChangeEvent != null)
-		    statsChangeEvent.OnEventRaised -= StatsUpdateEvent_Handler;
+        addPointButton.onClick.RemoveListener(OnAddPointClick);
+        removePointButton.onClick.RemoveListener(OnRemovePointClick);
     }
 
+    void OnAddPointClick()
+    {
+        OnAddPoint?.Invoke(this, EventArgs.Empty);
+    }
+    void OnRemovePointClick()
+    {
+        OnRemovePoint?.Invoke(this, EventArgs.Empty);
+    }
 
+    /*
     void StatsUpdateEvent_Handler(StatData statData)
     {
         Refresh();
-    }
+    }*/
 
     void Start()
     {
         Refresh();
     }
 
-    void Refresh()
+    public void Show()
+    {
+        if(canOpen)
+        {
+            FreezePlayer();
+            panelGameObject.SetActive(true);
+        }
+    }
+    public void Hide()
+    {
+        panelGameObject.SetActive(false);
+        UnfreezePlayer();
+    }
+    public void TogglePanel()
+    {
+        // if open
+        if(panelGameObject.activeSelf)
+        {
+            Hide();
+        }
+        else // if close
+        {
+            Show();
+        }
+    }
+
+    public void LockOpening()
+    {
+        /*CanvasGroup dialogCanvasGroup;
+        dialogCanvasGroup.interactable = false;*/
+
+        canOpen = false;
+    }
+    public void UnlockOpening()
+    {
+        canOpen = true;
+    }
+
+    public void UpdatePoints()
+    {
+        UpdatePoints(statsBehaviour.Points);
+    }
+    public void UpdatePoints(int pointsAmount)
+    {
+        pointsText.SetText($"Unused points : {pointsAmount}");
+    }
+    public void UpdateStats()
     {
         foreach(Transform child in itemsContainer)
         {
@@ -72,6 +130,11 @@ public class StatsPanel : MonoBehaviour
             statSlot.UpdateSlotVisual();
             AddSlotListeners(statSlot);
         }
+    }
+    public void Refresh()
+    {
+        UpdatePoints();
+        UpdateStats();
     }
 
     private void AddSlotListeners(StatSlot statSlot)
@@ -94,5 +157,22 @@ public class StatsPanel : MonoBehaviour
         OnReduceStat?.Invoke(sender, new StatSlotEventArgs(eventArgs.statData));
     }
 
+    void FreezePlayer()
+    {
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.ReleaseControl(true);
+    }
+    void UnfreezePlayer()
+    {
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.GainControl();
+    }
 
+
+    // new input system
+    void OnTab(InputValue inputValue)
+	{
+        if(!canOpen) return;
+        TogglePanel();
+	}
 }

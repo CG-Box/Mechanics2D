@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 // using in GameData when new save is creating
 public enum StatType
@@ -24,36 +25,27 @@ public struct StatData
 
 public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
 {
-    [SerializeField]private int points = 0; // free points
+    public int Points { get { return stats.points; } }
 
     [SerializeField]private SlotManager slotManager;
 
     [SerializeField]private StatsPanel statsPanel;
 
-
 	[Header("Events Raise")]
+    [SerializeField]private IntEventChannelSO pointsChangeEvent = default;
     [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
 
-    [Header("Events Listen")]
-    [SerializeField]private StatDataEventChannelSO statsChangeRequest = default;
-
-    SerializableDictionary<StatType, int> statsData;
+    GameData.Stats stats;
 
     void OnEnable()
     {
         LoadData(slotManager.GetActiveSlot().data);
 
         AddPanelListeners();
-
-        if (statsChangeRequest != null)
-			statsChangeRequest.OnEventRaised += StatsChangeRequest_Handler;
     }
     void OnDisable()
     {
         RemovePanelListeners();
-
-        if (statsChangeRequest != null)
-			statsChangeRequest.OnEventRaised -= StatsChangeRequest_Handler;
     }
 
     void Awake()
@@ -63,30 +55,36 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
 
     void AddPanelListeners()
     {
+        statsPanel.OnAddPoint += StatsBehaviour_OnAddPoint;
+        statsPanel.OnRemovePoint += StatsBehaviour_OnRemovePoint;
+
         statsPanel.OnIncreaseStat += StatsBehaviour_OnIncreaseStat;
         statsPanel.OnReduceStat += StatsBehaviour_OnReduceStat;
     }
     void RemovePanelListeners()
     {
+        statsPanel.OnAddPoint -= StatsBehaviour_OnAddPoint;
+        statsPanel.OnRemovePoint -= StatsBehaviour_OnRemovePoint;
+
         statsPanel.OnIncreaseStat -= StatsBehaviour_OnIncreaseStat;
         statsPanel.OnReduceStat -= StatsBehaviour_OnReduceStat;
     }
 
 
-    void StatsChangeRequest_Handler(StatData statData)
+    public void StatsChangeRequest_Handler(StatData statData)
     {
         TryChangeStat(statData);
     }
     public bool TryChangeStat(StatData statData)
     {
-        if(statsData.ContainsKey(statData.type))
+        if(stats.dict.ContainsKey(statData.type))
         {   
             Increase(statData.type, statData.value);
             return true;
         }
         else
         {
-            Debug.LogWarning($"stat name : {statData.type} doesn't exist in the statsData");
+            Debug.LogWarning($"stat name : {statData.type} doesn't exist in the stats.dict");
             return false;
         }
     }
@@ -95,7 +93,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     public int GetStat(StatType type)
     {
         int stat;
-        if(!statsData.TryGetValue(type, out stat))
+        if(!stats.dict.TryGetValue(type, out stat))
         {   
             Debug.LogWarning($"stat name : {type} doesn't exist in the stats dictionary");
             stat = 0;
@@ -105,20 +103,20 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
 
     public SerializableDictionary<StatType, int> GetAllStats()
     {
-        return statsData;
+        return stats.dict;
     }
 
     public void Increase(StatType type, int amount = 1)
     {
-        statsData[type] += amount;
-        statsChangeEvent.RaiseEvent(new StatData(type,statsData[type]));
+        stats.dict[type] += amount;
+        statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
     }
     public void Reduce(StatType type)
     {
-        if(statsData[type] > 0)
+        if(stats.dict[type] > 0)
         {
-            statsData[type] -= 1;
-            statsChangeEvent.RaiseEvent(new StatData(type,statsData[type]));
+            stats.dict[type] -= 1;
+            statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
         } 
     }
 
@@ -126,12 +124,12 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     [ContextMenu("Print")]
     public void Print()
     {
-        if(statsData == null)
+        if(stats.dict == null)
         {
             Debug.LogWarning("stats is not inited yet");
             return;
         }
-        foreach(KeyValuePair<StatType, int> variable in statsData) 
+        foreach(KeyValuePair<StatType, int> variable in stats.dict) 
         {
             Debug.Log($"{variable.Key} : {variable.Value}");
         }
@@ -145,29 +143,50 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     }
     public void AddPoint(int amount)
     {
-        points += amount;
+        stats.points += amount;
+        pointsChangeEvent.RaiseEvent(stats.points);
     }
 
     [ContextMenu("RemovePoint")]
     public void RemovePoint()
     {
-        if(points > 0)
-            points--;
+        if(stats.points > 0)
+        {
+            stats.points--;
+            pointsChangeEvent.RaiseEvent(stats.points);
+        }
     }
 
-    private void StatsBehaviour_OnIncreaseStat(object sender, StatSlotEventArgs eventArgs)
+    void StatsBehaviour_OnIncreaseStat(object sender, StatSlotEventArgs eventArgs)
     {
-        Increase(eventArgs.statData.type);
+        if(Points > 0)
+        {
+            RemovePoint();
+            Increase(eventArgs.statData.type);
+        }
+        else
+        {
+            Debug.Log("not enough free points");
+        }
     }
-    private void StatsBehaviour_OnReduceStat(object sender, StatSlotEventArgs eventArgs)
+    void StatsBehaviour_OnReduceStat(object sender, StatSlotEventArgs eventArgs)
     {
         Reduce(eventArgs.statData.type);
+    }
+
+    void StatsBehaviour_OnAddPoint(object sender, EventArgs eventArgs)
+    {
+        AddPoint();
+    }
+    void StatsBehaviour_OnRemovePoint(object sender, EventArgs eventArgs)
+    {
+        RemovePoint();
     }
 
 
     //ITakeFromFile
     public void LoadData(GameData data)
     {
-        this.statsData = data.globals.statsData;
+        this.stats = data.globals.stats;
     }
 }

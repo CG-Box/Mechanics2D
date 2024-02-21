@@ -27,14 +27,8 @@ public class DialogueTrigger : MonoBehaviour
 	{
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying) 
         {
-            visualCue.SetActive(true);
-
             //DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
             enterDialogueEvent.RaiseEvent(inkJSON);           
-        }
-        else 
-        {
-            visualCue.SetActive(false);
         }
 	}
 
@@ -43,6 +37,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == Constants.PlayerTag)
         {
             playerInRange = true;
+            visualCue.SetActive(true);
         }
     }
 
@@ -51,6 +46,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == Constants.PlayerTag)
         {
             playerInRange = false;
+            visualCue.SetActive(false);
         }
     }
 }

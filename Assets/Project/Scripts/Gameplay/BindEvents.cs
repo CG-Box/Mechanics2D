@@ -7,6 +7,7 @@ public class BindEvents : MonoBehaviour
     [SerializeField]private bool workAsReferences = true;
     [SerializeField]private GameManagerSO gameManager;
     [SerializeField]private SlotManager slotManager;
+    [SerializeField]private CanvasManager canvasManager;
     [SerializeField]private ItemsLibrary itemsLibrary;
     [SerializeField]private SpeakersLibrary speakersLibrary;
 
@@ -21,26 +22,19 @@ public class BindEvents : MonoBehaviour
         //Del later or rewrite as singleton
         UpdateLibraries();
 
-        if(workAsReferences) return;
-
-        slotManager.PrepareSlots();
-        gameManager.RemoveBindings();
-        gameManager.AddBindings();
-        UpdateLibraries();
-
-        /*
-        if(!Constants.GameManagerReady)
+        //don't do it in main menu (it's optional, may be it's can be done only once in main menu, when game has build)
+        if(workAsReferences)
         {
-            Constants.GameManagerReady = true;
+            canvasManager.RemoveBindings();
+            canvasManager.AddBindings();
+        }
+        else //do it only in main menu
+        {
+            slotManager.PrepareSlots();
+            gameManager.RemoveBindings();
             gameManager.AddBindings();
             UpdateLibraries();
-            Debug.Log("AddBindings, UpdateStaticLibrary");
         }
-        else
-        {
-            Debug.Log("Menu second time");
-        }*/
-
     }
     void OnDisable()
     {
@@ -51,6 +45,7 @@ public class BindEvents : MonoBehaviour
 
     void OnApplicationQuit()
     {
+        canvasManager.RemoveBindings();
         gameManager.RemoveBindings();
     }
 }

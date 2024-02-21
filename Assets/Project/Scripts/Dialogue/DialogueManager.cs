@@ -46,6 +46,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     [Header("Events Raise")]
     public VoidEventChannelSO dialogueStartEvent = default;
+    public VoidEventChannelSO dialogueEndEvent = default;
+    
 
     [Header("Events Listen")]
     public TextAssetEventChannelSO enterDialogueEvent = default;
@@ -74,6 +76,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     //choices tags hadled separetly
     const string choice_separator = "@";
+    const string choice_text_color = "#000000";
     private const string CHOICE_COLOR_TAG = "color";
     private const string CHOICE_STYLE_TAG = "style";
     
@@ -211,13 +214,13 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     void FreezePlayer()
     {
-        PlayerMovement playerInput = FindObjectOfType<PlayerMovement>();
-        playerInput.ReleaseControl(true);
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.ReleaseControl(true);
     }
     void UnfreezePlayer()
     {
-        PlayerMovement playerInput = FindObjectOfType<PlayerMovement>();
-        playerInput.GainControl();
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.GainControl();
     }
 
     IEnumerator ExitDialogueMode() 
@@ -233,6 +236,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         dialogueText.text = "";
 
         UnfreezePlayer();
+
+        dialogueEndEvent.RaiseEvent();
     }
 
     void ContinueStory() 
@@ -407,7 +412,11 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         return speakersLibrary.GetItem(personType);
     }
 
-
+    // Reset choice button style to default
+    void ChoiceToDefault(int index)
+    {
+        ColorizeButton(choice_text_color, index);
+    }
     void ColorizeButton(string color, int index)
     {
         Color unityColor = default;
@@ -468,6 +477,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         foreach(Choice choice in currentChoices) 
         {
             choices[index].gameObject.SetActive(true);
+            ChoiceToDefault(index);
             choicesText[index].text = HandleChoiceTags(choice.text, index);
             index++;
         }
