@@ -61,3 +61,5 @@ MonoBehaviour:
     value: SFX Volume
   - key: TEXT_SPEED
     value: Text Speed
+  - key: NOT_ENOUGH _POINTS
+    value: You don't have enough points

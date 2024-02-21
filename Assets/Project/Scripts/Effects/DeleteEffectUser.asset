@@ -16,3 +16,4 @@ MonoBehaviour:
   useEffects:
   - {fileID: 11400000, guid: e69d6508193088f428068f535db271fb, type: 2}
   - {fileID: 11400000, guid: 0f9a9d95b4553214da47c5520a1fc525, type: 2}
+  - {fileID: 11400000, guid: 5bed5596912bc1b43bc91704662fa2ee, type: 2}

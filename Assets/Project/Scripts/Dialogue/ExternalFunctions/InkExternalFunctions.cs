@@ -13,6 +13,8 @@ public class InkExternalFunctions: DescriptionBaseSO
         RemoveItem,
         AddMoney,
         TakeQuest,
+        ShowInfo,
+        AddPoints
     }
 
     Action<string> LogAction;
@@ -20,6 +22,8 @@ public class InkExternalFunctions: DescriptionBaseSO
 	[Header("Events Raise")]
     [SerializeField] private ItemDataEventChannelSO addItemRequest = default;
     [SerializeField] private ItemDataEventChannelSO removeItemRequest = default;
+    [SerializeField] private StringEventChannelSO infoShowRequest = default;
+    [SerializeField] private IntEventChannelSO addPointsRequest = default;
 
     public void Bind(Story story)
     {
@@ -43,6 +47,12 @@ public class InkExternalFunctions: DescriptionBaseSO
         story.BindExternalFunction(nameof(Function.TakeQuest), (string questName) => {
             Debug.Log($"Take quest {questName}");
         });
+        story.BindExternalFunction(nameof(Function.ShowInfo), (string text) => {
+            infoShowRequest.RaiseEvent(text);
+        });
+        story.BindExternalFunction(nameof(Function.AddPoints), (int amount) => {
+            addPointsRequest.RaiseEvent(amount);
+        });
     }
     public void Unbind(Story story)
     {
@@ -51,6 +61,7 @@ public class InkExternalFunctions: DescriptionBaseSO
         story.UnbindExternalFunction(nameof(Function.RemoveItem));
         story.UnbindExternalFunction(nameof(Function.AddMoney));
         story.UnbindExternalFunction(nameof(Function.TakeQuest));
+        story.UnbindExternalFunction(nameof(Function.ShowInfo));
     }
 
     void RemoveOrAddItem(int itemId, ItemDataEventChannelSO itemDataEventChannelSO)

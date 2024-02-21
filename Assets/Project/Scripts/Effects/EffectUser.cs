@@ -1,11 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Effects/Z-User")]
-public class EffectUser : DescriptionBaseSO
+public class EffectUser : Effect
 { 
     [SerializeField]private Effect[] useEffects;
-
-    [ContextMenu("Use All Effects")]
+    
     public void UseAll()
     {
         foreach(Effect effect in useEffects)
@@ -13,4 +12,11 @@ public class EffectUser : DescriptionBaseSO
             effect.Apply();
         }
     }
+
+    public override void Apply()
+    {
+        base.Apply();
+        UseAll();
+    }
+
 }

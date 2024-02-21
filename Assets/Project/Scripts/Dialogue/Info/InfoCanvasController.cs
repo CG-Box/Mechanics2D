@@ -7,6 +7,8 @@ public class InfoCanvasController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private TextMeshProUGUI textMeshProUGUI;
 
+    readonly float shortDelay = 3f;
+
     protected Coroutine m_DeactivationCoroutine;
 
     protected readonly int m_HashActivePara = Animator.StringToHash ("Active");
@@ -46,5 +48,16 @@ public class InfoCanvasController : MonoBehaviour
     public void DeactivateCanvasWithDelay (float delay)
     {
         m_DeactivationCoroutine = StartCoroutine (SetAnimatorParameterWithDelay (delay));
+    }
+
+    public void ShortAcivateWithText(string text)
+    {
+        ActivateCanvasWithText(text);
+        DeactivateCanvasWithDelay(shortDelay);
+    }
+    public void ShortAcivateWithTranslatedText(string phraseKey)
+    {
+        ActivateCanvasWithTranslatedText(phraseKey);
+        DeactivateCanvasWithDelay(shortDelay);
     }
 }

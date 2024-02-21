@@ -15,3 +15,5 @@ MonoBehaviour:
   description: Used by DialogueManager to perfome some actions from dialogue
   addItemRequest: {fileID: 11400000, guid: 44079f4b94040b242b965e17ef6b8281, type: 2}
   removeItemRequest: {fileID: 11400000, guid: 0611ae18606e6ec44ac4e74cda603228, type: 2}
+  infoShowRequest: {fileID: 11400000, guid: cca875d7cc5affb4c9676bebe9818c73, type: 2}
+  addPointsRequest: {fileID: 11400000, guid: cd09b0d3a966e3b4883879537a8ab68c, type: 2}

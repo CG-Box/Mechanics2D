@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5213ad3d563d04e41a48a3f4e9a524f3, type: 3}
-  m_Name: PlayerHasStatAmount_4
+  m_Script: {fileID: 11500000, guid: 1ab8855dee9769545956bdcf03b3a09d, type: 3}
+  m_Name: InfoShowRequest
   m_EditorClassIdentifier: 
-  description: 
-  isDone: 1
-  isFailed: 0
-  statsChangeEvent: {fileID: 11400000, guid: 8b31857e3ebecc84298727e0e093857c, type: 2}
-  statType: 7
-  statNeeded: 4
+  description: 'using by others (InkExternalFunc) to show string in InfoCanvasController '

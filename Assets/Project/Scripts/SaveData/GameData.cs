@@ -91,9 +91,15 @@ public class GameData
             playerHealth = 100;
             
             SerializableDictionary<StatType, int> statsDictionary = new SerializableDictionary<StatType, int>();
-            statsDictionary[StatType.Agility] = 1;
-            statsDictionary[StatType.Strength] = 2;
+            //statsDictionary[StatType.Agility] = 1;
+            //statsDictionary[StatType.Strength] = 2;
             statsDictionary[StatType.Intelligence] = 3;
+
+            statsDictionary[StatType.Appearance] = 1;
+            statsDictionary[StatType.Manipulation] = 1;
+            statsDictionary[StatType.Perception] = 1;
+            statsDictionary[StatType.Charisma] = 1;
+
             stats = new Stats(10, statsDictionary);
 
             itemList = new List<ItemData>();

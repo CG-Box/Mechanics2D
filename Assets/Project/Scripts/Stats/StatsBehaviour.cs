@@ -9,7 +9,11 @@ public enum StatType
     Empty,
     Agility,
     Strength,
-    Intelligence
+    Intelligence,
+    Appearance,
+    Manipulation,
+    Perception,
+    Charisma
 }
 
 public struct StatData
@@ -34,6 +38,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
 	[Header("Events Raise")]
     [SerializeField]private IntEventChannelSO pointsChangeEvent = default;
     [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
+    [SerializeField]private StringEventChannelSO infoShowTranslateRequest = default;
 
     GameData.Stats stats;
 
@@ -51,6 +56,12 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     void Awake()
     {
         statsPanel.SetStatsBehaviour(this);
+    }
+
+    void Start()
+    {
+        //TODO: it's can be race condition if Dialogue not exist or not init
+        SendStatsToDialogue();
     }
 
     void AddPanelListeners()
@@ -110,6 +121,8 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     {
         stats.dict[type] += amount;
         statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
+
+        SendStatsToDialogue();
     }
     public void Reduce(StatType type)
     {
@@ -117,6 +130,8 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         {
             stats.dict[type] -= 1;
             statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
+
+            SendStatsToDialogue();
         } 
     }
 
@@ -135,8 +150,6 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         }
     }
 
-
-    [ContextMenu("AddPoint")]
     public void AddPoint()
     {
         AddPoint(1);
@@ -147,7 +160,6 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         pointsChangeEvent.RaiseEvent(stats.points);
     }
 
-    [ContextMenu("RemovePoint")]
     public void RemovePoint()
     {
         if(stats.points > 0)
@@ -166,7 +178,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         }
         else
         {
-            Debug.Log("not enough free points");
+            infoShowTranslateRequest.RaiseEvent("NOT_ENOUGH _POINTS");
         }
     }
     void StatsBehaviour_OnReduceStat(object sender, StatSlotEventArgs eventArgs)
@@ -181,6 +193,19 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     void StatsBehaviour_OnRemovePoint(object sender, EventArgs eventArgs)
     {
         RemovePoint();
+    }
+
+    //TODO: need rework for something more robust
+    void SendStatsToDialogue()
+    {
+        Dictionary<string, object> dialogueStats = new Dictionary<string, object>();
+        foreach(KeyValuePair<StatType, int> variable in stats.dict)
+        {
+            dialogueStats[variable.Key.ToString()] = stats.dict[variable.Key];
+
+            //dialogueStats["pokemon_name"] = "Pikachu";
+        }
+        DialogueManager.GetInstance().SetVariableState(dialogueStats);
     }
 
 
