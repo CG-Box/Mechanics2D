@@ -1,7 +1,7 @@
 INCLUDE globals.ink
 
 
-Hi player. Your stats: Charisma {Charisma}, Manipulation {Manipulation}, Intelligence {Intelligence}
+Hi player. Money {money} Your stats: Charisma {Charisma}, Manipulation {Manipulation}, Intelligence {Intelligence}
 -> main
 
 
@@ -48,12 +48,14 @@ You are <color=\#5B81FF><b>MEGA</b> mind</color>
 === var_0 ===
 ~ShowInfo("You have no money")
 ~AddMoney(-25)
+~ money -= 25
 Thank you mister
 -> END
 
 === var_1 ===
 ~AddMoney(-3)
-Thank you mister
+~ money -= 3
+Thank you mister. Money {money}
 -> END
 
 === var_2 ===
@@ -63,6 +65,7 @@ You are too smart
 
 === var_3 ===
 ~AddMoney(50)
+~ money += 50
 Ok, here is your money
 -> END
 

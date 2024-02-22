@@ -19,7 +19,7 @@ public abstract class Condition : DescriptionBaseSO
     public event Action OnFailed;
     public abstract bool Check();
 
-    public void Reset()
+    public virtual void Reset()
     {
         IsDone = false;
         IsFailed = false;

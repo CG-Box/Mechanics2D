@@ -93,6 +93,9 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     private Wrap<string> dialogueData;
 
+    //list of vairables dictionary that needs update
+    List<Dictionary<string, object>> variablesToUpdate;
+
     void Awake() 
     {
         if (instance != null)
@@ -102,6 +105,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         instance = this;
 
         dialogueData = new Wrap<string>();
+        variablesToUpdate = new List<Dictionary<string, object>>(1);
         InitVariables(dialogueData.value);
     }
 
@@ -234,6 +238,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+
+        DelayedVariableUpdate();
 
         UnfreezePlayer();
 
@@ -560,7 +566,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     {
         if(dialogueIsPlaying)
         {
-            Debug.LogWarning("you can't changes values from dialougue during active dialogue");
+            Debug.LogWarning("you can't changes values from dialougue during active dialogue, value will be updated after dialogue ends");
+            variablesToUpdate.Add(valuesList);
             return;
         }
         currentStory = new Story(loadGlobalsJSON.text);
@@ -579,6 +586,14 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         }
         dialogueData.value = dialogueVariables.GetVariables();
         dialogueVariables.StopListening(currentStory);
+    }
+
+    void DelayedVariableUpdate()
+    {
+        foreach(Dictionary<string, object> stateDict in variablesToUpdate)
+        {
+            SetVariableState(stateDict);
+        }
     }
     
 

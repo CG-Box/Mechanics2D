@@ -3,6 +3,8 @@ VAR surviveQuestTakenTimes = 0
 VAR surviveQuestDialogueShowed = false
 VAR surviveQuestRudeSpeech = false
 
+VAR money = 0
+
 //VAR Agility = 0
 //VAR Strength = 0
 VAR Intelligence = 0

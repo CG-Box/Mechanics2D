@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5213ad3d563d04e41a48a3f4e9a524f3, type: 3}
-  m_Name: PlayerHasStatAmount
+  m_Script: {fileID: 11500000, guid: 0f12df305945aed48bdf23f7dcb7b9af, type: 3}
+  m_Name: MoneyChangeRequest
   m_EditorClassIdentifier: 
-  description: 
-  isDone: 1
-  isFailed: 0
-  dataChangeEvent: {fileID: 11400000, guid: 8b31857e3ebecc84298727e0e093857c, type: 2}
-  statType: 3
-  statNeeded: 7
+  description: raising by Change Money Effect  to MoneyBehaviour trying to change
+    money

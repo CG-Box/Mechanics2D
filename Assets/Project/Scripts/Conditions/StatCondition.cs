@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Condition/Stat")]
 public class StatCondition : Condition
 {
-    [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
+    [SerializeField]private StatDataEventChannelSO dataChangeEvent = default;
     [SerializeField]private StatType statType;
     [SerializeField]private int statNeeded;
 
@@ -11,11 +11,17 @@ public class StatCondition : Condition
 
     // TO DO: change to work with statsChannelRequest or other faster method
     // potential errors - multi StatsBehaviour in scene or it's not exist or not loaded
-    void SlowTakeStat()
+    void SlowTakeData()
     {
         StatsBehaviour statsBehaviour = FindObjectOfType<StatsBehaviour>();
         int statValue = statsBehaviour.GetStat(statType);
         currentStat = new StatData(statType, statValue);
+    }
+
+    public override void Reset() 
+    {
+        base.Reset();
+        currentStat = default;
     }
 
     public override bool Check()
@@ -25,7 +31,7 @@ public class StatCondition : Condition
         //If stat wasn't updated yet, it will be getting by slow method
         if(currentStat.type == StatType.Empty)
         {
-            SlowTakeStat();
+            SlowTakeData();
         }
 
         //Debug.Log("currentStat " +currentStat.value);
@@ -44,7 +50,7 @@ public class StatCondition : Condition
         }
     }
 
-    void CheckNewStat(StatData statData)
+    void CheckNewData(StatData statData)
     {
         if(statData.type == statType)
         {
@@ -56,13 +62,13 @@ public class StatCondition : Condition
     public override void SubscribeEvents()
     {
         base.SubscribeEvents();
-        if (statsChangeEvent != null)
-			statsChangeEvent.OnEventRaised += CheckNewStat;
+        if (dataChangeEvent != null)
+			dataChangeEvent.OnEventRaised += CheckNewData;
     }
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
-        if (statsChangeEvent != null)
-			statsChangeEvent.OnEventRaised -= CheckNewStat;
+        if (dataChangeEvent != null)
+			dataChangeEvent.OnEventRaised -= CheckNewData;
     }
 }

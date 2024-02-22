@@ -61,7 +61,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     void Start()
     {
         //TODO: it's can be race condition if Dialogue not exist or not init
-        SendStatsToDialogue();
+        SendDataToDialogue();
     }
 
     void AddPanelListeners()
@@ -122,7 +122,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         stats.dict[type] += amount;
         statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
 
-        SendStatsToDialogue();
+        SendDataToDialogue();
     }
     public void Reduce(StatType type)
     {
@@ -131,7 +131,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
             stats.dict[type] -= 1;
             statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
 
-            SendStatsToDialogue();
+            SendDataToDialogue();
         } 
     }
 
@@ -178,7 +178,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         }
         else
         {
-            infoShowTranslateRequest.RaiseEvent("NOT_ENOUGH _POINTS");
+            infoShowTranslateRequest.RaiseEvent("NOT_ENOUGH_POINTS");
         }
     }
     void StatsBehaviour_OnReduceStat(object sender, StatSlotEventArgs eventArgs)
@@ -196,7 +196,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     }
 
     //TODO: need rework for something more robust
-    void SendStatsToDialogue()
+    void SendDataToDialogue()
     {
         Dictionary<string, object> dialogueStats = new Dictionary<string, object>();
         foreach(KeyValuePair<StatType, int> variable in stats.dict)

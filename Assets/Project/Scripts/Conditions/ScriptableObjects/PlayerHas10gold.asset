@@ -15,4 +15,5 @@ MonoBehaviour:
   description: 
   isDone: 1
   isFailed: 0
-  moneyNeeded: 2
+  dataChangeEvent: {fileID: 11400000, guid: 72cd1fc2a632f9f42a803aba2519300b, type: 2}
+  moneyNeeded: 100

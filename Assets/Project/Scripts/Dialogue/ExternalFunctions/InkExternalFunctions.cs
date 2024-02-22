@@ -24,6 +24,7 @@ public class InkExternalFunctions: DescriptionBaseSO
     [SerializeField] private ItemDataEventChannelSO removeItemRequest = default;
     [SerializeField] private StringEventChannelSO infoShowRequest = default;
     [SerializeField] private IntEventChannelSO addPointsRequest = default;
+    [SerializeField]private IntEventChannelSO moneyChangeRequest = default;
 
     public void Bind(Story story)
     {
@@ -42,7 +43,7 @@ public class InkExternalFunctions: DescriptionBaseSO
             Debug.Log($"Remove item {(ItemType)itemId} from dialogue");
         });
         story.BindExternalFunction(nameof(Function.AddMoney), (int amount) => {
-            Debug.Log($"Add money {amount}");
+            moneyChangeRequest.RaiseEvent(amount);
         });
         story.BindExternalFunction(nameof(Function.TakeQuest), (string questName) => {
             Debug.Log($"Take quest {questName}");
