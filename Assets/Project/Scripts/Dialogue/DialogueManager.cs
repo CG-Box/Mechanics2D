@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 {
     [Header("Params")]
     [SerializeField] private float typingSpeed = 0.03f;
+    const float typingMinSpeed = 0.003f;
 
     [Header("Load Globals JSON")]
     [SerializeField] private TextAsset loadGlobalsJSON;
@@ -197,6 +198,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     public void EnterDialogueMode(TextAsset inkJSON) 
     {
         FreezePlayer();
+
+        LoadSettings();
 
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -596,6 +599,15 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         }
     }
     
+
+    void LoadSettings() 
+    {
+        if(PlayerPrefs.HasKey(nameof(typingSpeed)))
+        {
+            typingSpeed = (100f - PlayerPrefs.GetInt(nameof(typingSpeed)))/1000;
+            if(typingSpeed < typingMinSpeed) typingSpeed = typingMinSpeed;
+        }
+    }
 
     public void PrintGlobalVariables()
     {

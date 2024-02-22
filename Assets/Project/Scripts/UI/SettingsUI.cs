@@ -12,7 +12,7 @@ namespace Mechanics2D
 
         public int musicVolume  = -1;
         public int sfxVolume  = -1;
-        public int textSpeed  = -1;
+        public int typingSpeed  = -1;
 
         bool isDirty = false;
 
@@ -68,21 +68,21 @@ namespace Mechanics2D
         {
             musicVolume = 100;
             sfxVolume = 100;
-            textSpeed = 50;
+            typingSpeed = 50;
         }
 
         void LoadSettings() 
         {
             musicVolume = PlayerPrefs.GetInt(nameof(musicVolume));
             sfxVolume = PlayerPrefs.GetInt(nameof(sfxVolume));
-            textSpeed = PlayerPrefs.GetInt(nameof(textSpeed));
+            typingSpeed = PlayerPrefs.GetInt(nameof(typingSpeed));
         }
 
         void SaveSettings()
         {
             PlayerPrefs.SetInt(nameof(musicVolume), musicVolume);
             PlayerPrefs.SetInt(nameof(sfxVolume), sfxVolume);
-            PlayerPrefs.SetInt(nameof(textSpeed), textSpeed);
+            PlayerPrefs.SetInt(nameof(typingSpeed), typingSpeed);
 
             isDirty = false;
         }
@@ -96,7 +96,7 @@ namespace Mechanics2D
         {
             musisSlider.value = musicVolume;
             sfxSlider.value = sfxVolume;
-            textSlider.value = textSpeed;
+            textSlider.value = typingSpeed;
 
             isDirty = makeDirty;
         }
@@ -113,7 +113,7 @@ namespace Mechanics2D
         }
         void TextSpeedChange(float value)
         {
-            textSpeed = (int)value;
+            typingSpeed = (int)value;
             SliderSharedChange(value);
         }
         void SliderSharedChange(float value)
