@@ -5,13 +5,13 @@ public class GameData
 {
     public Globals globals;
     public SceneData scene;
-    public DialogueData dialogueData;
+    public Wrap<string> dialogueData;
     public SerializableDictionary<string, SceneData> sceneList;
     public GameData() 
     {
         globals = new Globals();
         scene = new SceneData();
-        dialogueData = new DialogueData();
+        dialogueData = new Wrap<string>();
         sceneList = new SerializableDictionary<string, SceneData>
         {
             { scene.name, scene }
@@ -44,19 +44,11 @@ public class GameData
         dataCopy.globals.lastSceneName = dataOriginal.globals.lastSceneName;
         dataCopy.globals.destinationTag = dataOriginal.globals.destinationTag;
 
-
-        dataCopy.globals.playerCharisma = dataOriginal.globals.playerCharisma;
-        dataCopy.globals.playerManipulation = dataOriginal.globals.playerManipulation;
-        dataCopy.globals.playerAppearance = dataOriginal.globals.playerAppearance;
-        dataCopy.globals.playerPerception = dataOriginal.globals.playerPerception;
-        dataCopy.globals.playerIntelligence = dataOriginal.globals.playerIntelligence;
-
-
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
         //dataCopy.globals.stats = dataOriginal.globals.stats;
-        dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
+        dataCopy.dialogueData.value = dataOriginal.dialogueData.value; //dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;
     }
 
@@ -66,18 +58,11 @@ public class GameData
         public long lastUpdated;
         public int playerHealth;
 
-
-        //Need to remove this replaced with statsData
-        public int playerCharisma;
-        public int playerManipulation;
-        public int playerAppearance;
-        public int playerPerception;
-        public int playerIntelligence;
-        //Need to remove this replaced with statsData
-
         [Mechanics2D.SceneName]
         public string lastSceneName;
         public Mechanics2D.SceneTransitionDestination.DestinationTag destinationTag;
+
+        public Wrap<int> money;
 
         public Stats stats;
 
@@ -89,6 +74,8 @@ public class GameData
             destinationTag = default;
 
             playerHealth = 100;
+
+            money = new Wrap<int>(77);
             
             SerializableDictionary<StatType, int> statsDictionary = new SerializableDictionary<StatType, int>();
             //statsDictionary[StatType.Agility] = 1;
@@ -117,16 +104,6 @@ public class GameData
     }
 
     [System.Serializable]
-    public class DialogueData
-    {
-        public string jsonState;
-        public DialogueData()
-        {
-            jsonState = null;
-        }
-    }
-
-    [System.Serializable]
     public class Stats
     {
         public int points;
@@ -144,3 +121,16 @@ public class GameData
     }
 }
 
+[System.Serializable]
+public class Wrap<T>
+{
+    public T value;
+    public Wrap()
+    {
+        this.value = default;
+    }
+    public Wrap(T value)
+    {
+        this.value = value;
+    }
+}

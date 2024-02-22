@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     private DialogueVariables dialogueVariables;
 
-    private GameData.DialogueData dialogueData;
+    private Wrap<string> dialogueData;
 
     void Awake() 
     {
@@ -101,8 +101,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         }
         instance = this;
 
-        dialogueData = new GameData.DialogueData();
-        InitVariables(dialogueData.jsonState);
+        dialogueData = new Wrap<string>();
+        InitVariables(dialogueData.value);
     }
 
     void InitVariables(string jsonState)
@@ -227,7 +227,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     {
         yield return new WaitForSeconds(0.2f);
 
-        dialogueData.jsonState = dialogueVariables.GetVariables();
+        dialogueData.value = dialogueVariables.GetVariables();
         dialogueVariables.StopListening(currentStory);
         inkExternalFunctions.Unbind(currentStory);
 
@@ -577,7 +577,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
                 Debug.Log($"value {variable.Key} wasnt found in the dialogueVariables");
             }
         }
-        dialogueData.jsonState = dialogueVariables.GetVariables();
+        dialogueData.value = dialogueVariables.GetVariables();
         dialogueVariables.StopListening(currentStory);
     }
     
@@ -591,6 +591,6 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     public void LoadData(GameData data)
     {
         dialogueData = data.dialogueData;
-        dialogueVariables.UpdateVariables(dialogueData.jsonState);
+        dialogueVariables.UpdateVariables(dialogueData.value);
     }
 }
