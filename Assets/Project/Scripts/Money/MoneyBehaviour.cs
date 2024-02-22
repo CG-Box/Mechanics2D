@@ -27,6 +27,7 @@ public class MoneyBehaviour : MonoBehaviour
 
     void Start()
     {
+        moneyChangeEvent.RaiseEvent(money.value);
         //TODO: it's can be race condition if Dialogue not exist or not init
         SendDataToDialogue();
     }
