@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b84674d11980c42a155569167ce5aa, type: 3}
+  m_Name: SFX_Footsteps
+  m_EditorClassIdentifier: 
+  looping: 0
+  _audioClipGroups:
+  - sequenceMode: 1
+    audioClips:
+    - {fileID: 8300000, guid: 0efdb83635f98ed4486bd35882a4e039, type: 3}
+    - {fileID: 8300000, guid: e57b281b2f681e34d8930b879df76128, type: 3}
+    - {fileID: 8300000, guid: 77977206bff84f546b5472b0a4c07a59, type: 3}
+    - {fileID: 8300000, guid: ffc5eae94118bb945b52c8ef8c65be12, type: 3}

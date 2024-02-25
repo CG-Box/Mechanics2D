@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b84674d11980c42a155569167ce5aa, type: 3}
+  m_Name: Music_PauseMenu
+  m_EditorClassIdentifier: 
+  looping: 1
+  _audioClipGroups:
+  - sequenceMode: 2
+    audioClips:
+    - {fileID: 8300000, guid: 293d8c125846b1b42bfa1df17f05e227, type: 3}
