@@ -48,6 +48,8 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     [Header("Events Raise")]
     public VoidEventChannelSO dialogueStartEvent = default;
     public VoidEventChannelSO dialogueEndEvent = default;
+
+    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
     
 
     [Header("Events Listen")]
@@ -221,13 +223,11 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     void FreezePlayer()
     {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.ReleaseControl(true);
+        inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,false));
     }
     void UnfreezePlayer()
     {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.GainControl();
+        inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,true));
     }
 
     IEnumerator ExitDialogueMode() 

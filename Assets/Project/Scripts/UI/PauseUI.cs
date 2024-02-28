@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
 public class PauseUI : MonoBehaviour
 {
     [SerializeField]private GameObject panelGameObject;
 
+    [Header("Events Raise")]
+    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
+
     public void Show()
     {
-        FreezePlayer();
+        inputControlChannel.RaiseEvent(new ControlData(false));
+
         panelGameObject.SetActive(true);
     }
     public void Hide()
     {
         panelGameObject.SetActive(false);
-        UnfreezePlayer();
+        inputControlChannel.RaiseEvent(new ControlData(true));
     }
     public void TogglePanel()
     {
@@ -30,21 +30,4 @@ public class PauseUI : MonoBehaviour
             Show();
         }
     }
-
-    void FreezePlayer()
-    {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.ReleaseControl(true);
-    }
-    void UnfreezePlayer()
-    {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.GainControl();
-    }
-
-    // new input system
-    void OnEsc(InputValue inputValue)
-	{
-        TogglePanel();
-	}
 }

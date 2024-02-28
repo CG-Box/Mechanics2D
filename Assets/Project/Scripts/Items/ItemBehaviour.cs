@@ -1,8 +1,5 @@
-using UnityEngine.InputSystem;
 using UnityEngine;
-using System;
 
-[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ItemBehaviour : MonoBehaviour
 {
@@ -47,7 +44,7 @@ public class ItemBehaviour : MonoBehaviour
         }
     }
 
-    void OnUse(InputValue inputValue)
+    public void TryTakeItem()
 	{
         if (nearInventoryBehaviour != null) 
         {

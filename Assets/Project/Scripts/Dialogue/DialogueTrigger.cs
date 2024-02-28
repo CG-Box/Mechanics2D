@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
 public class DialogueTrigger : MonoBehaviour
 {
     [Header("Visual Cue")]
@@ -23,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
         visualCue.SetActive(false);
     }
 
-    void OnUse(InputValue inputValue)
+    public void TryTalk()
 	{
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying) 
         {

@@ -3,10 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 using TMPro;
-using UnityEngine.InputSystem;
 
-
-[RequireComponent(typeof(PlayerInput))]
 public class StatsPanel : MonoBehaviour
 {
     [SerializeField]private GameObject panelGameObject;
@@ -17,6 +14,9 @@ public class StatsPanel : MonoBehaviour
     [SerializeField]private TextMeshProUGUI pointsText;
     [SerializeField]private Button addPointButton;
     [SerializeField]private Button removePointButton;
+
+    [Header("Events Raise")]
+    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
 
     StatsBehaviour statsBehaviour;
     
@@ -159,18 +159,14 @@ public class StatsPanel : MonoBehaviour
 
     void FreezePlayer()
     {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.ReleaseControl(true);
+        inputControlChannel.RaiseEvent(new ControlData(InputType.MovementAndUse,false));
     }
     void UnfreezePlayer()
     {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-        playerMovement.GainControl();
+        inputControlChannel.RaiseEvent(new ControlData(InputType.MovementAndUse,true));
     }
 
-
-    // new input system
-    void OnTab(InputValue inputValue)
+    public void TryTogglePanel()
 	{
         if(!canOpen) return;
         TogglePanel();

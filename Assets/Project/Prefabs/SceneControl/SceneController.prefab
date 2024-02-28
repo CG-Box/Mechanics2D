@@ -48,6 +48,7 @@ MonoBehaviour:
   initialSceneTransitionDestination: {fileID: 0}
   sceneRequestEventChannel: {fileID: 11400000, guid: e7370324aaee97f40b69d4d8d23247c1, type: 2}
   sceneChangedEventChannel: {fileID: 11400000, guid: 1f9d0b9c4f282444c94ee851b3537435, type: 2}
+  inputControlChannel: {fileID: 11400000, guid: 1be9aeb491099ee42984f17d189c6a9b, type: 2}
 --- !u!114 &5749260121894219417
 MonoBehaviour:
   m_ObjectHideFlags: 0

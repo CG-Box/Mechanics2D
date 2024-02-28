@@ -48,8 +48,6 @@ namespace Mechanics2D
 
         protected Scene m_CurrentZoneScene;
         protected SceneTransitionDestination.DestinationTag m_ZoneRestartDestinationTag;
-        //protected PlayerInput m_PlayerInput;
-        private PlayerMovement playerInput;
         protected bool m_Transitioning;
 
 	    [Header("Events Listen")]
@@ -57,6 +55,8 @@ namespace Mechanics2D
 
 	    [Header("Events Raise")]
         [SerializeField] private TransitionPointEventChannelSO sceneChangedEventChannel = default;
+
+        [SerializeField]private ControlDataEventChannelSO inputControlChannel = default;
 
         #region EventsBinding
         void OnEnable()
@@ -88,8 +88,6 @@ namespace Mechanics2D
 
             DontDestroyOnLoad(gameObject);
 
-            //m_PlayerInput = FindObjectOfType<PlayerInput>();
-            playerInput = FindObjectOfType<PlayerMovement>();
 
             if (initialSceneTransitionDestination != null)
             {
@@ -139,28 +137,19 @@ namespace Mechanics2D
         {
             m_Transitioning = true;
             PersistentDataManager.SaveAllData();
-            /*
-            if (m_PlayerInput == null)
-                m_PlayerInput = FindObjectOfType<PlayerInput>();
-            m_PlayerInput.ReleaseControl(resetInputValues);*/
-            if (playerInput == null)
-                playerInput = FindObjectOfType<PlayerMovement>();
 
-            if(playerInput != null) // need fix error
-            playerInput.ReleaseControl(resetInputValues);
+            //block player input
+            inputControlChannel.RaiseEvent(new ControlData(InputType.All,false));
 
             yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.Loading));
             PersistentDataManager.ClearPersisters();
             yield return SceneManager.LoadSceneAsync(newSceneName);
 
-            //m_PlayerInput = FindObjectOfType<PlayerInput>();
-            //m_PlayerInput.ReleaseControl(resetInputValues);
 
             //Disable control for gameplay zone
             if(transitionType != TransitionPoint.TransitionType.DifferentNonGameplayScene)
             {
-                playerInput = FindObjectOfType<PlayerMovement>();
-                playerInput.ReleaseControl(resetInputValues);
+                inputControlChannel.RaiseEvent(new ControlData(InputType.All,false));
             }
             else
             {
@@ -176,8 +165,8 @@ namespace Mechanics2D
                 entrance.OnReachDestination.Invoke();
             yield return StartCoroutine(ScreenFader.FadeSceneIn());
             
-            //m_PlayerInput.GainControl();
-            playerInput.GainControl();
+            //unlock player input
+            inputControlChannel.RaiseEvent(new ControlData(InputType.All,true));
 
             m_Transitioning = false;
 
