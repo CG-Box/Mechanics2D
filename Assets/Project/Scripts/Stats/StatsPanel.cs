@@ -15,9 +15,6 @@ public class StatsPanel : MonoBehaviour
     [SerializeField]private Button addPointButton;
     [SerializeField]private Button removePointButton;
 
-    [Header("Events Raise")]
-    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
-
     StatsBehaviour statsBehaviour;
     
     public event EventHandler OnAddPoint;
@@ -25,8 +22,6 @@ public class StatsPanel : MonoBehaviour
 
     public event EventHandler<StatSlotEventArgs> OnIncreaseStat;
     public event EventHandler<StatSlotEventArgs> OnReduceStat;
-
-    bool canOpen = true;
 
     public void SetStatsBehaviour(StatsBehaviour statsBehaviour)
     {
@@ -66,16 +61,11 @@ public class StatsPanel : MonoBehaviour
 
     public void Show()
     {
-        if(canOpen)
-        {
-            FreezePlayer();
-            panelGameObject.SetActive(true);
-        }
+        panelGameObject.SetActive(true);
     }
     public void Hide()
     {
         panelGameObject.SetActive(false);
-        UnfreezePlayer();
     }
     public void TogglePanel()
     {
@@ -88,18 +78,6 @@ public class StatsPanel : MonoBehaviour
         {
             Show();
         }
-    }
-
-    public void LockOpening()
-    {
-        /*CanvasGroup dialogCanvasGroup;
-        dialogCanvasGroup.interactable = false;*/
-
-        canOpen = false;
-    }
-    public void UnlockOpening()
-    {
-        canOpen = true;
     }
 
     public void UpdatePoints()
@@ -156,19 +134,4 @@ public class StatsPanel : MonoBehaviour
     {
         OnReduceStat?.Invoke(sender, new StatSlotEventArgs(eventArgs.statData));
     }
-
-    void FreezePlayer()
-    {
-        inputControlChannel.RaiseEvent(new ControlData(InputType.MovementAndUse,false));
-    }
-    void UnfreezePlayer()
-    {
-        inputControlChannel.RaiseEvent(new ControlData(InputType.MovementAndUse,true));
-    }
-
-    public void TryTogglePanel()
-	{
-        if(!canOpen) return;
-        TogglePanel();
-	}
 }

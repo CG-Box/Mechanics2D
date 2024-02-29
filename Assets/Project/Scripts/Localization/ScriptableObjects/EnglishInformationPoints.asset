@@ -63,3 +63,5 @@ MonoBehaviour:
     value: Text Speed
   - key: NOT_ENOUGH_POINTS
     value: You don't have enough points
+  - key: RESUME_BTN
+    value: Resume

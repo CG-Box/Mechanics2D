@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
-using System;
-using Unity.Mathematics;
 
 //KeyCode.
 
@@ -48,8 +46,6 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
     [Header("Events Raise")]
     public VoidEventChannelSO dialogueStartEvent = default;
     public VoidEventChannelSO dialogueEndEvent = default;
-
-    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
     
 
     [Header("Events Listen")]
@@ -199,7 +195,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
     public void EnterDialogueMode(TextAsset inkJSON) 
     {
-        FreezePlayer();
+        //FreezePlayer();
 
         LoadSettings();
 
@@ -220,16 +216,6 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
         dialogueStartEvent.RaiseEvent();
     }
 
-
-    void FreezePlayer()
-    {
-        inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,false));
-    }
-    void UnfreezePlayer()
-    {
-        inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,true));
-    }
-
     IEnumerator ExitDialogueMode() 
     {
         yield return new WaitForSeconds(0.2f);
@@ -244,7 +230,7 @@ public class DialogueManager : MonoBehaviour, ITakeFromFile
 
         DelayedVariableUpdate();
 
-        UnfreezePlayer();
+        //UnfreezePlayer();
 
         dialogueEndEvent.RaiseEvent();
     }

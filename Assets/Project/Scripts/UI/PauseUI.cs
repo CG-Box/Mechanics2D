@@ -1,22 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseUI : MonoBehaviour
 {
     [SerializeField]private GameObject panelGameObject;
 
-    [Header("Events Raise")]
-    [SerializeField]private ControlDataEventChannelSO inputControlChannel;
+    [Header("Default Selected Button")]
+    [SerializeField]private Button defaultButton;
+
 
     public void Show()
     {
-        inputControlChannel.RaiseEvent(new ControlData(false));
-
         panelGameObject.SetActive(true);
+        SelectDefaultButton();
     }
     public void Hide()
     {
         panelGameObject.SetActive(false);
-        inputControlChannel.RaiseEvent(new ControlData(true));
     }
     public void TogglePanel()
     {
@@ -29,5 +29,11 @@ public class PauseUI : MonoBehaviour
         {
             Show();
         }
+    }
+
+    public void SelectDefaultButton()
+    {
+        if(defaultButton != null)
+            defaultButton.Select();
     }
 }
