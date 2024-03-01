@@ -34,6 +34,7 @@ namespace Mechanics2D
 
         protected HashSet<IDataPersister> m_DataPersisters = new HashSet<IDataPersister>();
         protected Dictionary<string, Data> m_Store = new Dictionary<string, Data>();
+        //protected SerializableDictionary<string, Data> m_Store = new SerializableDictionary<string, Data>();        
         event System.Action schedule = null;
 
         void Update()
@@ -56,6 +57,16 @@ namespace Mechanics2D
             if (instance == this)
                 quitting = true;
         }
+
+        /*
+        public static void SetStore(SerializableDictionary<string, Data> storeFromFile)
+        {
+            Instance.SetStoreInternal(storeFromFile);
+        }
+        protected void SetStoreInternal(SerializableDictionary<string, Data> storeFromFile)
+        {
+            m_Store = storeFromFile;
+        }*/
 
         public static void RegisterPersister(IDataPersister persister)
         {

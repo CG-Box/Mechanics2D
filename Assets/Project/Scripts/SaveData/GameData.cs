@@ -7,6 +7,7 @@ public class GameData
     public SceneData scene;
     public Wrap<string> dialogueData;
     public SerializableDictionary<string, SceneData> sceneList;
+    //public SerializableDictionary<string, Mechanics2D.Data> persistData;
     public GameData() 
     {
         globals = new Globals();
@@ -16,6 +17,7 @@ public class GameData
         {
             { scene.name, scene }
         };
+        //persistData = new SerializableDictionary<string, Mechanics2D.Data>();
     }
 
     public SceneData GetSceneData(string sceneName)
@@ -47,6 +49,7 @@ public class GameData
         //NEED TESTING
         //dataCopy.scene = dataOriginal.scene;
         //dataCopy.sceneList = dataOriginal.sceneList;
+        //dataCopy.persistData = dataOriginal.persistData;
         //dataCopy.globals.stats = dataOriginal.globals.stats;
         dataCopy.dialogueData.value = dataOriginal.dialogueData.value; //dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;

@@ -69,6 +69,8 @@ namespace Mechanics2D
         {
             dataSettings.dataTag = dataTag;
             dataSettings.persistenceType = persistenceType;
+
+            //Debug.Log(dataSettings.dataTag);
         }
 
         public Data SaveData()
@@ -84,6 +86,7 @@ namespace Mechanics2D
             m_AlreadyTriggered = directorTriggerData.value;
 
             //Debug.Log($"LoadData {directorTriggerData.value}");
+            //Debug.Log(dataSettings.dataTag);
 
             if(m_AlreadyTriggered)
                 ChangeColor();

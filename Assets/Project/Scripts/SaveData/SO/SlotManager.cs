@@ -62,6 +62,7 @@ public class SlotManager: ScriptableObject
 
         activeSlot.AddDefaultItems();
 
+        //Mechanics2D.PersistentDataManager.SetStore(activeSlot.data.persistData);
         sceneRequestEventChannel.RaiseEvent(
 			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName, activeSlot.data.globals.destinationTag)
 		);
@@ -81,6 +82,7 @@ public class SlotManager: ScriptableObject
     public void LoadGame(string slotId)
     {
         SetActiveSlot(slotId);
+        //Mechanics2D.PersistentDataManager.SetStore(activeSlot.data.persistData);
         sceneRequestEventChannel.RaiseEvent(
 			new Mechanics2D.TransitionPointData(activeSlot.data.globals.lastSceneName, activeSlot.data.globals.destinationTag)
 		);
