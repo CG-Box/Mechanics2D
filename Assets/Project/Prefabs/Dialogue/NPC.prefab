@@ -314,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1088463345499113282}
   enterDialogueEvent: {fileID: 11400000, guid: a88a31a7d1aa0f64992c99ff84d21936, type: 2}
-  inkJSON: {fileID: 4900000, guid: accf86f2ccd169143a60e46e0cca6f6f, type: 3}
+  dialogueText: {fileID: 11400000, guid: 41b42e48fac09ba478aa8eb73c726c73, type: 2}
 --- !u!114 &248854013950213028
 MonoBehaviour:
   m_ObjectHideFlags: 0

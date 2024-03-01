@@ -8,8 +8,8 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Events Raise")]
     public TextAssetEventChannelSO enterDialogueEvent = default;
 
-    [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJSON;
+    [Header("Dialogue")]
+    [SerializeField] private DialogueText dialogueText;
 
     bool playerInRange;
 
@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying) 
         {
             //DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-            enterDialogueEvent.RaiseEvent(inkJSON);           
+            enterDialogueEvent.RaiseEvent(dialogueText.InkJSON);           
         }
 	}
 

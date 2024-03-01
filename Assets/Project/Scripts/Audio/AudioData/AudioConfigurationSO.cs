@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 //TODO: Check which settings we really need at this level
-[CreateAssetMenu(menuName = "Audio/Audio Configuration")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Audio/Audio Configuration", order = 2)]
 public class AudioConfigurationSO : ScriptableObject
 {
 	public AudioMixerGroup OutputAudioMixerGroup = null;

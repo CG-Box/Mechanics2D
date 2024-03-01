@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// A collection of audio clips that are played in parallel, and support randomisation.
 /// </summary>
-[CreateAssetMenu(fileName = "newAudioCue", menuName = "Audio/Audio Cue")]
+[CreateAssetMenu(fileName = "newAudioCue", menuName = "ScriptableObjects/Audio/Audio Cue", order = 1)]
 public class AudioCueSO : ScriptableObject
 {
 	public bool looping = false;

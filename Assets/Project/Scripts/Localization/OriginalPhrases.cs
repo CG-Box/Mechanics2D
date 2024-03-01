@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "OriginalPhrases", menuName = "Localization/OriginalPhrases", order = 1)]
+[CreateAssetMenu(fileName = "OriginalPhrases", menuName = "ScriptableObjects/Localization/OriginalPhrases", order = 1)]
 public class OriginalPhrases : ScriptableObject
 {
     public string language;

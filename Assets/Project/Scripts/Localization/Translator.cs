@@ -33,6 +33,11 @@ public class Translator : MonoBehaviour
         get { return Instance.phrases[Instance.m_LanguageIndex].language; }
     }
 
+    public static int CurrentLanguageIndex 
+    {
+        get { return Instance.m_LanguageIndex; }
+    }
+
     public List<OriginalPhrases> phrases = new List<OriginalPhrases> ();
 
     [SerializeField]

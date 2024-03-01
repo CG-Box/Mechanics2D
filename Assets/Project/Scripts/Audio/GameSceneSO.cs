@@ -5,7 +5,7 @@ using UnityEngine;
 /// This class is a base class which contains what is common to all game scenes (Locations, Menus, Managers)
 /// </summary>
 /// 
-[CreateAssetMenu(fileName = "GameSceneSO", menuName = "Audio/Scene data")]
+[CreateAssetMenu(fileName = "GameSceneSO", menuName = "ScriptableObjects/Audio/Scene data", order = 3)]
 public class GameSceneSO : DescriptionBaseSO
 {
 	public GameSceneType sceneType;

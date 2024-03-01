@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(menuName = "Effects/Stat Increase")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Effects/Stat Increase")]
 public class StatIncreaseEffect : Effect
 {
     [SerializeField]private StatDataEventChannelSO statsChangeRequest = default;

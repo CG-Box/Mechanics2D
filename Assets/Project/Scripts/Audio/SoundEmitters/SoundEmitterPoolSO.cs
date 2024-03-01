@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewSoundEmitterPool", menuName = "Audio/SoundEmitter Pool")]
+[CreateAssetMenu(fileName = "NewSoundEmitterPool", menuName = "ScriptableObjects/Audio/SoundEmitter Pool", order = 4)]
 public class SoundEmitterPoolSO : ComponentPoolSO<SoundEmitter>
 {
 	[SerializeField] private SoundEmitterFactorySO _factory;

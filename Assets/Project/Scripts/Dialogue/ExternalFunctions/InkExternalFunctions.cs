@@ -3,7 +3,7 @@ using UnityEngine;
 using System;
 
 
-[CreateAssetMenu(fileName = "InkExternalFunctions", menuName = "SriptableObjects/InkExternalFunctions", order = 7)]
+[CreateAssetMenu(fileName = "InkExternalFunctions", menuName = "ScriptableObjects/Dialogue/InkExternalFunctions")]
 public class InkExternalFunctions: DescriptionBaseSO
 {
     enum Function

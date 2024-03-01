@@ -10,7 +10,7 @@ public struct TypedImage
     public Sprite image;
 }
 
-[CreateAssetMenu(fileName = "Speaker", menuName = "SriptableObjects/Speaker", order = 5)]
+[CreateAssetMenu(fileName = "Speaker", menuName = "ScriptableObjects/Dialogue/Speaker")]
 public class Speaker : DescriptionBaseSO
 {
     public enum Person 

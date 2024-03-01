@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Condition/Money")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Condition/Money")]
 public class MoneyCondition : Condition
 {
     [SerializeField]private IntEventChannelSO dataChangeEvent = default;

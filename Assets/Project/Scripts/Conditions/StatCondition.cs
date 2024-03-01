@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Condition/Stat")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Condition/Stat")]
 public class StatCondition : Condition
 {
     [SerializeField]private StatDataEventChannelSO dataChangeEvent = default;

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "GameData_SO", menuName = "SriptableObjects/SlotManager", order = 3)]
+[CreateAssetMenu(fileName = "GameData_SO", menuName = "ScriptableObjects/SlotManager", order = 3)]
 public class SlotManager: ScriptableObject
 {
     [Header("Debugging")]

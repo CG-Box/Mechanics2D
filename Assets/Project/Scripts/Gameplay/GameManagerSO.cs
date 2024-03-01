@@ -7,7 +7,7 @@ using UnityEditor;
 
 using System.Linq;
 
-[CreateAssetMenu(fileName = "GameManagerSO", menuName = "SriptableObjects/GameManager", order = 99)]
+[CreateAssetMenu(fileName = "GameManagerSO", menuName = "ScriptableObjects/GameManager", order = 99)]
 public class GameManagerSO : DescriptionBaseSO
 {
 	[Header("Slot manager")]

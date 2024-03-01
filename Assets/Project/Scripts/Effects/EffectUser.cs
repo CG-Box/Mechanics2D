@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/Z-User")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Effects/Z-User")]
 public class EffectUser : Effect
 { 
     [SerializeField]private Effect[] useEffects;

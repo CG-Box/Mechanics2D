@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/AddItem")]
+[CreateAssetMenu(menuName = "ScriptableObjects/Effects/AddItem")]
 public class AddItemEffect : Effect
 {
     [SerializeField] private ItemDataEventChannelSO addItemRequest = default;

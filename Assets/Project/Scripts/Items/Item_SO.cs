@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item_SO", menuName = "Inventory Items/Item_SO", order = 1)]
+[CreateAssetMenu(fileName = "Item_SO", menuName = "ScriptableObjects/Inventory Items/Item_SO", order = 1)]
 public class Item_SO: ScriptableObject
 {
     //[SerializeField]private Transform CollectableTransform;

@@ -9,7 +9,7 @@ public enum MenuType
 }
 
 
-[CreateAssetMenu(fileName = "CanvasManager", menuName = "SriptableObjects/CanvasManager", order = 90)]
+[CreateAssetMenu(fileName = "CanvasManager", menuName = "ScriptableObjects/CanvasManager", order = 90)]
 public class CanvasManager : DescriptionBaseSO
 {
 	[Header("Events Listen")]

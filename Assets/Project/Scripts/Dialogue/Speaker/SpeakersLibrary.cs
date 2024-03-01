@@ -2,7 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpeakersLibrary", menuName = "SriptableObjects/SpeakersLibrary", order = 6)]
+[CreateAssetMenu(fileName = "SpeakersLibrary", menuName = "ScriptableObjects/Dialogue/SpeakersLibrary")]
 public class SpeakersLibrary : ScriptableObject
 {
     [SerializeField]
