@@ -52,7 +52,7 @@ namespace Mechanics2D
     }
 
     [Serializable]
-    public class Data<T0> : Data, ISerializable
+    public class Data<T0> : Data //, ISerializable
     {
         public T0 value;
 
@@ -68,6 +68,7 @@ namespace Mechanics2D
         }
     
         // Конструктор для десериализации
+        /*
         protected Data(SerializationInfo info, StreamingContext context)
         {
             value = (T0)info.GetValue("Value0", typeof(T0));
@@ -76,10 +77,11 @@ namespace Mechanics2D
         {
             info.AddValue("Value0", value);
         }
+        */
     }
 
     [Serializable]
-    public class Data<T0, T1> : Data, ISerializable
+    public class Data<T0, T1> : Data //, ISerializable
     {
         public T0 value0;
         public T1 value1;
@@ -97,6 +99,7 @@ namespace Mechanics2D
         }
     
         // Конструктор для десериализации
+        /*
         protected Data(SerializationInfo info, StreamingContext context)
         {
             value0 = (T0)info.GetValue("Value0", typeof(T0));
@@ -107,10 +110,11 @@ namespace Mechanics2D
             info.AddValue("Value0", value0);
             info.AddValue("Value1", value1);
         }
+        */
     }
     
     [Serializable]
-    public class Data<T0, T1, T2> : Data, ISerializable
+    public class Data<T0, T1, T2> : Data //, ISerializable
     {
         public T0 value0;
         public T1 value1;
@@ -132,6 +136,7 @@ namespace Mechanics2D
         }
         
         // Конструктор для десериализации
+        /*
         protected Data(SerializationInfo info, StreamingContext context)
         {
             value0 = (T0)info.GetValue("Value0", typeof(T0));
@@ -144,10 +149,11 @@ namespace Mechanics2D
             info.AddValue("Value1", value1);
             info.AddValue("Value2", value2);
         }
+        */
     }
 
     [Serializable]
-    public class Data<T0, T1, T2, T3> : Data, ISerializable
+    public class Data<T0, T1, T2, T3> : Data //, ISerializable
     {
         public T0 value0;
         public T1 value1;
@@ -172,6 +178,7 @@ namespace Mechanics2D
         }
    
         // Конструктор для десериализации
+        /*
         protected Data(SerializationInfo info, StreamingContext context)
         {
             value0 = (T0)info.GetValue("Value0", typeof(T0));
@@ -186,10 +193,11 @@ namespace Mechanics2D
             info.AddValue("Value2", value2);
             info.AddValue("Value3", value3);
         }
+        */
     }
 
     [Serializable]
-    public class Data<T0, T1, T2, T3, T4> : Data, ISerializable
+    public class Data<T0, T1, T2, T3, T4> : Data //, ISerializable
     {
         public T0 value0;
         public T1 value1;
@@ -217,6 +225,7 @@ namespace Mechanics2D
         }
    
         // Конструктор для десериализации
+        /*
         protected Data(SerializationInfo info, StreamingContext context)
         {
             value0 = (T0)info.GetValue("Value0", typeof(T0));
@@ -233,7 +242,7 @@ namespace Mechanics2D
             info.AddValue("Value3", value3);
             info.AddValue("Value4", value4);
         }
-   
+        */
     }
 
 }
