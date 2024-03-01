@@ -6,6 +6,7 @@ public enum MenuType
 	Pause,
 	Stats,
 	Dialogue,
+	Settings,
 }
 
 
@@ -15,6 +16,7 @@ public class CanvasManager : DescriptionBaseSO
 	[Header("Events Listen")]
     [SerializeField] private VoidEventChannelSO dialogueStartEvent = default;
 	[SerializeField] private VoidEventChannelSO dialogueEndEvent = default;
+	[SerializeField] private BoolEventChannelSO settingsOpened = default;
 
 	[Header("Input Events")]
 	[SerializeField] private VoidEventChannelSO OnTabClick;
@@ -36,6 +38,9 @@ public class CanvasManager : DescriptionBaseSO
 		if (dialogueEndEvent != null)
 			dialogueEndEvent.OnEventRaised += DialogueEndEvent_Handler;
 
+		if (settingsOpened != null)
+			settingsOpened.OnEventRaised += SettingsEvent_Handler;
+
 		if (OnTabClick != null)
 			OnTabClick.OnEventRaised += TabClick_Handler;
 		if (OnEscClick != null)
@@ -49,6 +54,9 @@ public class CanvasManager : DescriptionBaseSO
 			dialogueStartEvent.OnEventRaised -= DialogueStartEvent_Handler;
 		if (dialogueEndEvent != null)
 			dialogueEndEvent.OnEventRaised -= DialogueEndEvent_Handler;
+
+		if (settingsOpened != null)
+			settingsOpened.OnEventRaised -= SettingsEvent_Handler;
 
 		if (OnTabClick != null)
 			OnTabClick.OnEventRaised -= TabClick_Handler;
@@ -65,6 +73,11 @@ public class CanvasManager : DescriptionBaseSO
 	void DialogueEndEvent_Handler()
 	{
 		ControlMenu(MenuType.Dialogue);
+	}
+
+	void SettingsEvent_Handler(bool open)
+	{
+		ControlMenu(MenuType.Settings);
 	}
 
 
@@ -128,6 +141,9 @@ public class CanvasManager : DescriptionBaseSO
 			case MenuType.Dialogue:
 				inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,false));
 				break;
+			case MenuType.Settings:
+				inputControlChannel.RaiseEvent(new ControlData(InputType.All,false));
+				break;
 		}
     }
     void UnfreezePlayer(MenuType targetType)
@@ -142,6 +158,9 @@ public class CanvasManager : DescriptionBaseSO
 				break;
 			case MenuType.Dialogue:
 				inputControlChannel.RaiseEvent(new ControlData(InputType.ExceptEsc,true));
+				break;
+			case MenuType.Settings:
+				inputControlChannel.RaiseEvent(new ControlData(InputType.All,true));
 				break;
 		}
     }

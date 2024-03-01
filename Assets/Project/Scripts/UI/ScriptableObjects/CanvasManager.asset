@@ -16,10 +16,7 @@ MonoBehaviour:
     or activity
   dialogueStartEvent: {fileID: 11400000, guid: af83ae732f964d742a60cf93472fc5a5, type: 2}
   dialogueEndEvent: {fileID: 11400000, guid: 48df898c7c7a5f045b7efb242be2afe9, type: 2}
+  settingsOpened: {fileID: 11400000, guid: 32b022ece7fc4544ca4e7265ed4b257f, type: 2}
   OnTabClick: {fileID: 11400000, guid: 9185d97d28f9cd7428f3873f9fd400b5, type: 2}
   OnEscClick: {fileID: 11400000, guid: b1f6693e39275e548a7c7b5f64aca3a5, type: 2}
-  LockStatsPanelEvent: {fileID: 11400000, guid: d4c4e50a692950444954411d2ff1e619, type: 2}
-  UnlockStatsPanelEvent: {fileID: 11400000, guid: 2701fdb84f6d4a64b9d380d5241db764, type: 2}
   inputControlChannel: {fileID: 11400000, guid: 1be9aeb491099ee42984f17d189c6a9b, type: 2}
-  OpenMenuRequest: {fileID: 11400000, guid: fce151e54bddd1840940cb9909d762eb, type: 2}
-  CloseMenuRequest: {fileID: 11400000, guid: 2a579a5a4b5d4a54fb93e2e90f273538, type: 2}

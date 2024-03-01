@@ -41,6 +41,7 @@ public class LanguageDropdown : MonoBehaviour
             }
         }
         dropdown.SetValueWithoutNotify(selectedIndex);
+        dropdown.RefreshShownValue();
     }
     void BindListener()
     {
