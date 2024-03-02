@@ -18,16 +18,26 @@ Choose variant? #speaker:Random
 
 === var_1 ===
 ~AddMoney(100)
+~PlaySound("coins_rings")
 You chose var_1, now see it
    + [1]
     -> Final
-=== var_2 ===
-~AddItem(1)
-You chose var_2, now see it
-   + [1]
-     -> Final
+=== var_2() ===
+You chose to take item, now choose the item
+   + [1] 
+     -> addItem(1)
    + [2]
-    -> Final
+    -> addItem(2)
+   + [3]
+    -> addItem(3)
+   + [4]
+    -> addItem(4)
+    + [5]
+    -> addItem(0)
+=== addItem(itemId) ===
+~AddItem(itemId)
+Now you have new item.
+-> Final
 === var_3 ===
 ~RemoveItem(4)
 You chose var_3, now see it

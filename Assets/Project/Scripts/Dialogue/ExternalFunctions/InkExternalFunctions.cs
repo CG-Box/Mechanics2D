@@ -14,7 +14,8 @@ public class InkExternalFunctions: DescriptionBaseSO
         AddMoney,
         TakeQuest,
         ShowInfo,
-        AddPoints
+        AddPoints,
+        PlaySound,
     }
 
     Action<string> LogAction;
@@ -24,7 +25,7 @@ public class InkExternalFunctions: DescriptionBaseSO
     [SerializeField] private ItemDataEventChannelSO removeItemRequest = default;
     [SerializeField] private StringEventChannelSO infoShowRequest = default;
     [SerializeField] private IntEventChannelSO addPointsRequest = default;
-    [SerializeField]private IntEventChannelSO moneyChangeRequest = default;
+    [SerializeField] private IntEventChannelSO moneyChangeRequest = default;
 
     public void Bind(Story story)
     {
@@ -54,6 +55,9 @@ public class InkExternalFunctions: DescriptionBaseSO
         story.BindExternalFunction(nameof(Function.AddPoints), (int amount) => {
             addPointsRequest.RaiseEvent(amount);
         });
+        story.BindExternalFunction(nameof(Function.PlaySound), (string name) => {
+            Debug.Log($"Playing sound: {name}");
+        });
     }
     public void Unbind(Story story)
     {
@@ -63,12 +67,13 @@ public class InkExternalFunctions: DescriptionBaseSO
         story.UnbindExternalFunction(nameof(Function.AddMoney));
         story.UnbindExternalFunction(nameof(Function.TakeQuest));
         story.UnbindExternalFunction(nameof(Function.ShowInfo));
+        story.UnbindExternalFunction(nameof(Function.PlaySound));
     }
 
     void RemoveOrAddItem(int itemId, ItemDataEventChannelSO itemDataEventChannelSO)
     {
         ItemType itemType = (ItemType)itemId;
-        ItemData itemData = new ItemData(itemType); //ItemsLibrary.GetItem(itemType);
+        ItemData itemData = ItemsLibrary.GetItem(itemType); //new ItemData(itemType);
 
         // TO DO: change to work with any InventoryBehaviour (not only player)
         InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();

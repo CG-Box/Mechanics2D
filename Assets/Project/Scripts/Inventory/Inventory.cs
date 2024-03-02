@@ -21,15 +21,16 @@ public class Inventory
             for (int i = 0; i < itemList.Count; i++)
             {
                 ItemData currentItem = itemList[i];
-                if(currentItem.type == newItem.type)
+                if(currentItem.type == newItem.type) // if item already exist in inventory
                 {
                     alreadyExist = true;
                     currentItem.amount += newItem.amount;
                     itemList[i] = currentItem;
+                    break;
                 }
             }
 
-            if(!alreadyExist)
+            if(!alreadyExist) //if item doesn't exist in inventory yet
             {
                 itemList.Add(newItem);
             }
