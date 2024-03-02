@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+/*
 
 //NOT CURRENTLY USING
 
@@ -93,3 +94,5 @@ public class GameStateSO : DescriptionBaseSO
 		_currentGameState = stateToReturnTo;
 	}
 }
+
+*/
