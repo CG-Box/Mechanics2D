@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Effects/Money Add")]
 public class MoneyAddEffect : Effect

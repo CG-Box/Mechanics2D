@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System;
 using UnityEngine.Events;
 
 public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
@@ -19,6 +17,7 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
     
 	[Header("Events Raise")]
 	public GameObjectEventChannelSO inventoryUpdateEvent = default;
+    [SerializeField]private NoteEventChannelSO addNoteRequest = default;
 
     [Header("Events Listen")]
     public ItemDataEventChannelSO addItemRequest = default;
@@ -98,7 +97,9 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
                 KitKatSave();
                 break;
         }
-        Debug.Log($"Using {item.type}");
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Inventory, $"You used {item.type} in {item.amount} amount"));
     }
     public void UseItem(ItemData item, GameObject targetObject)
     {   
@@ -127,7 +128,8 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
 
         //inventory.PrintInventoryToDebug();
 
-        //Debug.Log($"Remove {item.type}");
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Inventory, $"You lost {item.type} in {item.amount} amount"));
     }
     public void RemoveItem(ItemData item)
     {   
@@ -156,6 +158,9 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
     {
         inventory.AddItem(itemData);
         inventoryUpdateEvent.RaiseEvent(this.gameObject);
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Inventory, $"You get {itemData.type} in {itemData.amount} amount"));
     }
 
     void InventoryBehaviour_AddItemRequest(ItemEventArg itemEventArg)

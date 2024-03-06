@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Сhronicles : MonoBehaviour
 {
@@ -15,13 +16,43 @@ public class Сhronicles : MonoBehaviour
         UpdateUI();
     }
 
+    void OnEnable()
+    {
+        AddPanelListeners();
+    }
+    void OnDisable()
+    {
+        RemovePanelListeners();
+    }
+
+    void AddPanelListeners()
+    {
+        chronicPanel.OnTypeSelect += Chronicles_OnTypeSelect;
+    }
+    void RemovePanelListeners()
+    {
+        chronicPanel.OnTypeSelect -= Chronicles_OnTypeSelect;
+    }
+
+    void Chronicles_OnTypeSelect(object sender, NoteSortEventArgs eventArgs)
+    {
+        if(eventArgs.type == NoteType.All)
+        {
+            UpdateUI();//show all notes
+        }
+        else
+        {
+            ShowNotes(eventArgs.type);
+        }
+    }
+
     public void Add(Note record)
     {
         notes.Add(record);
-        chronicPanel.Refresh();
+        UpdateUI();
     }
 
-    public List<Note> GetRecordsByType(NoteType targetType)
+    public List<Note> GetNotesByType(NoteType targetType)
     {
         var targetNotes = new List<Note>();
         foreach(var note in notes)
@@ -32,6 +63,12 @@ public class Сhronicles : MonoBehaviour
             }
         }
         return targetNotes;
+    }
+
+    public void ShowNotes(NoteType targetType)
+    {
+        chronicPanel.SetNotes(GetNotesByType(targetType));
+        chronicPanel.Refresh();
     }
 
     public void UpdateUI()

@@ -7,8 +7,10 @@ public enum NoteType
     Stat,
     Money,
     Inventory,
-    Quest,
     Health,
+    Quest,
+
+    All, //for sort for sorting purpose
 }
 
 [Serializable]

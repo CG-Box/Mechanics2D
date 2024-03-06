@@ -39,6 +39,7 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     [SerializeField]private IntEventChannelSO pointsChangeEvent = default;
     [SerializeField]private StatDataEventChannelSO statsChangeEvent = default;
     [SerializeField]private StringEventChannelSO infoShowTranslateRequest = default;
+    [SerializeField]private NoteEventChannelSO addNoteRequest = default;
 
     GameData.Stats stats;
 
@@ -123,6 +124,9 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
         statsChangeEvent.RaiseEvent(new StatData(type, stats.dict[type]));
 
         SendDataToDialogue();
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Stat, $"You increase {type} by {amount} points"));
     }
     public void Reduce(StatType type)
     {
@@ -158,6 +162,9 @@ public class StatsBehaviour : MonoBehaviour //, ITakeFromFile
     {
         stats.points += amount;
         pointsChangeEvent.RaiseEvent(stats.points);
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Stat, $"You get {amount} stats points"));
     }
 
     public void RemovePoint()

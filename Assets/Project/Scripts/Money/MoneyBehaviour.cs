@@ -13,6 +13,7 @@ public class MoneyBehaviour : MonoBehaviour
     [Header("Events Raise")]
     [SerializeField]private IntEventChannelSO moneyChangeEvent = default;
     [SerializeField]private StringEventChannelSO infoShowTranslateRequest = default;
+    [SerializeField]private NoteEventChannelSO addNoteRequest = default;
 
     void OnEnable()
     {
@@ -48,6 +49,9 @@ public class MoneyBehaviour : MonoBehaviour
         moneyChangeEvent.RaiseEvent(money.value);
 
         SendDataToDialogue();
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Money, $"You get {amount} money"));
     }
     public void Remove(int amount)
     {
@@ -59,6 +63,9 @@ public class MoneyBehaviour : MonoBehaviour
         moneyChangeEvent.RaiseEvent(money.value);
 
         SendDataToDialogue();
+
+        //add note to chronicles
+        addNoteRequest.RaiseEvent(new Note(NoteType.Money, $"You spent {amount} money"));
     }
     public bool TryRemove(int amount)
     {

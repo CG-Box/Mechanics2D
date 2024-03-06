@@ -65,3 +65,5 @@ MonoBehaviour:
     value: You don't have enough points
   - key: RESUME_BTN
     value: Resume
+  - key: EMPTY_NOTES
+    value: Empty notes
