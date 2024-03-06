@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4ec0c03960fc740959835297d9d095, type: 3}
+  m_Name: CheatStatAddPoints
+  m_EditorClassIdentifier: 
+  description: 
+  addPointsRequest: {fileID: 11400000, guid: cd09b0d3a966e3b4883879537a8ab68c, type: 2}
+  addAmount: 10

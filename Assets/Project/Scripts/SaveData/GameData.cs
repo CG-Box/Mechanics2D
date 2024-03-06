@@ -51,6 +51,7 @@ public class GameData
         //dataCopy.sceneList = dataOriginal.sceneList;
         //dataCopy.persistData = dataOriginal.persistData;
         //dataCopy.globals.stats = dataOriginal.globals.stats;
+        //dataCopy.globals.notes = dataOriginal.globals.notes;
         dataCopy.dialogueData.value = dataOriginal.dialogueData.value; //dataCopy.dialogueData.jsonState = dataOriginal.dialogueData.jsonState;
         return dataCopy;
     }
@@ -68,6 +69,8 @@ public class GameData
         public Wrap<int> money;
 
         public Stats stats;
+
+        public List<Note> notes;
 
         public List<ItemData> itemList;
         public Globals()
@@ -91,6 +94,11 @@ public class GameData
             statsDictionary[StatType.Charisma] = 1;
 
             stats = new Stats(10, statsDictionary);
+
+            notes = new List<Note>
+            {
+                new Note(NoteType.System, "New game")
+            };
 
             itemList = new List<ItemData>();
         }

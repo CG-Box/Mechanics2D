@@ -80,6 +80,19 @@ public class Inventory
         }
         return false;
     }
+    public bool ContainsItem(ItemData checkItem, int amount)
+    {
+        int currentAmount = 0;
+
+        foreach(ItemData item in itemList)
+        {
+            if(item.type == checkItem.type)
+            {
+                currentAmount += item.amount;
+            }
+        }
+        return currentAmount >= amount;
+    }
     public bool DoesNotContain(ItemData checkItem)
     {
         return !ContainsItem(checkItem);

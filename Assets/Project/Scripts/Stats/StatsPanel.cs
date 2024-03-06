@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System;
 using TMPro;
 
-public class StatsPanel : MonoBehaviour
+public class StatsPanel : TogglePanel
 {
-    [SerializeField]private GameObject panelGameObject;
+    [Header("Items")]
     [SerializeField]private Transform itemsContainer;
     [SerializeField]private Transform itemTemplate;
 
@@ -57,27 +57,6 @@ public class StatsPanel : MonoBehaviour
     void Start()
     {
         Refresh();
-    }
-
-    public void Show()
-    {
-        panelGameObject.SetActive(true);
-    }
-    public void Hide()
-    {
-        panelGameObject.SetActive(false);
-    }
-    public void TogglePanel()
-    {
-        // if open
-        if(panelGameObject.activeSelf)
-        {
-            Hide();
-        }
-        else // if close
-        {
-            Show();
-        }
     }
 
     public void UpdatePoints()

@@ -9,6 +9,10 @@ public enum ItemType
     Pizza,
     Taco,
     Kat,
+    Key_red,
+    Key_blue,
+    Key_green,
+    Key_yellow,
 }
 
 [Serializable]

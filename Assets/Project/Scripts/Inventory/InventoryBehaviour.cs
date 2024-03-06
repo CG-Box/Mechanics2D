@@ -65,6 +65,15 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
         inventoryPanel.OnRemoveItem -= InventoryBehaviour_OnRemoveItem;
     }
 
+    public bool ContainsItem(ItemData checkItem)
+    {
+        return inventory.ContainsItem(checkItem);
+    }
+    public bool ContainsItem(ItemData checkItem, int amount)
+    {
+        return inventory.ContainsItem(checkItem, amount);
+    }
+
     public void UseItem(ItemData item)
     {
         switch(item.type)
@@ -96,7 +105,7 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
         if(gameObject == targetObject)
             UseItem(item);
     }
-    public void RemoveItem(ItemData item)
+    public void RemoveItem(ItemData item, bool dropItem)
     {
         if(inventory.DoesNotContain(item))
         {
@@ -110,10 +119,19 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
             //StaticEvents.Collecting.OnOutOfAmmo?.Invoke();
             Debug.Log($"OnOutOf {item.type} ???");
         }
-        DropItem(item, transform.position);
+
+        if(dropItem)
+        {        
+            DropItem(item, transform.position);
+        }
+
         //inventory.PrintInventoryToDebug();
 
         //Debug.Log($"Remove {item.type}");
+    }
+    public void RemoveItem(ItemData item)
+    {   
+        RemoveItem(item, true);
     }
     public void RemoveItem(ItemData item, GameObject targetObject)
     {
@@ -146,7 +164,9 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
         {
             foreach(ItemData itemData in itemEventArg.items)
             {
-                AddItem(itemData);
+                ItemData realItemData = ItemsLibrary.GetItem(itemData.type); //new ItemData(itemType)
+                realItemData.amount = itemData.amount;
+                AddItem(realItemData);
             }
         }
     }
@@ -156,7 +176,7 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
         {
             foreach(ItemData itemData in itemEventArg.items)
             {
-                RemoveItem(itemData);
+                RemoveItem(itemData, false);
             }
         }
     }
