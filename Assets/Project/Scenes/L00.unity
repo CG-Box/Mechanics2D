@@ -6053,6 +6053,7 @@ GameObject:
   - component: {fileID: 679567421}
   - component: {fileID: 679567420}
   - component: {fileID: 679567419}
+  - component: {fileID: 679567424}
   m_Layer: 5
   m_Name: CheatCanvas
   m_TagString: Untagged
@@ -6160,6 +6161,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &679567424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679567418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34b3fa69a4ffc7478917abc1cfc6a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secretCode: 12345
+  OnCheatActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873237370}
+        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
+        m_MethodName: ShortAcivateWithText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cheat is active
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 604c84f51fa848f4cb898cb3a3f235de, type: 2}
+        m_TargetAssemblyTypeName: NoteAddEffect, Assembly-CSharp
+        m_MethodName: Apply
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cheat is active
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 130ac2b26993f7643a540015d35d9a77, type: 2}
+        m_TargetAssemblyTypeName: MoneyAddEffect, Assembly-CSharp
+        m_MethodName: Apply
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cheat is active
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &686513286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7101348220111423696, guid: 2a5c73b946c48ed4f8c024c53fd56edf, type: 3}
