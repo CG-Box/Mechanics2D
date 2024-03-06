@@ -7535,10 +7535,10 @@ MonoBehaviour:
   OnEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 927836553}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 493058098}
+        m_TargetAssemblyTypeName: IntCounter, Assembly-CSharp
+        m_MethodName: Increase
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7548,8 +7548,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 11400000, guid: b11a75610f09a214b844da3a7feb0fb1, type: 2}
-        m_TargetAssemblyTypeName: StatIncreaseEffect, Assembly-CSharp
-        m_MethodName: Apply
+        m_TargetAssemblyTypeName: AddStatPointEffect, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7559,10 +7559,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 493058098}
-        m_TargetAssemblyTypeName: IntCounter, Assembly-CSharp
-        m_MethodName: Increase
-        m_Mode: 1
+      - m_Target: {fileID: 927836553}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
