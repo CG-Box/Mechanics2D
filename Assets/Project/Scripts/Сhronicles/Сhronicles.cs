@@ -7,6 +7,10 @@ public class Сhronicles : MonoBehaviour
     [SerializeField] private СhronicPanel chronicPanel;
     [SerializeField] private SlotManager slotManager;
 
+	[Header("Events Listen")]
+    [SerializeField]private NoteEventChannelSO addNoteRequest = default;
+
+
     List<Note> notes;
 
     void Awake()
@@ -19,10 +23,16 @@ public class Сhronicles : MonoBehaviour
     void OnEnable()
     {
         AddPanelListeners();
+
+        if (addNoteRequest != null)
+			addNoteRequest.OnEventRaised += Add;
     }
     void OnDisable()
     {
         RemovePanelListeners();
+
+        if (addNoteRequest != null)
+			addNoteRequest.OnEventRaised -= Add;
     }
 
     void AddPanelListeners()
@@ -74,7 +84,7 @@ public class Сhronicles : MonoBehaviour
     public void UpdateUI()
     {
         chronicPanel.SetNotes(notes);
-        chronicPanel.Refresh();
+        chronicPanel.LazyRefresh();
     }
 
 

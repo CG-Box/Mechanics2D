@@ -15,6 +15,7 @@ public class IntCounter : MonoBehaviour
 
     public void Increase()
     {
+        if(reachTarget) return;
         current++;
 
         if(current >= target)
@@ -29,6 +30,7 @@ public class IntCounter : MonoBehaviour
     }
     public void Decrease()
     {
+        if(reachTarget) return;
         current--;
         if(current < 0 ) current = 0;
     }

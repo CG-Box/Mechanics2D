@@ -3031,7 +3031,6 @@ GameObject:
   - component: {fileID: 361964408}
   - component: {fileID: 361964407}
   - component: {fileID: 361964412}
-  - component: {fileID: 361964413}
   m_Layer: 0
   m_Name: ChroniclesCanvas
   m_TagString: Untagged
@@ -3053,6 +3052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chronicPanel: {fileID: 361964412}
   slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
+  addNoteRequest: {fileID: 11400000, guid: 857344b6401a7e943b949282a68b0dd3, type: 2}
 --- !u!114 &361964408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3155,35 +3155,7 @@ MonoBehaviour:
   itemTemplateGO: {fileID: 185348165}
   itemEmptyGO: {fileID: 1463768619}
   buttonsContainer: {fileID: 2095320592}
-  addNoteRequest: {fileID: 11400000, guid: 857344b6401a7e943b949282a68b0dd3, type: 2}
---- !u!114 &361964413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361964406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f605108b49269c247885bf8e4afb71a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: 857344b6401a7e943b949282a68b0dd3, type: 2}
-  OnEventRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 361964407}
-        m_TargetAssemblyTypeName: "\u0421hronicles, Assembly-CSharp"
-        m_MethodName: Add
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  refreshRate: 0.25
 --- !u!1 &362994885
 GameObject:
   m_ObjectHideFlags: 0
@@ -7549,7 +7521,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 11400000, guid: b11a75610f09a214b844da3a7feb0fb1, type: 2}
         m_TargetAssemblyTypeName: AddStatPointEffect, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Apply
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

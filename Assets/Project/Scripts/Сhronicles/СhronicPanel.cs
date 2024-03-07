@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
@@ -22,11 +23,12 @@ public class СhronicPanel : TogglePanel
     [SerializeField]private GameObject itemEmptyGO;
     [SerializeField]private GameObject buttonsContainer;
 
-	[Header("Events Raise")]
-	public NoteEventChannelSO addNoteRequest = default;
+    [Header("UI Settings")]
+    [SerializeField]private float refreshRate = 0.5f;
 
     List<Note> notes;
     NoteType lastSortType = NoteType.All;
+    Coroutine refreshCoroutine;
 
     public event EventHandler<NoteSortEventArgs> OnTypeSelect;
 
@@ -99,28 +101,41 @@ public class СhronicPanel : TogglePanel
             DestroyImmediate(itemsGameObject.transform.GetChild(2).gameObject);
         }
 
+
+        TextMeshProUGUI noteText = null;
+
         //spawn new
         foreach(var note in notes)
         {
-            var noteText = Instantiate(itemTemplateGO, itemsGameObject.transform).GetComponent<TextMeshProUGUI>();
+            noteText = Instantiate(itemTemplateGO, itemsGameObject.transform).GetComponent<TextMeshProUGUI>();
             noteText.gameObject.SetActive(true);
             noteText.text = $"<color=#990000>{note.Date.ToLongTimeString()}</color> {note.description} <br>";
         }
         itemTemplateGO.SetActive(false);
 
-        //there aren't any note
-        if(notes.Count == 0)
-        {
-            itemEmptyGO.SetActive(true);
-        }
-        else
-        {
-            itemEmptyGO.SetActive(false);
-        }
+        //there aren't any notes show emptyText or hide they exist
+        itemEmptyGO.SetActive(notes.Count == 0);
     }
 
     public void SetNotes(List<Note> notes)
     {
         this.notes = notes;
     }
+
+    IEnumerator DelayedRefresh(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Refresh();
+        //refreshCoroutine = null;
+    }
+
+    public void LazyRefresh()
+    {
+        if (refreshCoroutine != null)
+        {
+            StopCoroutine(refreshCoroutine);
+        }
+        refreshCoroutine = StartCoroutine(DelayedRefresh(refreshRate)); 
+    }
+
 }
