@@ -6,4 +6,9 @@ public class Effect : DescriptionBaseSO
     {
         //Debug.Log("default apply effect");
     }
+
+    public virtual void SetData(EffectData data)
+    {
+        Debug.Log("default set effect");
+    }
 }
