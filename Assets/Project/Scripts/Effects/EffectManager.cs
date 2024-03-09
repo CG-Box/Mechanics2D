@@ -66,7 +66,7 @@ public class EffectManager : DescriptionBaseSO
         // TO DO: change to work with any InventoryBehaviour (not only player)
         InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();
 		ItemEventArg itemEventArg = new ItemEventArg(items, playerInventory);
-		selfStatic.addItemRequest.RaiseEvent(itemEventArg);
+		addItemRequest.RaiseEvent(itemEventArg);
     }
 
     public static void AddStatPoint_Static(AddStatPointEffect effectData)

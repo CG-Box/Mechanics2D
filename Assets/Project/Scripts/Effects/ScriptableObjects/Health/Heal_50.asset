@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edce5d00723305a42b1ecc5cd22a0fc6, type: 3}
-  m_Name: Heal_Effect
+  m_Name: Heal_50
   m_EditorClassIdentifier: 
-  description: effect not used now // deleting may be needed
-  amount: 20
-  HealEvent: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
+  description: heal HealthBehaviour by 50 points
+  amount: 50

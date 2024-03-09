@@ -8,8 +8,8 @@ public class Item_SO: ScriptableObject
 
     [SerializeField]private ItemData itemData;
 
-    [SerializeField]private List<Effect> useEffects;
-    [SerializeField]private List<Effect> passiveEffects;
+    //[SerializeField]private List<Effect> useEffects;
+    //[SerializeField]private List<Effect> passiveEffects;
 
     public ItemData Data
     {

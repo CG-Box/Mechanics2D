@@ -67,3 +67,7 @@ MonoBehaviour:
     value: Resume
   - key: EMPTY_NOTES
     value: Empty notes
+  - key: SHOP_TITLE
+    value: Shop
+  - key: BUY_BTN
+    value: Buy
