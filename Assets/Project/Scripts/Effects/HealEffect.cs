@@ -4,12 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/Effects/Heal")]
 public class HealEffect : Effect
 {
+    //[SerializeField] private IntEventChannelSO HealEvent;
     [SerializeField] private int amount;
-    [SerializeField] private IntEventChannelSO HealEvent;
+    public int Amount { get {return amount;} }
 
     public override void Apply()
     {
         base.Apply();
-        HealEvent.RaiseEvent(amount);
+        //HealEvent.RaiseEvent(amount);
+        EffectManager.Heal(this);
     }
 }

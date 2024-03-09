@@ -50,6 +50,7 @@ MonoBehaviour:
   canvasManager: {fileID: 11400000, guid: 9b1ad45b8eed3594c978bc027a319208, type: 2}
   itemsLibrary: {fileID: 11400000, guid: cd1ca49e22c06b64b8c6c8a029c8d871, type: 2}
   speakersLibrary: {fileID: 11400000, guid: 51b2db16f9a36524182c34bfee703820, type: 2}
+  effectManager: {fileID: 11400000, guid: 51e863f5a3270614dbf6e20e0f92ab82, type: 2}
 --- !u!1 &2588007910618738674
 GameObject:
   m_ObjectHideFlags: 0

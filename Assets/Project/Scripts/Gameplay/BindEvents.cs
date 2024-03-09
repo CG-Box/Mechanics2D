@@ -10,6 +10,7 @@ public class BindEvents : MonoBehaviour
     [SerializeField]private CanvasManager canvasManager;
     [SerializeField]private ItemsLibrary itemsLibrary;
     [SerializeField]private SpeakersLibrary speakersLibrary;
+    [SerializeField]private EffectManager effectManager;
 
     void UpdateLibraries()
     {
@@ -21,6 +22,7 @@ public class BindEvents : MonoBehaviour
     {
         //Del later or rewrite as singleton
         UpdateLibraries();
+        EffectManager.Init(effectManager);
 
         //don't do it in main menu (it's optional, may be it's can be done only once in main menu, when game has build)
         if(workAsReferences)

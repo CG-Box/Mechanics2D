@@ -11,8 +11,6 @@ public class Item_SO: ScriptableObject
     [SerializeField]private List<Effect> useEffects;
     [SerializeField]private List<Effect> passiveEffects;
 
-    [SerializeField]private List<EffectData> effects;
-
     public ItemData Data
     {
         get { return itemData; }
