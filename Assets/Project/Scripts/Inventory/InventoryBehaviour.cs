@@ -25,6 +25,8 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
 
 	[Header("Unity Events")]
     public UnityEvent OnKitKatSaveRaised;
+    public UnityEvent OnUseTaco;
+    public UnityEvent OnUseKey;
 
     void  Awake() 
     {
@@ -77,13 +79,13 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
     {
         switch(item.type)
         {
-            default:
             case ItemType.Taco:
-                inventory.RemoveItem(item);
+                inventory.RemoveItem(new ItemData(ItemType.Taco,1));
                 if(inventory.DoesNotContain(item))
                 {
                     //StaticEvents.Collecting.OnOutOfAmmo?.Invoke();
                 }
+                OnUseTaco?.Invoke();
                 break;
             case ItemType.Jam:
                 //float medkitHealth = 50f;
@@ -96,6 +98,16 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
                 inventory.RemoveItem(new ItemData(ItemType.Kat,1));
                 KitKatSave();
                 break;
+            case ItemType.Key_red:
+            case ItemType.Key_blue:
+            case ItemType.Key_green:
+            case ItemType.Key_yellow:
+                inventory.RemoveItem(item);
+                OnUseKey?.Invoke();
+                break;
+            default:
+               inventory.RemoveItem(item);
+               break;
         }
 
         //add note to chronicles

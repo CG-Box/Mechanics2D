@@ -282,17 +282,6 @@ public class SlotManager: ScriptableObject
         activeSlot.data.globals.destinationTag = destinationTag;
     }
 
-    public void ChangePlayerHealth(int newHealt)
-    {
-        activeSlot.data.globals.playerHealth = newHealt;
-        Debug.Log($"newHealt : {newHealt}");
-    }
-    public void ChangeInventory(GameObject gameObject)
-    {
-        Debug.LogError("ChangeInventory Method needs to write");
-        Debug.Log($"Invenotry {gameObject}");
-    }
-
 
     //Not used
     public string GetMostRecentSceneName()

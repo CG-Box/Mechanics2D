@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Manager for all effects from item or other things, get effect data
     and perform appropriate effect
-  HealEvent: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
+  healthChangeRequest: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
   moneyChangeRequest: {fileID: 11400000, guid: b0dbe65f7f163a64d8a8110ce78dd389, type: 2}
   addItemRequest: {fileID: 11400000, guid: 44079f4b94040b242b965e17ef6b8281, type: 2}
   addPointsRequest: {fileID: 11400000, guid: cd09b0d3a966e3b4883879537a8ab68c, type: 2}

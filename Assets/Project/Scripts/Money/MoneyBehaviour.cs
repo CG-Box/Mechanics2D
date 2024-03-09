@@ -6,14 +6,14 @@ public class MoneyBehaviour : MonoBehaviour
 {
     public int Money { get { return money.value; } }
 
-    [SerializeField]private SlotManager slotManager;
+    [SerializeField] private SlotManager slotManager;
 
-    [SerializeField]private Wrap<int> money;
+    [SerializeField] private Wrap<int> money;
 
     [Header("Events Raise")]
-    [SerializeField]private IntEventChannelSO moneyChangeEvent = default;
-    [SerializeField]private StringEventChannelSO infoShowTranslateRequest = default;
-    [SerializeField]private NoteEventChannelSO addNoteRequest = default;
+    [SerializeField] private IntEventChannelSO moneyChangeEvent = default;
+    [SerializeField] private StringEventChannelSO infoShowTranslateRequest = default;
+    [SerializeField] private NoteEventChannelSO addNoteRequest = default;
 
     void OnEnable()
     {

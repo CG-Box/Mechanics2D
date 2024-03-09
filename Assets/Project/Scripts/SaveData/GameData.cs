@@ -42,7 +42,8 @@ public class GameData
         GameData dataOriginal = this;
         GameData dataCopy = new GameData();
         dataCopy.globals.lastUpdated = dataOriginal.globals.lastUpdated;
-        dataCopy.globals.playerHealth = dataOriginal.globals.playerHealth;
+        dataCopy.globals.health.value = dataOriginal.globals.health.value;
+        dataCopy.globals.money.value = dataOriginal.globals.money.value;
         dataCopy.globals.lastSceneName = dataOriginal.globals.lastSceneName;
         dataCopy.globals.destinationTag = dataOriginal.globals.destinationTag;
 
@@ -60,7 +61,8 @@ public class GameData
     public class Globals
     {
         public long lastUpdated;
-        public int playerHealth;
+
+        public Wrap<int> health;
 
         [Mechanics2D.SceneName]
         public string lastSceneName;
@@ -79,7 +81,7 @@ public class GameData
             lastSceneName = Constants.NewGameScene;
             destinationTag = default;
 
-            playerHealth = 100;
+            health = new Wrap<int>(100);
 
             money = new Wrap<int>(77);
             
@@ -128,7 +130,7 @@ public class GameData
 
     public int GetPercentageComplete() 
     {
-        return globals.playerHealth;
+        return globals.health.value;
     }
 }
 

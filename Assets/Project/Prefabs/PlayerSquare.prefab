@@ -354,9 +354,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0e1b0cc1708d14f80622c85df9d99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyHealth: 0
-  healthChangeRequest: {fileID: 11400000, guid: 5d39cd2671e884d4aa39a48651985619, type: 2}
+  slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
+  health:
+    value: 0
   healthUpdateEvent: {fileID: 11400000, guid: ffc8558f08f0a7a42aff54e843b6adc7, type: 2}
+  addNoteRequest: {fileID: 11400000, guid: 857344b6401a7e943b949282a68b0dd3, type: 2}
 --- !u!114 &6644600456208830479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +375,7 @@ MonoBehaviour:
   itemsDatabase: {fileID: 11400000, guid: cd1ca49e22c06b64b8c6c8a029c8d871, type: 2}
   inventoryPanel: {fileID: 0}
   inventoryUpdateEvent: {fileID: 11400000, guid: 041ddf83e72db6a48bc8628f4693caba, type: 2}
+  addNoteRequest: {fileID: 11400000, guid: 857344b6401a7e943b949282a68b0dd3, type: 2}
   addItemRequest: {fileID: 11400000, guid: 44079f4b94040b242b965e17ef6b8281, type: 2}
   removeItemRequest: {fileID: 11400000, guid: 0611ae18606e6ec44ac4e74cda603228, type: 2}
   OnKitKatSaveRaised:
@@ -390,6 +393,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnUseTaco:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUseKey:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &309876590854158979
 MonoBehaviour:
   m_ObjectHideFlags: 0

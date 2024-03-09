@@ -12,7 +12,7 @@ public class MoneyAddEffect : Effect
         base.Apply();
 
         //moneyChangeRequest.RaiseEvent(amount);
-        EffectManager.AddMoney(this);
+        EffectManager.AddMoney_Static(this);
     }
 }
 

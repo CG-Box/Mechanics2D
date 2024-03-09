@@ -17,7 +17,7 @@ public class StatIncreaseEffect : Effect
         base.Apply();
 
         //statsChangeRequest.RaiseEvent(new StatData(statType,addAmount));
-        EffectManager.StatIncrease(this);
+        EffectManager.StatIncrease_Static(this);
     }
 }
 

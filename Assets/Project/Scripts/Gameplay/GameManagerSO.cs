@@ -107,7 +107,7 @@ public class GameManagerSO : DescriptionBaseSO
 
 	void HealthChanged(int newHealt)
 	{
-		slotManager.ChangePlayerHealth(newHealt);
+		Debug.Log($"health changes {newHealt}");
 	}
 	void InventoryChanged(GameObject gameObject)
 	{
@@ -140,6 +140,7 @@ public class GameManagerSO : DescriptionBaseSO
         return new List<ITakeFromFile>(dataPersistenceObjects);
     }
 
+	//Remove this useless
 	public void AddItemToPlayer(ItemType itemType = ItemType.Taco)
 	{
 		//need to change get player from prefab or tag 
@@ -156,6 +157,7 @@ public class GameManagerSO : DescriptionBaseSO
 		ItemEventArg itemEventArg = new ItemEventArg(new ItemData(itemType, 1), playerInventory);
 		removeItemRequest.RaiseEvent(itemEventArg);    
 	}
+	//Remove this useless
 
     public void ExitGame()
 	{

@@ -16,7 +16,7 @@ public class NoteAddEffect : Effect
 
         //add note to chronicles
         //addNoteRequest.RaiseEvent(new Note(type, text));
-        EffectManager.AddNote(this);
+        EffectManager.AddNote_Static(this);
     }
 }
 

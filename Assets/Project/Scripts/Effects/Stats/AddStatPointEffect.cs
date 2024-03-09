@@ -12,7 +12,7 @@ public class AddStatPointEffect : Effect
         base.Apply();
 
         //addPointsRequest.RaiseEvent(addAmount);
-        EffectManager.AddStatPoint(this);
+        EffectManager.AddStatPoint_Static(this);
     }
 }
 

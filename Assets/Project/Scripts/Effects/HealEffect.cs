@@ -12,6 +12,6 @@ public class HealEffect : Effect
     {
         base.Apply();
         //HealEvent.RaiseEvent(amount);
-        EffectManager.Heal(this);
+        EffectManager.Heal_Static(this);
     }
 }

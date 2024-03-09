@@ -1,10 +1,12 @@
 using UnityEngine;
 using System;
 
+// not using
+
 [CreateAssetMenu(menuName = "ScriptableObjects/Effects/Effect Manager", order = 99)]
 public class EffectManager : DescriptionBaseSO
 {
-    [SerializeField] private IntEventChannelSO HealEvent;
+    [SerializeField] private IntEventChannelSO healthChangeRequest = default;
     [SerializeField] private IntEventChannelSO moneyChangeRequest = default;
     [SerializeField] private ItemDataEventChannelSO addItemRequest = default;
     [SerializeField] private IntEventChannelSO addPointsRequest = default;
@@ -15,6 +17,8 @@ public class EffectManager : DescriptionBaseSO
 
     //public static EffectManager SelfStatic { get {return selfStatic;} }
 
+
+    //call init in BindEvents: EffectManager.Init(effectManager);
     public static void Init(EffectManager effectManager)
     {
         selfStatic = effectManager;
@@ -37,34 +41,58 @@ public class EffectManager : DescriptionBaseSO
         }
     }*/
 
-    public static void Heal(HealEffect effectData)
+    public static void Heal_Static(HealEffect effectData)
     {
-        selfStatic.HealEvent.RaiseEvent(effectData.Amount);
+        selfStatic.Heal(effectData.Amount);
     }
-    public static void AddMoney(MoneyAddEffect effectData)
+    public void Heal(int amount)
     {
-        selfStatic.moneyChangeRequest.RaiseEvent(effectData.Amount);
+        healthChangeRequest.RaiseEvent(amount);
     }
-    public static void AddItem(AddItemEffect effectData)
+    public static void AddMoney_Static(MoneyAddEffect effectData)
     {
-           // TO DO: change to work with any InventoryBehaviour (not only player)
+        selfStatic.AddMoney(effectData.Amount);
+    }
+    public void AddMoney(int amount)
+    {
+        moneyChangeRequest.RaiseEvent(amount);
+    }
+    public static void AddItem_Static(AddItemEffect effectData)
+    {
+        selfStatic.AddItem(effectData.Items);
+    }
+    public void AddItem(ItemData[] items)
+    {
+        // TO DO: change to work with any InventoryBehaviour (not only player)
         InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();
-		ItemEventArg itemEventArg = new ItemEventArg(effectData.Items, playerInventory);
+		ItemEventArg itemEventArg = new ItemEventArg(items, playerInventory);
 		selfStatic.addItemRequest.RaiseEvent(itemEventArg);
     }
 
-    public static void AddStatPoint(AddStatPointEffect effectData)
+    public static void AddStatPoint_Static(AddStatPointEffect effectData)
     {
-        selfStatic.addPointsRequest.RaiseEvent(effectData.Amount);
+        selfStatic.AddStatPoint(effectData.Amount);
+    }
+    public void AddStatPoint(int amount)
+    {
+        addPointsRequest.RaiseEvent(amount);
     }
 
-    public static void StatIncrease(StatIncreaseEffect effectData)
+    public static void StatIncrease_Static(StatIncreaseEffect effectData)
     {
-        selfStatic.statsChangeRequest.RaiseEvent(new StatData(effectData.Type, effectData.Amount));
+        selfStatic.StatIncrease(effectData.Type, effectData.Amount);
+    }
+    public void StatIncrease(StatType type, int amount)
+    {
+        statsChangeRequest.RaiseEvent(new StatData(type, amount));
     }
 
-    public static void AddNote(NoteAddEffect effectData)
+    public static void AddNote_Static(NoteAddEffect effectData)
     {
-        selfStatic.addNoteRequest.RaiseEvent(new Note(effectData.Type, effectData.Text));
+        selfStatic.AddNote(effectData.Type, effectData.Text);
+    }
+    public void AddNote(NoteType type, string text)
+    {
+        addNoteRequest.RaiseEvent(new Note(type, text));
     }
 }

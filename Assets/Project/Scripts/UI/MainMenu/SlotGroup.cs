@@ -59,7 +59,7 @@ public class SlotGroup : MonoBehaviour
             ShowContentUI();
 
             percentageCompleteText.text = data.GetPercentageComplete() + "% COMPLETE";
-            healthText.text = "Health:  " + data.globals.playerHealth;
+            healthText.text = "Health:  " + data.globals.health.value;
         }
     }
 

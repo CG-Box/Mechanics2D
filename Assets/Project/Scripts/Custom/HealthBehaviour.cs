@@ -1,35 +1,41 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class HealthBehaviour : MonoBehaviour, ITakeFromFile
+public class HealthBehaviour : MonoBehaviour //, ITakeFromFile
 {
-    public int MyHealth = 0;
+    public int Health { get { return health.value; } }
 
-    [Header("Events Listen")]
-    public IntEventChannelSO healthChangeRequest = default;
+    [SerializeField] private SlotManager slotManager;
+
+    [SerializeField] private Wrap<int> health;
 
     [Header("Events Raise")]
-	public IntEventChannelSO healthUpdateEvent = default;
+	[SerializeField] private IntEventChannelSO healthUpdateEvent = default;
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    [SerializeField] private NoteEventChannelSO addNoteRequest = default;
+
+    void Awake()
     {
-        
-        Circle collectable = collider.GetComponent<Circle>();
-        if(collectable != null)
-        {
-            ChangeHealth(collectable.health);
-            healthUpdateEvent.RaiseEvent(MyHealth);
-            //collectable.SetActive(false);
-        }
+        LoadData(slotManager.GetActiveSlot().data);
     }
 
-    public void ChangeHealth(int delta)
+    void Start()
     {
-        MyHealth += delta;
+        healthUpdateEvent.RaiseEvent(health.value);
     }
 
+    public void ChangeHealth(int amount)
+    {
+        health.value += amount;
+        healthUpdateEvent.RaiseEvent(health.value);
+
+        addNoteRequest.RaiseEvent(new Note(NoteType.Health, $"You get {amount} health"));
+    }
+
+
+    //ITakeFromFile
     public void LoadData(GameData data)
     {
-        MyHealth = data.globals.playerHealth;
+        this.health = data.globals.health;
     }
 }

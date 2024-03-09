@@ -18,6 +18,6 @@ public class AddItemEffect : Effect
 		ItemEventArg itemEventArg = new ItemEventArg(items, playerInventory);
 		addItemRequest.RaiseEvent(itemEventArg);*/
 
-        EffectManager.AddItem(this);
+        EffectManager.AddItem_Static(this);
     }
 }
