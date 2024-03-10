@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InventoryCheck : InteractOnTrigger
+public class InventoryCheck : InteractOnTriggerWithInventory
 {
     [SerializeField] private ItemType type;
     [SerializeField] private int amount = 1;
@@ -13,25 +13,9 @@ public class InventoryCheck : InteractOnTrigger
 
     public UnityEvent OnHasItem, OnNoItem, OnPassCheck;
 
-    InventoryBehaviour inventoryBehaviour;
-    bool inventoryInZone = false;
-
     bool HasItem()
     {
         return inventoryBehaviour.ContainsItem(new ItemData(type), amount);
-    }
-
-    protected override void ExecuteOnEnter(Collider2D other)
-    {
-        inventoryBehaviour = other.GetComponent<InventoryBehaviour>();
-        inventoryInZone = true;
-        base.ExecuteOnEnter(other);
-    }
-    protected override void ExecuteOnExit(Collider2D other)
-    {
-        base.ExecuteOnExit(other);
-        inventoryBehaviour = null;
-        inventoryInZone = false;
     }
 
 
@@ -58,7 +42,7 @@ public class InventoryCheck : InteractOnTrigger
     }
     public void TryRemoveTarget()
     {
-        if(!inventoryInZone) return;
+        if(!InventoryInZone) return;
 
         if(HasItem())
         {

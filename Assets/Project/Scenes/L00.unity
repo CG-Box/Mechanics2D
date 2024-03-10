@@ -2352,7 +2352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 200}
+  m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224972083
 MonoBehaviour:
@@ -12383,9 +12383,10 @@ GameObject:
   - component: {fileID: 1611283256}
   - component: {fileID: 1611283259}
   - component: {fileID: 1611283258}
-  - component: {fileID: 1611283257}
+  - component: {fileID: 1611283260}
+  - component: {fileID: 1611283261}
   m_Layer: 0
-  m_Name: ShopTrigger
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -12405,77 +12406,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2075798168}
-  m_Father: {fileID: 1721129445}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1611283257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611283255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19a4bff3e738ab458c942d5630432ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layers:
-    serializedVersion: 2
-    m_Bits: 128
-  OnEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2075798167}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1496091272}
-        m_TargetAssemblyTypeName: TogglePanel, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2075798167}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1496091272}
-        m_TargetAssemblyTypeName: TogglePanel, Assembly-CSharp
-        m_MethodName: Hide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!61 &1611283258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12573,6 +12505,139 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1611283260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611283255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02bca7163a4c5248aff7eaeabe70b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+    serializedVersion: 2
+    m_Bits: 128
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2075798167}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2075798167}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1496091272}
+        m_TargetAssemblyTypeName: TogglePanel, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
+  shopPrices: {fileID: 11400000, guid: 73af70f178684b242b3f96601c7c0b53, type: 2}
+  money:
+    value: 0
+  shopPanel: {fileID: 1496091272}
+  moneyChangeRequest: {fileID: 11400000, guid: b0dbe65f7f163a64d8a8110ce78dd389, type: 2}
+  addItemRequest: {fileID: 11400000, guid: 44079f4b94040b242b965e17ef6b8281, type: 2}
+  shopItems:
+  - {fileID: 11400000, guid: 9ffc8aa119be66747b0acf90c0fec6ab, type: 2}
+  - {fileID: 11400000, guid: c4a83f9b14abb2940bee961304f8fc7f, type: 2}
+  - {fileID: 11400000, guid: ae8cea7103b2c6240bae891de265d64c, type: 2}
+  - {fileID: 11400000, guid: eb29015e1c035b14ea979043f94cd549, type: 2}
+  - {fileID: 11400000, guid: b402fc6faa4d4284ca32c74ff589fb43, type: 2}
+  - {fileID: 11400000, guid: ef61ab1f41ae8f84f91b8b73a8b68847, type: 2}
+  - {fileID: 11400000, guid: 52388f370b09f0b4c9c6b1f70b9050f4, type: 2}
+  - {fileID: 11400000, guid: 56ec2f8acbdd6334fbc9dbbc0eb876d1, type: 2}
+  - {fileID: 11400000, guid: a8dfda11c0a76234094b80b3e0f3f2c8, type: 2}
+  - {fileID: 11400000, guid: 184928c95ffa153488c02127e4601aca, type: 2}
+  OnBuy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873237370}
+        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
+        m_MethodName: ShortAcivateWithText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -100
+          m_FloatArgument: 0
+          m_StringArgument: You buy special item for 100$
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNotMoney:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873237370}
+        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
+        m_MethodName: ShortAcivateWithText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: You don't have enough money
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1611283261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611283255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00274bebdab2378428a2b7a9e9762abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channel: {fileID: 11400000, guid: 51b16a54815703345bb2e19c01ed55b0, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1611283260}
+        m_TargetAssemblyTypeName: ShopBehaviour, Assembly-CSharp
+        m_MethodName: TryOpenShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1615190691
 GameObject:
   m_ObjectHideFlags: 0
@@ -13100,98 +13165,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7101348220111423696, guid: 2a5c73b946c48ed4f8c024c53fd56edf, type: 3}
   m_PrefabInstance: {fileID: 2099139737}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1721129443
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1721129445}
-  - component: {fileID: 1721129444}
-  m_Layer: 0
-  m_Name: Shop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1721129444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721129443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02bca7163a4c5248aff7eaeabe70b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotManager: {fileID: 11400000, guid: 39faa87da82d52547a24a349c0cf22fa, type: 2}
-  money:
-    value: 0
-  shopPanel: {fileID: 1496091272}
-  moneyChangeRequest: {fileID: 11400000, guid: b0dbe65f7f163a64d8a8110ce78dd389, type: 2}
-  addItemRequest: {fileID: 11400000, guid: 44079f4b94040b242b965e17ef6b8281, type: 2}
-  shopItems:
-  - {fileID: 11400000, guid: 9ffc8aa119be66747b0acf90c0fec6ab, type: 2}
-  - {fileID: 11400000, guid: c4a83f9b14abb2940bee961304f8fc7f, type: 2}
-  - {fileID: 11400000, guid: ae8cea7103b2c6240bae891de265d64c, type: 2}
-  - {fileID: 11400000, guid: eb29015e1c035b14ea979043f94cd549, type: 2}
-  - {fileID: 11400000, guid: b402fc6faa4d4284ca32c74ff589fb43, type: 2}
-  - {fileID: 11400000, guid: ef61ab1f41ae8f84f91b8b73a8b68847, type: 2}
-  - {fileID: 11400000, guid: 52388f370b09f0b4c9c6b1f70b9050f4, type: 2}
-  - {fileID: 11400000, guid: 56ec2f8acbdd6334fbc9dbbc0eb876d1, type: 2}
-  - {fileID: 11400000, guid: a8dfda11c0a76234094b80b3e0f3f2c8, type: 2}
-  - {fileID: 11400000, guid: 184928c95ffa153488c02127e4601aca, type: 2}
-  OnBuy:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1873237370}
-        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
-        m_MethodName: ShortAcivateWithText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -100
-          m_FloatArgument: 0
-          m_StringArgument: You buy special item for 100$
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNotMoney:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1873237370}
-        m_TargetAssemblyTypeName: InfoCanvasController, Assembly-CSharp
-        m_MethodName: ShortAcivateWithText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: You don't have enough money
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!4 &1721129445
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721129443}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1611283256}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738873017
 GameObject:
   m_ObjectHideFlags: 0
@@ -14856,15 +14829,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: 10
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 60, y: 60}
-  m_Spacing: {x: 10, y: 30}
+  m_Spacing: {x: 10, y: 40}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!4 &2039130798 stripped
@@ -16889,7 +16862,7 @@ SceneRoots:
   - {fileID: 1029096537}
   - {fileID: 1376791902}
   - {fileID: 1738873019}
-  - {fileID: 1721129445}
+  - {fileID: 1611283256}
   - {fileID: 1496091276}
   - {fileID: 1253186175}
   - {fileID: 679567423}

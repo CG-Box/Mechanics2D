@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ShopBehaviour : MonoBehaviour
+public class ShopBehaviour : InteractOnTriggerWithInventory
 {
     [SerializeField] private SlotManager slotManager;
+
+    [SerializeField] private ShopPrices shopPrices;
 
     [SerializeField] private Wrap<int> money;
 
@@ -23,6 +25,7 @@ public class ShopBehaviour : MonoBehaviour
     {
         LoadData(slotManager.GetActiveSlot().data);
         shopPanel.SetItems(shopItems);
+        shopPanel.SetPrices(shopPrices);
         //shopPanel.Refresh(); //it's refresh on start
     }
 
@@ -46,9 +49,7 @@ public class ShopBehaviour : MonoBehaviour
 
     void ShopBehaviour_OnBuyItem(object sender, ItemSlotEventArgs eventArgs)
     {
-        if(eventArgs.itemData.amount <= 0) return;
-
-        int itemPrice = 100;
+        int itemPrice = shopPrices[eventArgs.itemData.type];
         int totalPrice = eventArgs.itemData.amount * itemPrice;
         if(money.value < totalPrice)
         {
@@ -58,15 +59,25 @@ public class ShopBehaviour : MonoBehaviour
         {
             moneyChangeRequest.RaiseEvent(-totalPrice);
 
-            // TO DO: change to work with any InventoryBehaviour (not only player)
-            InventoryBehaviour playerInventory = FindObjectOfType<PlayerMovement>().GetComponent<InventoryBehaviour>();
-            ItemEventArg itemEventArg = new ItemEventArg(eventArgs.itemData, playerInventory);
+            if(inventoryBehaviour == null){ Debug.LogError("inventoryBehaviour is null"); return; }
+
+            ItemEventArg itemEventArg = new ItemEventArg(eventArgs.itemData, inventoryBehaviour);
             addItemRequest.RaiseEvent(itemEventArg);
             OnBuy?.Invoke();
         }
     }
 
-
+    public void TryOpenShop()
+    {
+        if(InventoryInZone)
+        {
+            shopPanel.Toggle();
+        }
+        else
+        {
+            //Debug.Log("player not zone");
+        }
+    }
 
     //ITakeFromFile
     public void LoadData(GameData data)

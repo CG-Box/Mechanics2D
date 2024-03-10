@@ -21,6 +21,7 @@ public class ShopSlot : MonoBehaviour
     private Button minusButton;
 
     ItemData itemData;
+    int price;
 
     public event EventHandler<ItemSlotEventArgs> OnBuySlot;
 
@@ -29,6 +30,7 @@ public class ShopSlot : MonoBehaviour
         itemData.amount = 1;
     }
 
+    #region BindEvents
     void OnEnable()
     {
         buyButton.onClick.AddListener(OnBuyClick);
@@ -43,23 +45,37 @@ public class ShopSlot : MonoBehaviour
         plusButton.onClick.RemoveListener(OnPlusClick);
         minusButton.onClick.RemoveListener(OnMinusClick);
     }
+    #endregion
 
 
-    public void SetSlot(ItemData itemData)
+    public void SetItem(ItemData itemData)
     {
         this.itemData = itemData;
     }
+    public void SetPrice(int price)
+    {
+        this.price = price;
+    }
+
+    #region UpdateVisaul
     public void UpdateSlotVisual()
     {
         image.sprite = ItemsLibrary.GetItem(itemData.type).sprite;
         UpdateAmount();
+        UpdatePrice();
     }
 
     void UpdateAmount()
     {
         amountText.text = itemData.amount.ToString();
     }
+    void UpdatePrice()
+    {
+        priceText.text = (price * itemData.amount).ToString()+"$";
+    }
+    #endregion
 
+    #region Clicks
     void OnBuyClick()
     {
         OnBuySlot?.Invoke(this, new ItemSlotEventArgs(this.itemData));
@@ -69,12 +85,15 @@ public class ShopSlot : MonoBehaviour
         this.itemData.amount++;
 
         UpdateAmount();
+        UpdatePrice();
     }
     void OnMinusClick()
     {
         this.itemData.amount--;
-        if(itemData.amount < 0) itemData.amount = 0;
+        if(itemData.amount < 1) itemData.amount = 1;
 
         UpdateAmount();
+        UpdatePrice();
     }
+    #endregion
 }

@@ -37,7 +37,19 @@ public class Inventory
         }
         else
         {
-            itemList.Add(newItem);
+            if(newItem.amount > 1) //if somehow item that can't stack arrive in stack
+            {
+                ItemData itemPart = newItem;
+                itemPart.amount = 1;
+                for (int i = 0; i < newItem.amount; i++)
+                {
+                    itemList.Add(itemPart);
+                }
+            }
+            else // if arrive correct not stackable item
+            {
+                itemList.Add(newItem);
+            }
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
 

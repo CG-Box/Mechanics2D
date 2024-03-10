@@ -8,6 +8,7 @@ public class ShopPanel : TogglePanel
     [SerializeField]private Transform itemTemplate;
 
     Item_SO[] shopItems;
+    ShopPrices shopPrices;
 
     public event EventHandler<ItemSlotEventArgs> OnBuyItem;
 
@@ -26,6 +27,10 @@ public class ShopPanel : TogglePanel
     {
         this.shopItems = items;
     }
+    public void SetPrices(ShopPrices shopPrices)
+    {
+        this.shopPrices = shopPrices;
+    }
     void Refresh()
     {
         foreach(Transform child in itemsContainer)
@@ -40,7 +45,8 @@ public class ShopPanel : TogglePanel
             RectTransform itemSlotRectTransform = Instantiate(itemTemplate, itemsContainer).GetComponent<RectTransform>();
             //itemSlotRectTransform.gameObject.SetActive(true);
             var slot = itemSlotRectTransform.gameObject.GetComponent<ShopSlot>();
-            slot.SetSlot(item.Data);
+            slot.SetItem(item.Data);
+            slot.SetPrice(shopPrices[item.Data.type]);
             slot.UpdateSlotVisual();
             AddSlotListeners(slot);
         }
