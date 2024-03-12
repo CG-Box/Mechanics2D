@@ -11220,11 +11220,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2d0082edbd4d44bba23d0a83736503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicEventChannel: {fileID: 11400000, guid: 4a7c58e44fc1cb748b58821f509f5ee6, type: 2}
-  _SFXEventChannel: {fileID: 11400000, guid: 8d1a8f44b5ce74848857c39ae52b1674, type: 2}
-  audioSource: {fileID: 1376791901}
   _pool: {fileID: 11400000, guid: f21310761c4255a429e4feaf3bbb017e, type: 2}
   _initialSize: 10
+  _SFXEventChannel: {fileID: 11400000, guid: 8d1a8f44b5ce74848857c39ae52b1674, type: 2}
+  _musicEventChannel: {fileID: 11400000, guid: 4a7c58e44fc1cb748b58821f509f5ee6, type: 2}
+  _SFXVolumeEventChannel: {fileID: 11400000, guid: 6a4f8ad20c2795246bb82c9216dc41e5, type: 2}
+  _musicVolumeEventChannel: {fileID: 11400000, guid: f66d1dd414810a6448e909e70552e27f, type: 2}
+  _masterVolumeEventChannel: {fileID: 11400000, guid: 42d3044d49115464ebf4a4e179d2fe1f, type: 2}
+  audioMixer: {fileID: 24100000, guid: 7ec353946da3a8a41bd1e49faca77361, type: 2}
+  _masterVolume: 1
+  _musicVolume: 0.8
+  _sfxVolume: 1
 --- !u!82 &1376791901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14265,6 +14271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1738873019}
   - component: {fileID: 1738873018}
+  - component: {fileID: 1738873021}
   m_Layer: 0
   m_Name: CharacterAudio
   m_TagString: Untagged
@@ -14309,6 +14316,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738873021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738873017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404f8fe0f4448434f9f9f871769bae9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioCue: {fileID: 11400000, guid: 75875f7f266c4c5449447159d1f179f6, type: 2}
+  _playOnStart: 1
+  _audioCueEventChannel: {fileID: 11400000, guid: 4a7c58e44fc1cb748b58821f509f5ee6, type: 2}
+  _audioConfiguration: {fileID: 11400000, guid: 433148d94481425488a0b965bcdb4999, type: 2}
 --- !u!1 &1761576740
 GameObject:
   m_ObjectHideFlags: 0
@@ -15829,6 +15852,167 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997719891}
   m_CullTransparentMesh: 1
+--- !u!1 &2018811619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018811623}
+  - component: {fileID: 2018811622}
+  - component: {fileID: 2018811624}
+  - component: {fileID: 2018811621}
+  - component: {fileID: 2018811620}
+  m_Layer: 0
+  m_Name: TriggerAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2018811620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018811619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ce8f91f95484643bbd082b5e35bf19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tagToDetect: Player
+--- !u!114 &2018811621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018811619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404f8fe0f4448434f9f9f871769bae9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioCue: {fileID: 11400000, guid: acac25352f45ff842bfa988d133d87ed, type: 2}
+  _playOnStart: 0
+  _audioCueEventChannel: {fileID: 11400000, guid: 8d1a8f44b5ce74848857c39ae52b1674, type: 2}
+  _audioConfiguration: {fileID: 11400000, guid: f48abadca6e921c498e0664c0084c5f6, type: 2}
+--- !u!212 &2018811622
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018811619}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.9622642, g: 0.22068901, b: 0.16794233, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &2018811623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018811619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2018811624
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018811619}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2031550826
 GameObject:
   m_ObjectHideFlags: 0
@@ -18054,6 +18238,7 @@ SceneRoots:
   - {fileID: 1029096537}
   - {fileID: 1376791902}
   - {fileID: 1738873019}
+  - {fileID: 2018811623}
   - {fileID: 1611283256}
   - {fileID: 1496091276}
   - {fileID: 1263424801}
