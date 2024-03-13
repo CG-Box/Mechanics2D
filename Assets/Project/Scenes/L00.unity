@@ -9329,6 +9329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029096537}
   - component: {fileID: 1029096536}
+  - component: {fileID: 1029096538}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -9369,6 +9370,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029096538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029096535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404f8fe0f4448434f9f9f871769bae9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioCue: {fileID: 11400000, guid: 75875f7f266c4c5449447159d1f179f6, type: 2}
+  _playOnStart: 0
+  _audioCueEventChannel: {fileID: 11400000, guid: 4a7c58e44fc1cb748b58821f509f5ee6, type: 2}
+  _audioConfiguration: {fileID: 11400000, guid: 433148d94481425488a0b965bcdb4999, type: 2}
 --- !u!1 &1046834458
 GameObject:
   m_ObjectHideFlags: 0
@@ -11199,7 +11216,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376791902}
-  - component: {fileID: 1376791901}
   - component: {fileID: 1376791900}
   m_Layer: 0
   m_Name: AudioManager
@@ -11229,104 +11245,8 @@ MonoBehaviour:
   _masterVolumeEventChannel: {fileID: 11400000, guid: 42d3044d49115464ebf4a4e179d2fe1f, type: 2}
   audioMixer: {fileID: 24100000, guid: 7ec353946da3a8a41bd1e49faca77361, type: 2}
   _masterVolume: 1
-  _musicVolume: 0.8
+  _musicVolume: 1
   _sfxVolume: 1
---- !u!82 &1376791901
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376791899}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &1376791902
 Transform:
   m_ObjectHideFlags: 0
@@ -14271,7 +14191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1738873019}
   - component: {fileID: 1738873018}
-  - component: {fileID: 1738873021}
   m_Layer: 0
   m_Name: CharacterAudio
   m_TagString: Untagged
@@ -14316,22 +14235,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1738873021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738873017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404f8fe0f4448434f9f9f871769bae9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioCue: {fileID: 11400000, guid: 75875f7f266c4c5449447159d1f179f6, type: 2}
-  _playOnStart: 1
-  _audioCueEventChannel: {fileID: 11400000, guid: 4a7c58e44fc1cb748b58821f509f5ee6, type: 2}
-  _audioConfiguration: {fileID: 11400000, guid: 433148d94481425488a0b965bcdb4999, type: 2}
 --- !u!1 &1761576740
 GameObject:
   m_ObjectHideFlags: 0

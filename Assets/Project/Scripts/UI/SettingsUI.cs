@@ -10,8 +10,17 @@ namespace Mechanics2D
         [SerializeField] private Slider sfxSlider;
         [SerializeField] private Slider textSlider;
 
-        public int musicVolume  = -1;
-        public int sfxVolume  = -1;
+        [Header("Volume Events")]
+        [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change SFXs volume")]
+        [SerializeField] private FloatEventChannelSO _SFXVolumeEventChannel = default;
+        [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Music volume")]
+        [SerializeField] private FloatEventChannelSO _musicVolumeEventChannel = default;
+        [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Master volume")]
+        [SerializeField] private FloatEventChannelSO _masterVolumeEventChannel = default;
+
+        [Header("Volume values")]
+        public float musicVolume  = -1;
+        public float sfxVolume  = -1;
         public int typingSpeed  = -1;
 
         bool isDirty = false;
@@ -66,22 +75,22 @@ namespace Mechanics2D
         }
         public void ResetToDefault() 
         {
-            musicVolume = 100;
-            sfxVolume = 100;
+            musicVolume = 1;
+            sfxVolume = 1;
             typingSpeed = 50;
         }
 
         void LoadSettings() 
         {
-            musicVolume = PlayerPrefs.GetInt(nameof(musicVolume));
-            sfxVolume = PlayerPrefs.GetInt(nameof(sfxVolume));
+            musicVolume = PlayerPrefs.GetFloat(nameof(musicVolume));
+            sfxVolume = PlayerPrefs.GetFloat(nameof(sfxVolume));
             typingSpeed = PlayerPrefs.GetInt(nameof(typingSpeed));
         }
 
         void SaveSettings()
         {
-            PlayerPrefs.SetInt(nameof(musicVolume), musicVolume);
-            PlayerPrefs.SetInt(nameof(sfxVolume), sfxVolume);
+            PlayerPrefs.SetFloat(nameof(musicVolume), musicVolume);
+            PlayerPrefs.SetFloat(nameof(sfxVolume), sfxVolume);
             PlayerPrefs.SetInt(nameof(typingSpeed), typingSpeed);
 
             isDirty = false;
@@ -103,13 +112,17 @@ namespace Mechanics2D
 
         void MusicChange(float value)
         {
-            musicVolume = (int)value;
+            musicVolume = value;
             SliderSharedChange(value);
+
+            _musicVolumeEventChannel.RaiseEvent(musicVolume);
         }
         void SfxChange(float value)
         {
-            sfxVolume = (int)value;
+            sfxVolume = value;
             SliderSharedChange(value);
+
+            _SFXVolumeEventChannel.RaiseEvent(sfxVolume);
         }
         void TextSpeedChange(float value)
         {

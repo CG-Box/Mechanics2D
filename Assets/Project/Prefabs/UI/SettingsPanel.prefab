@@ -885,6 +885,9 @@ MonoBehaviour:
   musisSlider: {fileID: 2367039484159281255}
   sfxSlider: {fileID: 3771998880711226518}
   textSlider: {fileID: 9186295074247850708}
+  _SFXVolumeEventChannel: {fileID: 11400000, guid: 6a4f8ad20c2795246bb82c9216dc41e5, type: 2}
+  _musicVolumeEventChannel: {fileID: 11400000, guid: f66d1dd414810a6448e909e70552e27f, type: 2}
+  _masterVolumeEventChannel: {fileID: 0}
   musicVolume: -1
   sfxVolume: -1
   typingSpeed: -1
@@ -1399,8 +1402,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 9095337545513136417}
     m_Modifications:
     - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
-      propertyPath: m_WholeNumbers
+      propertyPath: m_Value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -1791,8 +1802,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 9095337545513136417}
     m_Modifications:
     - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
-      propertyPath: m_WholeNumbers
+      propertyPath: m_Value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777004400067802602, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4035436429291290583, guid: d8a345b14254f184ebce3d2cf6732718, type: 3}
       propertyPath: m_Name
