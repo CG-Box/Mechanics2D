@@ -31,7 +31,7 @@ public class ShopPanel : TogglePanel
     {
         this.shopPrices = shopPrices;
     }
-    void Refresh()
+    public void Refresh()
     {
         foreach(Transform child in itemsContainer)
         {

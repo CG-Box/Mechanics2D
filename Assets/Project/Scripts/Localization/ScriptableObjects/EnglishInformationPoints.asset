@@ -71,3 +71,5 @@ MonoBehaviour:
     value: Shop
   - key: BUY_BTN
     value: Buy
+  - key: SELL_BTN
+    value: Sell

@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class ShopBehaviour : InteractOnTriggerWithInventory
 {
     [SerializeField] private SlotManager slotManager;
 
     [SerializeField] private ShopPrices shopPrices;
+
+    //[SerializeField] private float sellMultiplier = 1;
 
     [SerializeField] private Wrap<int> money;
 
@@ -18,6 +21,9 @@ public class ShopBehaviour : InteractOnTriggerWithInventory
     [Header("Shop Items")]
     [SerializeField] private Item_SO[] shopItems;
 
+    //[SerializeField] private Item_SO[] notSellingItems;
+
+    [Header("Unity Events")]
     public UnityEvent OnBuy;
     public UnityEvent OnNotMoney;
 
@@ -46,6 +52,20 @@ public class ShopBehaviour : InteractOnTriggerWithInventory
     {
         shopPanel.OnBuyItem -= ShopBehaviour_OnBuyItem;
     }
+
+    /*
+    public void ToSell()
+    {
+        Debug.Log("ToSell");
+        List<ItemData> inventoryItems = inventoryBehaviour.GetItems();
+        //shopPanel.SetItems(inventoryItems);   
+    }
+    public void ToBuy()
+    {
+        Debug.Log("ToBuy");
+        shopPanel.SetItems(shopItems);
+        shopPanel.Refresh(); //it's refresh on start
+    }*/
 
     void ShopBehaviour_OnBuyItem(object sender, ItemSlotEventArgs eventArgs)
     {

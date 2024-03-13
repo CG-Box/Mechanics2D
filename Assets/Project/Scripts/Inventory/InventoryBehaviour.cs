@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
 {
@@ -64,6 +65,11 @@ public class InventoryBehaviour : MonoBehaviour , ITakeFromFile
     {
         inventoryPanel.OnUseItem -= InventoryBehaviour_OnUseItem;
         inventoryPanel.OnRemoveItem -= InventoryBehaviour_OnRemoveItem;
+    }
+
+    public List<ItemData> GetItems()
+    {
+        return inventory.GetItemList();
     }
 
     public bool ContainsItem(ItemData checkItem)
